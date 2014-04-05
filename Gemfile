@@ -7,6 +7,8 @@ gem 'bootstrap-sass'
 gem 'geocoder'
 gem 'figaro'
 gem 'high_voltage'
+gem 'hashie'
+gem 'soda-ruby', :require => 'soda'
 
 group :development, :test do
 # Use sqlite3 as the database for Active Record

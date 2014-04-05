@@ -76,6 +76,7 @@ GEM
       childprocess (>= 0.2.3)
       guard (>= 1.1)
       spork (>= 0.8.4)
+    hashie (2.0.5)
     high_voltage (2.1.0)
     hike (1.2.3)
     i18n (0.6.9)
@@ -164,6 +165,8 @@ GEM
       json (~> 1.8)
       rdoc (~> 4.0, < 5.0)
     slop (3.5.0)
+    soda-ruby (0.2.12)
+      hashie
     spork (1.0.0rc4)
     spork-rails (4.0.0)
       rails (>= 3.0.0, < 5)
@@ -208,6 +211,7 @@ DEPENDENCIES
   geocoder
   guard-rspec
   guard-spork
+  hashie
   high_voltage
   jbuilder (~> 1.2)
   jquery-rails
@@ -218,6 +222,7 @@ DEPENDENCIES
   rspec-rails
   sass-rails (~> 4.0.2)
   sdoc
+  soda-ruby
   spork-rails
   sqlite3
   turbolinks

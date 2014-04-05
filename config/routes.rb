@@ -2,6 +2,7 @@ SeattleAlerts::Application.routes.draw do
   root 'static_pages#main'
   match '/about',   to: 'static_pages#about',   via: 'get'
   match '/contact', to: 'static_pages#contact', via: 'get'
+  #post 'contact', to: 'contacts#process_form'
   get "subscribers/new"
   get "contacts/new"
   # The priority is based upon order of creation: first created -> highest priority.
