@@ -19,6 +19,8 @@ describe 'Static Pages' do
 
     it_should_behave_like "all static pages"
     it { should_not have_title('| Main') }
+
+    
   end
 
   describe 'About page' do
@@ -29,14 +31,6 @@ describe 'Static Pages' do
     it { should have_content('Seattle Alerts') }
   end
 
-  describe 'Contact page' do
-    before { visit contact_path }
-    let(:page_title) { 'Contact' }
-
-    it_should_behave_like "all static pages"
-    it { should have_content('Contact us!') }
-  end
-
   it "should have the right links on the layout" do
     visit root_path
     click_link "Seattle Alerts"
@@ -45,5 +39,9 @@ describe 'Static Pages' do
     expect(page).to have_title(full_title('About'))
     click_link "Contact"
     expect(page).to have_title(full_title('Contact'))
+    click_link "Stay Informed"
+    expect(page).to have_title(full_title('Stay Informed'))
+    click_link "Sign In"
+    expect(page).to have_title(full_title('Sign In'))
   end
 end

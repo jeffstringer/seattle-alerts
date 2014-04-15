@@ -8,6 +8,7 @@ gem 'figaro'
 gem 'foundation-rails'
 gem 'high_voltage'
 gem 'hashie'
+gem 'nokogiri'
 gem 'soda-ruby', :require => 'soda'
 gem 'simple_form'
 

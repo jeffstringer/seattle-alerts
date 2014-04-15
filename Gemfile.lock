@@ -219,6 +219,7 @@ DEPENDENCIES
   high_voltage
   jbuilder (~> 1.2)
   jquery-rails
+  nokogiri
   pg (= 0.15.1)
   pry
   quiet_assets

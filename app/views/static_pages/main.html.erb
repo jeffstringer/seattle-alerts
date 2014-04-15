@@ -9,9 +9,10 @@
     </div>
     <script type="text/javascript">
       handler = Gmaps.build('Google', { markers: { maxRandomDistance: null } });
-      handler.buildMap({ provider: { Zoom: 12}, internal: {id: 'map'}}, 
+      handler.buildMap({ provider: { Zoom: 11}, internal: {id: 'map'}}, 
         function(){
         markers = handler.addMarkers(<%=raw @police_hash.to_json %>);
+        markers = handler.addMarkers(<%=raw @fire_hash.to_json %>);
         handler.map.centerOn({ lat: 47.6082992, lng: -122.3413717});
         handler.bounds.extendWith(markers);
         handler.fitMapToBounds();
