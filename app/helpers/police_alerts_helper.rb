@@ -1,0 +1,2 @@
+module PoliceAlertsHelper
+end

@@ -1,19 +1,27 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><%= full_title(yield(:title)) %></title>
-    <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+     <%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true %>
+    <%# Modernizr is required for Zurb Foundation %>
+    <%= javascript_include_tag "vendor/modernizr" %>
     <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
     <%= csrf_meta_tags %>
     <%= render 'layouts/shim' %>
   </head>
   <body>
-    <%= render 'layouts/header' %>
-    <%= render 'layouts/slogan' %>
+    <header>
+      <%= render 'layouts/header' %>
+      <%= render 'layouts/slogan' %>
+    </header>  
     <div class="container">
       <%= yield %>
     </div>
     <%= render 'layouts/footer' %>
   </body>
 </html>
+
+
+
 

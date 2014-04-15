@@ -1,0 +1,2 @@
+module FireAlertsHelper
+end

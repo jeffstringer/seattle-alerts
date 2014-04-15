@@ -1,4 +1,6 @@
 SeattleAlerts::Application.routes.draw do
+  get "police_alerts/new"
+  get "fire_alerts/new"
   root 'static_pages#main'
   match '/about',   to: 'static_pages#about',   via: 'get'
   match '/contact', to: 'static_pages#contact', via: 'get'

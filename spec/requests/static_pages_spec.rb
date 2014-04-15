@@ -5,7 +5,7 @@ describe 'Static Pages' do
   subject { page }
 
   shared_examples_for "all static pages" do
-    it { should have_content('city of Seattle') }
+    it { should have_content('911') }
     it { should have_title(full_title(page_title)) }
   end
 
@@ -14,7 +14,7 @@ describe 'Static Pages' do
     let(:page_title) { '' }
 
     it { should have_content('Explore the map') }
-    it { should have_css('div#map_canvas') }
+    it { should have_css('div#map') }
     it { should have_css('div#tweets') }
 
     it_should_behave_like "all static pages"

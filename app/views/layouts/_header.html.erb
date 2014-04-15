@@ -1,15 +1,22 @@
-<header class="navbar navbar-fixed-top navbar-inverse">
-  <div class="navbar-inner">
-    <div class="container">
-      <%= link_to "Seattle Alerts", root_path, id: "logo" %>
-      <%= link_to "About", about_path, id: "logo" %>
-        <div class="nav pull-right">
-          <%= link_to "Stay Informed", '#', id: "logo" %>             
-          <%= link_to "Sign In", '#', id: "logo" %>
-        </div>
-    </div>
+<%# navigation styled for Zurb Foundation 5 %>
+<nav class="top-bar" data-topbar>
+  <ul class="title-area">
+    <li class="name"><%= link_to 'Seattle Alerts', root_path %></li>
+    <li class="toggle-topbar menu-icon"><a href="#">Menu</a></li>
+  </ul>
+  <div class="top-bar-section">
+    <ul>
+      <li class="name"><%= link_to 'About', about_path %></li>
+      <li class="name"><%= link_to 'Contact', contact_path %></li>
+      <li class="name"><%= link_to 'Stay Informed', '#' %></li>
+      <li class="name"><%= link_to 'Sign In', '#' %></li>
+    </ul>
   </div>
-</header>
+</nav>
+
+
+
+
 
 
 
