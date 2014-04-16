@@ -2,7 +2,6 @@ class StaticPagesController < ApplicationController
   def main
     @police_alerts = PoliceAlert.all
     @police_hash = Gmaps4rails.build_markers(@police_alerts) do |police_alert, marker|
-      #marker.json({:id => police_alert.id })
       marker.lat(police_alert.latitude)
       marker.lng(police_alert.longitude)
       marker.picture({
@@ -10,7 +9,7 @@ class StaticPagesController < ApplicationController
         "width" => 32, 
         "height" => 37 
       })
-      marker.infowindow render_to_string(:partial => '/layouts/police_alerts_infowindow', :locals => { :object => police_alert }, :layout => false, :formats => :html )
+      #marker.infowindow render_to_string(:partial => '/layouts/police_alerts_infowindow', :locals => { :object => police_alert }, :layout => false, :formats => :html )
     end
 
     @fire_alerts = FireAlert.all
