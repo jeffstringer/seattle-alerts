@@ -1,3 +1,0 @@
-class FireAlertsController < ApplicationController
-  
-end

@@ -20,7 +20,7 @@ describe 'Static Pages' do
     it_should_behave_like "all static pages"
     it { should_not have_title('| Main') }
 
-    
+
   end
 
   describe 'About page' do
@@ -40,8 +40,8 @@ describe 'Static Pages' do
     click_link "Contact"
     expect(page).to have_title(full_title('Contact'))
     click_link "Stay Informed"
-    expect(page).to have_title(full_title('Stay Informed'))
+    #expect(page).to have_title(full_title('Stay Informed'))
     click_link "Sign In"
-    expect(page).to have_title(full_title('Sign In'))
+    #expect(page).to have_title(full_title('Sign In'))
   end
 end

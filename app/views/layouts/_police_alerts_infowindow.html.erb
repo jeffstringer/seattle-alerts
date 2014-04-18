@@ -1,7 +1,3 @@
-<ul>
-  <% police_alerts.each do |police_alert| %>
-    <li><%= police_alert.hundred_block_location %></li>
-    <li><%= police_alert.event_clearance_description %></li>
-    <li><%= police_alert.event_clearance_date %></li>
-  <% end %>
-</ul>
+	<%= police_alert.hundred_block_location %>
+	<br><%= police_alert.event_clearance_description %></br>
+	<%= police_alert.event_clearance_date %>
