@@ -1,12 +1,11 @@
 SeattleAlerts::Application.routes.draw do
-  #get "police_alerts/new"
-  #get "fire_alerts/new"
   root 'static_pages#main'
-  match '/about',   to: 'static_pages#about',   via: 'get'
+  match '/about',           to: 'static_pages#about',   via: 'get'
+  match '/contact',         to: 'contacts#new',         via: 'get' 
+  match '/stayinformed',     to: 'subscribers#new',      via: 'get'
   #match '/contact', to: 'static_pages#contact', via: 'get'
   #post 'contact', to: 'contacts#process_form'
-  get "contacts/new"
-  get "subscribers/new"
+  #get "subscribers/new"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

@@ -19,8 +19,6 @@ describe 'Static Pages' do
 
     it_should_behave_like "all static pages"
     it { should_not have_title('| Main') }
-
-
   end
 
   describe 'About page' do

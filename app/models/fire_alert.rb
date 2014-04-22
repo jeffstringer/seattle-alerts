@@ -1,40 +1,44 @@
 class FireAlert < ActiveRecord::Base
     #belongs_to :subscriber
-  validates_presence_of :address, :datetime, :incident_number, :fire_type, :latitude, :longitude
+  validates_presence_of :address, :datetime, :incident_number, :fire_type, :latitude, :longitude, 
+    :time_show
+
+  validates_uniqueness_of :incident_number 
   
-=begin
+  # for 911 fire data for fire calls only and since 04/01/2013
+  endpoint = 'http://data.seattle.gov/resource/4ss6-4s75.json'
 
-#require 'open-uri'
-#require 'json'
+  # query for calls for the past month: 60 s * 60 mins * 24 hrs 
+  timestamp = (Time.now - (60 * 60 * 24)).strftime("%F %H:%M:%S")
+  # THEN CHANGE TO 295 TO GET NEXT 1000 fire_alerts
+  query = "$where=datetime > '#{timestamp}'"
 
-# for 911 fire data for fire calls only and since 12/31/2009
-endpoint = 'http://data.seattle.gov/resource/4ss6-4s75.json'
+  url = "#{endpoint}?#{query}"
+  url = URI.escape(url)
 
-# query for calls for month hour: 60 seconds * 60 minutes * 24 hrs * 7 days * 4 weeks
-timestamp = (Time.now - (60 * 60 * 24 * 7 * 4)).strftime("%F %H:%M:%S")
-query = "$where=datetime > '#{timestamp}'"
+  json = open(url).read
 
-url = "#{endpoint}?#{query}"
-url = URI.escape(url)
+  fire_alerts = JSON.parse(json)
 
-json = open(url).read
+  # deletes parameters not needed by app and converts time
+  fire_alerts.each do |fire_alert|
+    # FIRE: convert unix time to ISO 8601 format
+    if fire_alert.length > 1
+      fire_alert.delete("report_location")
+      fire_alert["time_show"] = Time.at(fire_alert["datetime"]).to_s
+      fire_alert["datetime"] = Time.at(fire_alert["datetime"]).strftime("%a %b %e, %Y at %I:%M %p")
+      fire_alert["latitude"] = fire_alert["latitude"].to_f
+      fire_alert["longitude"] = fire_alert["longitude"].to_f
+      fire_alert["fire_type"] = fire_alert["type"]
+      fire_alert.delete("type")
+    end  
+  end
 
-result = JSON.parse(json)
-
-# deletes parameters not needed by app and converts time
-result.each do |hash|
-  # FIRE: convert unix time to ISO 8601 format
-  if hash.length > 1
-    hash.delete("report_location")
-    hash["datetime"] = Time.at(hash["datetime"]).strftime("%a %b %e, %Y at %I:%M %p")
-    hash["latitude"] = hash["latitude"].to_f
-    hash["longitude"] = hash["longitude"].to_f
-    hash["fire_type"] = hash["type"]
-    hash.delete("type")
-  end  
-end
-
-=end
-
+  fire_alerts.each do |fire_alert|
+    fire_alert = FireAlert.new(fire_alert)
+    if FireAlert.exists?(incident_number: fire_alert["incident_number"]) == false
+      fire_alert.save 
+    end
+  end
 end
 

@@ -11,6 +11,7 @@ gem 'hashie'
 gem 'nokogiri'
 gem 'soda-ruby', :require => 'soda'
 gem 'simple_form'
+gem 'whenever', :require => false
 
 group :development, :test do
   gem 'better_errors'
@@ -19,11 +20,12 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'guard-rspec'
   gem 'capybara'
+  gem 'factory_girl_rails'
   gem 'spork-rails'
   gem 'guard-spork'
   gem 'childprocess'
   gem 'pry'
-end  
+end 
 
 gem 'sass-rails', '~> 4.0.2'
 gem 'uglifier', '>= 1.3.0'
