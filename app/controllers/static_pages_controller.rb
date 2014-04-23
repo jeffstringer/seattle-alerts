@@ -33,13 +33,3 @@ class StaticPagesController < ApplicationController
   def about
   end
 end
-
-# see ActiveRecord::QueryMethods
-# converts current time to parameters in db of police_alert, fire_alert
-# time = (Time.now).strftime("%a %b %e, %Y at %I:%M %p")
-
-# converts time 30 days ago to parameters in db of police_alert, fire_alert
-# time_30_back = (Time.now - (60 * 60 * 24 * 30)).strftime("%a %b %e, %Y at %I:%M %p")
-
-# provides last alerts of last 30 days to main page
-# PoliceAlert.where(time_show: (Time.now.midnight - 30.day)..Time.now.midnight)
