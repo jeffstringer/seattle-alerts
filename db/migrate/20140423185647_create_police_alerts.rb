@@ -6,10 +6,9 @@ class CreatePoliceAlerts < ActiveRecord::Migration
       t.string :event_clearance_date
       t.string :general_offense_number
       t.string :census_tract
-      t.string :latitude
-      t.string :longitude
-      t.string :incident_location
-
+      t.float :latitude
+      t.float :longitude
+      t.datetime :time_show
       t.timestamps
     end
   end

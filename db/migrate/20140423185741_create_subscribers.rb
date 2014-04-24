@@ -3,8 +3,7 @@ class CreateSubscribers < ActiveRecord::Migration
     create_table :subscribers do |t|
       t.string :email
       t.string :street
-      t.integer :zipcode
-
+      t.string :zipcode
       t.timestamps
     end
   end
