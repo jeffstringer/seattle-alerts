@@ -4,7 +4,7 @@ class FireAlert < ActiveRecord::Base
     :time_show
   validates_uniqueness_of :incident_number 
   
-  #def fetch_fire_data
+  def self.fetch_fire_data
     # for 911 fire data for fire calls only and since 04/01/2013
     endpoint = 'http://data.seattle.gov/resource/4ss6-4s75.json'
 
@@ -40,6 +40,7 @@ class FireAlert < ActiveRecord::Base
         @fire_alert.save 
       end
     end
-  #end
+  end
 end
 
+FireAlert.fetch_fire_data

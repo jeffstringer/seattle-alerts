@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140423185749) do
+ActiveRecord::Schema.define(version: 20140427014009) do
 
   create_table "contacts", force: true do |t|
     t.string   "email"
@@ -48,8 +48,13 @@ ActiveRecord::Schema.define(version: 20140423185749) do
   create_table "subscribers", force: true do |t|
     t.string   "email"
     t.string   "street"
-    t.string   "zipcode"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "password_digest"
+    t.float    "latitude"
+    t.float    "longitude"
   end
+
+  add_index "subscribers", ["email"], name: "index_subscribers_on_email", unique: true
+
 end

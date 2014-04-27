@@ -2,9 +2,9 @@ class PoliceAlert < ActiveRecord::Base
   #belongs_to :subscriber
   validates_presence_of :hundred_block_location, :event_clearance_description, :event_clearance_date, 
     :general_offense_number, :census_tract, :latitude, :longitude, :time_show
-  validates_uniqueness_of :general_offense_number  
+  validates_uniqueness_of :general_offense_number    
 
-  #def fetch_police_data
+  def self.fetch_police_data
     # for 911 POLICE data since 04/01/2013
     endpoint = 'http://data.seattle.gov/resource/fw4z-a47w.json'
 
@@ -49,5 +49,7 @@ class PoliceAlert < ActiveRecord::Base
         @police_alert.save
       end  
     end
-  #end
+  end  
 end
+
+PoliceAlert.fetch_police_data

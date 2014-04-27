@@ -1,12 +1,20 @@
 class Subscriber < ActiveRecord::Base
-  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
-  validates :email, presence: true, format: { with: VALID_EMAIL_REGEX }
-  validates_presence_of :street, :zipcode 
+  #has_many :police_alerts
+  #has_many :fire_alerts
+  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(?:\.[a-z\d\-]+)*\.[a-z]+\z/i
+  validates :email, presence: true, format: { with: VALID_EMAIL_REGEX },
+                    uniqueness: { case_sensitive: false }
+  validates_presence_of :street
+  has_secure_password
+  validates :password, length: { minimum: 6 }
+  before_save { email.downcase! }
 
-  #def address
-  #  [street, "Seattle", "WA", zipcode].compact.join(", ")
-  #end
+  attr_accessor :address, :street, :latitude, :longitude
 
-  #geocoded_by :address
-  #after_validation :geocode
+  def address
+    [street, 'Seattle', 'WA'].compact.join(', ')
+  end
+
+  geocoded_by :address
+  after_validation :geocode
 end
