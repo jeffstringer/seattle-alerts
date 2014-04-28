@@ -3,6 +3,12 @@
 
 // override for the 'Home' navigation link
 
+body {
+  .p {
+  padding: 15px 0 0 0;  
+  }
+}
+
 #map img { 
   max-width: none;
 }
@@ -18,7 +24,35 @@
 .top-bar .name a {
   font-weight: normal;
   color: lightgrey;
-  padding: 0 40px; }
+  padding: 0 40px; 
+  }
+
+.mainpage {
+  .googlemap {
+    @extend .small-8;
+    @extend .columns;
+    padding: 0 0 0 0;
+  }
+  .twitter {
+    @extend .small-3;
+    @extend .columns;
+    padding: 0 40px;
+  }
+}
+
+.slogan {
+  .spaceneedle{
+    @extend .small-2;
+    @extend .columns;
+    padding: 0 0 0 0; 
+  }
+  .real {
+    @extend .small-8;
+    @extend .columns;
+    @extend .text-left;
+    padding: 10px 0 0 0;
+  }
+}
 
 // THESE ARE EXAMPLES YOU CAN MODIFY
 // create mixins using Foundation classes
@@ -37,7 +71,7 @@
   @include six-columns-centered;
   }
 .form {
-  @include grid-column(6);
+  @include grid-column(4);
   }
 .form-centered {
   @include six-columns-centered;

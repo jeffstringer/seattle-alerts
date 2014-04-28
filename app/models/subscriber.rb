@@ -9,8 +9,6 @@ class Subscriber < ActiveRecord::Base
   validates :password, length: { minimum: 6 }
   before_save { email.downcase! }
 
-  attr_accessor :address, :street, :latitude, :longitude
-
   def address
     [street, 'Seattle', 'WA'].compact.join(', ')
   end

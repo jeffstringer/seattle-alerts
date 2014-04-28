@@ -1,15 +1,19 @@
 <% provide(:title, 'Stay Informed') %>
 <section>
-  <body>
-    <p>By subscribing, you will be informed by email if there is a police or fire response within 1/4 mile of the address you enter.</p>
-    <div class="form">
-        <%= simple_form_for(@subscriber) do |form| %>
-          <%= form.input :email, autofocus: true %>
-          <%= form.input :street %>
-          <%= form.input :password %>
-          <%= form.input :password_confirmation %>
-          <%= form.button :submit, 'Submit', class: 'submit' %> 
-        <% end %>
-    </div>
-  </body>
+  <div class="body">
+    <body>
+      <div class="p">
+        <p>By subscribing, you will be informed by email if there is a police or fire response within 1/4 mile of the address you enter.</p>
+      </div>
+      <div class="form">
+          <%= simple_form_for(@subscriber) do |form| %>
+            <%= form.input :email, autofocus: true %>
+            <%= form.input :street %>
+            <%= form.input :password %>
+            <%= form.input :password_confirmation %>
+            <%= form.button :submit, 'Submit', class: 'submit' %> 
+          <% end %>
+      </div>
+    </body>
+  </div>
 </section> 
