@@ -11,7 +11,7 @@ class SubscribersController < ApplicationController
   def create
     @subscriber = Subscriber.new(subscriber_params)
     if @subscriber.save
-      # Handle a successful save.
+      redirect_to @subscriber
     else
       render 'new'
     end

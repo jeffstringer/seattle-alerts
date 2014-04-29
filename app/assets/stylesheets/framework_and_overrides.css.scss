@@ -5,6 +5,8 @@
 
 body {
   .p {
+  @extend .small-12;
+  @extend .columns;
   padding: 15px 0 0 0;  
   }
 }
@@ -26,6 +28,10 @@ body {
   color: lightgrey;
   padding: 0 40px; 
   }
+
+.top-bar .right {
+  padding: 0 40px;
+}
 
 .mainpage {
   .googlemap {
@@ -72,13 +78,16 @@ body {
   }
 .form {
   @include grid-column(4);
+  padding: 0 0 0 0; 
   }
 .form-centered {
   @include six-columns-centered;
   }
 .submit {
   @extend .button;
-  @extend .radius;
+  @extend .tiny;
+  @extend .round;
+  font-size: rem-calc(13);
   }
 // apply styles to HTML elements
 // to make views framework-neutral

@@ -13,6 +13,7 @@ gem 'soda-ruby', :require => 'soda'
 gem 'simple_form'
 gem 'whenever', :require => false
 gem 'bcrypt-ruby'
+gem 'rubocop'
 
 group :development, :test do
   gem 'better_errors'

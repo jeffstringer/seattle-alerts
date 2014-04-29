@@ -23,7 +23,7 @@ describe "Subscriber pages" do
 
     before { visit stayinformed_path }
 
-    let(:submit) { "Submit" }
+    let(:submit) { "receive alerts" }
 
     describe "with invalid information" do
       it "should not create a subscriber" do
@@ -33,10 +33,10 @@ describe "Subscriber pages" do
 
     describe "with valid information" do
       before do
-        fill_in "Email",                  with: "chairman@starbucks.com"
-        fill_in "Street",                 with: "1912 Pike Pl"
-        fill_in "Password",               with: "coffee", :match => :prefer_exact
-        fill_in "Password Confirmation",  with: "coffee", :match => :prefer_exact
+        fill_in "email",                  with: "chairman@starbucks.com"
+        fill_in "street",                 with: "1912 Pike Pl"
+        fill_in "password",               with: "coffee", :match => :first
+        fill_in "confirmation",           with: "coffee", :match => :first
       end
 
       it "should create a subscriber" do

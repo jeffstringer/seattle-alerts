@@ -15,6 +15,9 @@
 /log/*.log
 /tmp
 
+# Ignore application configurations
+/config/initializers/geocoder.rb
+
 # Ignore other unneeded files.
 doc/
 *.swp

@@ -26,14 +26,6 @@ describe StaticPagesController do
       get :about
       expect(response).to be_success
       expect(response.status).to eq(200)
-    end    
+    end
   end
 end
-#it retrieves a hash for PoliceAlerts
-#it puts markers on the main page by lat, lng for each police_alert
-#it puts data in an infowindow for each police_alert
-
-#it retrieves a hash for FireAlerts
-#it puts markers on the main page by lat, lng
-#it puts data in an infowindow for each fire_alert
-
