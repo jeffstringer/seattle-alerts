@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140427014009) do
+ActiveRecord::Schema.define(version: 20140430164645) do
 
   create_table "contacts", force: true do |t|
     t.string   "email"
@@ -53,8 +53,10 @@ ActiveRecord::Schema.define(version: 20140427014009) do
     t.string   "password_digest"
     t.float    "latitude"
     t.float    "longitude"
+    t.string   "remember_token"
   end
 
   add_index "subscribers", ["email"], name: "index_subscribers_on_email", unique: true
+  add_index "subscribers", ["remember_token"], name: "index_subscribers_on_remember_token"
 
 end

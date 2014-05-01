@@ -42,6 +42,15 @@ describe "Subscriber pages" do
       it "should create a subscriber" do
         expect { click_button submit }.to change(Subscriber, :count).by(1)
       end
+
+      describe "after saving the subscriber" do
+        before { click_button submit }
+        let(:subscriber) { Subscriber.find_by(email: 'chairman@starbucks.com') }
+
+        it { should have_link('Sign Out') }
+        it { should have_title(subscriber.email) }
+        #it { should have_selector('div.alert.alert-success', text: 'Thank you') }
+      end
     end
   end
 end

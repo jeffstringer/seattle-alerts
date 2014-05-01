@@ -106,8 +106,6 @@ describe Subscriber do
     it { should be_invalid }
   end
 
-
-
   describe "return value of authenticate method" do
     before { @subscriber.save }
     let(:found_subscriber) { Subscriber.find_by(email: @subscriber.email) }
@@ -122,5 +120,10 @@ describe Subscriber do
       it { should_not eq subscriber_for_invalid_password }
       specify { expect(subscriber_for_invalid_password).to be_false }
     end
+  end
+
+  describe "remember token" do
+    before { @subscriber.save }
+    its(:remember_token) { should_not be_blank }
   end
 end

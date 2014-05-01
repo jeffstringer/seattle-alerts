@@ -1,23 +1,32 @@
-<%# navigation styled for Zurb Foundation 5 %>
-<nav class="top-bar" data-topbar>
-  <ul class="title-area">
-    <li class="name"><%= link_to 'Seattle Alerts', root_path %></li>
-    <li class="toggle-topbar menu-icon"><a href="#">Menu</a></li>
-  </ul>
-  <div class="top-bar-section">
-    <ul class="right">
-      <li class="name"><%= link_to 'About', about_path %></li>
-      <li class="name"><%= link_to 'Contact', contact_path %></li>
-      <li class="name"><%= link_to 'Stay Informed', stayinformed_path %></li> 
-      <li class="name"><%= link_to 'Sign In', '#' %></li>
+<div class="contain-to-grid sticky">
+  <nav class="top-bar" data-topbar>
+    <ul class="title-area">
+      <li class="name"><%= link_to 'Seattle Alerts', root_path %></li>
+      <li class="toggle-topbar menu-icon"><a href="#">Menu</a></li>
     </ul>
-  </div>
-</nav>
 
-
-
-
-
+    <div class="top-bar-section">
+      <ul class="right">
+        <li class="name"><%= link_to 'About', about_path %></li>
+        <li class="name"><%= link_to 'Contact', contact_path %></li>
+        <% if signed_in? %>
+          <li class="has-dropdown">
+            <a href="#">Account</a>
+            <ul class="dropdown">
+            <li><%= link_to "Profile", current_subscriber %></li>
+              <li><%= link_to "Settings", '#' %></li>
+              <li class="divider"></li>
+              <li>
+                <%= link_to "Sign Out", signout_path, method: "delete" %>
+              </li>
+        <% else %>
+          <li class="name"><%= link_to 'Stay Informed', stayinformed_path %></li> 
+          <li class="name"><%= link_to "Sign In", signin_path %></li>
+        <% end %>
+      </ul>
+    </div>
+  </nav>
+</div>
 
 
 

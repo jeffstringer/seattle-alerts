@@ -11,10 +11,17 @@ class SubscribersController < ApplicationController
   def create
     @subscriber = Subscriber.new(subscriber_params)
     if @subscriber.save
+      sign_in @subscriber
+      flash[:success] = 'Thank you for subscribing to Seattle Alerts!'
       redirect_to @subscriber
     else
       render 'new'
     end
+  end
+
+  def destroy
+    sign_out
+    redirect_to root_url
   end
 
   private
