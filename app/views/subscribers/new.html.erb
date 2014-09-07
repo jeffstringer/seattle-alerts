@@ -1,20 +1,18 @@
 <% provide(:title, 'Stay Informed') %>
-<section>
-  <div class="body">
-    <body>
-      <div class="p">
-        <p>By subscribing, you will be informed by email if there is a police or fire response within 1/4 mile of the address you enter.</p>
+<div class="body">
+  <body>
+    <div class="p">
+      <p>By subscribing, you will be informed by email if there is a police or fire response within 1/4 mile of the address you enter.</p>
+    </div>
+      <div class="form">
+        <%= simple_form_for(@subscriber) do |f| %>
+          <%= f.error_notification %>
+          <%= f.input :email, autofocus: true, label: 'email', required: false %>
+          <%= f.input :street, label: 'street (i.e. 85 Pike St)', required: false %>
+          <%= f.input :password, label: 'password (6 characters minimum)', required: false %>
+          <%= f.input :password_confirmation, :required => true, label: 'confirmation', required: false %>
+          <%= f.button :submit, 'receive alerts', class: 'submit', required: false %> 
+        <% end %>
       </div>
-        <div class="form">
-          <%= simple_form_for(@subscriber) do |f| %>
-            <%= f.error_notification %>
-            <%= f.input :email, autofocus: true, label: 'email', required: false %>
-            <%= f.input :street, label: 'street (i.e. 85 Pike St)', required: false %>
-            <%= f.input :password, label: 'password (6 characters minimum)', required: false %>
-            <%= f.input :password_confirmation, :required => true, label: 'confirmation', required: false %>
-            <%= f.button :submit, 'receive alerts', class: 'submit', required: false %> 
-          <% end %>
-        </div>
-    </body>
-  </div>
-</section> 
+  </body>
+</div>

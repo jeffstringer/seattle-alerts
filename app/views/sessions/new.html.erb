@@ -1,18 +1,16 @@
 <% provide(:title, 'Sign In') %>
-<section>
-  <div class="body">
-    <body>
-      <br></br>
-      <br></br>
-      <div class="form">
-        <%= simple_form_for(:session, url: sessions_path) do |f| %>
-          <%= f.error_notification %>
-          <%= f.input :email, autofocus: true, label: 'email', required: false %>
-          <%= f.input :password, label: 'password', required: false %>
-          <%= f.button :submit, 'sign in', class: 'submit', required: false %>
-        <% end %>
-        <p>New to Seattle Alerts? <%= link_to "Stay informed!", stayinformed_path %></p>
-      </div>
-    </body>
-  </div>
-</section>
+<div class="body">
+  <body>
+    <br></br>
+    <br></br>
+    <div class="form">
+      <%= simple_form_for(:session, url: sessions_path) do |f| %>
+        <%= f.error_notification %>
+        <%= f.input :email, autofocus: true, label: 'email', required: false %>
+        <%= f.input :password, label: 'password', required: false %>
+        <%= f.button :submit, 'sign in', class: 'submit', required: false %>
+      <% end %>
+      <p>New to Seattle Alerts? <%= link_to "Stay informed!", stayinformed_path %></p>
+    </div>
+  </body>
+</div>

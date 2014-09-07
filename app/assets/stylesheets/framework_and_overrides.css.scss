@@ -3,6 +3,10 @@
 
 // override for the 'Home' navigation link
 
+.container {
+  width: 100%;
+}
+
 * {
   font-family: 'Arimo', sans-serif;
   font-family: 'Montserrat', sans-serif;
@@ -16,9 +20,7 @@
   }
 }
 p {
-  @extend .small-12;
-  @extend .columns;
-  padding: 15px 0 0 0;   
+ 
 }
 body {
   background: url('/assets/COA_Seattle.jpg') no-repeat center center fixed;
@@ -29,7 +31,7 @@ body {
 }
 
 .googlemap #map {
-  width: 50%;
+  width: 100%;
 }
 
 @media screen and (max-width:1000px) {
@@ -43,8 +45,8 @@ body {
 .map_container img{max-width: none;}
 
 .top-bar {
-  width: 850px;
-  margin: 0 auto;
+  width: 100%;
+  padding-left: 75px;
 }
 .top-bar .name {
   font-size: rem-calc(13);
@@ -52,10 +54,8 @@ body {
 .top-bar .name a {
   font-weight: normal;
   color: lightgrey;
-  padding: 0 30px; 
   }
 .top-bar .right {
-  padding: 0 40px;
 }
 
 .mainpage {
@@ -71,18 +71,8 @@ body {
   }
 }
 
-.slogan {
-  .spaceneedle{
-    @extend .small-2;
-    @extend .columns;
-    padding: 0 0 0 0; 
-  }
-  .real {
-    @extend .small-8;
-    @extend .columns;
-    @extend .text-left;
-    padding: 10px 0 0 0;
-  }
+.slogan .real {
+  padding: 10px 0 0 0;
 }
 
 .form {
@@ -129,9 +119,4 @@ body {
 main {
   @include twelve-columns;
   background-color: #eee;
-  }
-section {
-  @extend .row;
-  margin-top: 0px;
-  margin-left: 30px;
-  }
+}
