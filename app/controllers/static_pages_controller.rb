@@ -1,5 +1,5 @@
 class StaticPagesController < ApplicationController
-  def main
+  def index
     #@police_alerts = PoliceAlert.all
     @police_alerts = PoliceAlert.where(time_show: (Time.now - 1.day)..Time.now)
     @police_hash = Gmaps4rails.build_markers(@police_alerts) do |police_alert, marker|

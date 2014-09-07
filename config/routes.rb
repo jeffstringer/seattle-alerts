@@ -1,7 +1,7 @@
 SeattleAlerts::Application.routes.draw do
   resources :subscribers
   resources :sessions, only: [:new, :create, :destroy]
-  root 'static_pages#main'
+  root 'static_pages#index'
   match '/about',           to: 'static_pages#about',   via: 'get'
   match '/contact',         to: 'contacts#new',         via: 'get' 
   match '/stayinformed',    to: 'subscribers#new',      via: 'get'
