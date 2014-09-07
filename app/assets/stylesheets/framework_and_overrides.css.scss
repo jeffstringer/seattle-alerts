@@ -32,6 +32,12 @@ body {
   width: 50%;
 }
 
+@media screen and (max-width:1000px) {
+  .googlemap #map {
+  width: 600px;
+ }
+}
+
 #map img { max-width: none; }
 #map label { width: auto; display:inline; }
 .map_container img{max-width: none;}

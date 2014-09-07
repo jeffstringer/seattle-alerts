@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-ruby '2.1.1'
+ruby '2.1.2'
 
 gem 'rails', '4.0.4'
 gem 'geocoder'
@@ -14,6 +14,7 @@ gem 'simple_form'
 gem 'whenever', :require => false
 gem 'bcrypt-ruby'
 gem 'rubocop'
+gem 'rb-readline'
 
 group :development, :test do
   gem 'better_errors'

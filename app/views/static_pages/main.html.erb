@@ -15,7 +15,7 @@
       <div class="mainpage"> 
         <div class="googlemap">
           <div>
-            <div id="map" style='width: 120%; height: 700px;'></div>
+            <div id="map" style='width:900px; height: 700px;'></div>
           </div>
         </div>   
         <script type="text/javascript">
@@ -29,12 +29,7 @@
             handler.fitMapToBounds();
           });
         </script>
-          <div class="twitter">
-            <div id="tweets">
-              <a class="twitter-timeline" width="250" height="700" href="https://twitter.com/SeattlePD" data-widget-id="451835851131994112">Tweets by @SeattlePD</a>
-              <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
-            </div>
-          </div> 
+          <!--<%= render 'static_pages/twitter' %>
       </div>
     </body>
   </div>
