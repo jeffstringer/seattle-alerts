@@ -28,6 +28,18 @@ class StaticPagesController < ApplicationController
       })
       marker.infowindow render_to_string(:partial => '/layouts/fire_alerts_infowindow', :locals => { :fire_alert => fire_alert } )  
     end
+    @current_subscriber = current_subscriber
+    @home = Gmaps4rails.build_markers(@current_subscriber) do |current_subscriber, marker|
+      marker.lat(current_subscriber.latitude)
+      marker.lng(current_subscriber.longitude)
+      marker.json({:id => current_subscriber.id })
+      marker.picture({
+        # http://mapicons.nicolasmollet.com/
+        "url" => view_context.image_path('/assets/home.png'), 
+        "width" => 32, 
+        "height" => 37 
+      })
+    end 
   end
 
   def about
