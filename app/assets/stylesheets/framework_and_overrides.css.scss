@@ -3,8 +3,6 @@
 
 // override for the 'Home' navigation link
 
-
-
 * {
   font-family: 'Arimo', sans-serif;
   font-family: 'Montserrat', sans-serif;
@@ -100,7 +98,7 @@ body {
   }
 .form {
   @include grid-column(4);
-  padding: 0 0 0 0; 
+  padding: 0 0 0 0;
   }
 .form-centered {
   @include six-columns-centered;
