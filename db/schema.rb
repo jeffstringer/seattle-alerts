@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20140430164645) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "contacts", force: true do |t|
     t.string   "email"
     t.string   "comment"
@@ -56,7 +59,7 @@ ActiveRecord::Schema.define(version: 20140430164645) do
     t.string   "remember_token"
   end
 
-  add_index "subscribers", ["email"], name: "index_subscribers_on_email", unique: true
-  add_index "subscribers", ["remember_token"], name: "index_subscribers_on_remember_token"
+  add_index "subscribers", ["email"], name: "index_subscribers_on_email", unique: true, using: :btree
+  add_index "subscribers", ["remember_token"], name: "index_subscribers_on_remember_token", using: :btree
 
 end

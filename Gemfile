@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 ruby '2.1.2'
 
 gem 'rails', '4.0.4'
+gem 'pg'
 gem 'geocoder'
 gem 'gmaps4rails'
 gem 'figaro'
@@ -42,6 +43,5 @@ group :doc do
 end
 
 group :production do
-  #gem 'pg'
   gem 'rails_12factor', '0.0.2'
 end
