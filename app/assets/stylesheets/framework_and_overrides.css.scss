@@ -3,9 +3,7 @@
 
 // override for the 'Home' navigation link
 
-.container {
-  width: 100%;
-}
+
 
 * {
   font-family: 'Arimo', sans-serif;
@@ -15,13 +13,11 @@
 // change .container with media queries
 @media screen and (min-width:900px) {
   .container {
-    width: 850px;
+    width: 1000px;
     margin: 0 auto;
   }
 }
-p {
- 
-}
+
 body {
   background: url('/assets/COA_Seattle.jpg') no-repeat center center fixed;
   -webkit-background-size: cover;
@@ -46,23 +42,21 @@ body {
 
 .top-bar {
   width: 100%;
-  padding-left: 75px;
+  margin: 0 auto;
 }
 .top-bar .name {
   font-size: rem-calc(13);
   line-height: 45px; }
 .top-bar .name a {
-  font-weight: normal;
-  color: lightgrey;
+  color: white;
   }
-.top-bar .right {
-}
+
 
 .mainpage {
   .googlemap {
     @extend .small-8;
     @extend .columns;
-    padding: 0 0 0 0;
+    padding: 0 0 50px 0;
   }
   .twitter {
     @extend .small-3;
