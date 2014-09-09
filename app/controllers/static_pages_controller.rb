@@ -39,6 +39,7 @@ class StaticPagesController < ApplicationController
         "width" => 32, 
         "height" => 37 
       })
+      marker.infowindow render_to_string(:partial => '/layouts/current_subscriber_infowindow', :locals => { :subscriber => current_subscriber } )  
     end 
   end
 
