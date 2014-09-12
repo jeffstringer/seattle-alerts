@@ -1,11 +1,11 @@
 class SubscribersController < ApplicationController
-  
+
   def show
     @subscriber = Subscriber.find(params[:id])
   end
 
   def new
-    @subscriber = Subscriber.new 
+    @subscriber = Subscriber.new
   end
 
   def create
@@ -13,7 +13,7 @@ class SubscribersController < ApplicationController
     if @subscriber.save
       sign_in @subscriber
       flash[:success] = 'Thank you for subscribing to Seattle Alerts!'
-      redirect_to @subscriber
+      redirect_to root_path
     else
       render 'new'
     end
