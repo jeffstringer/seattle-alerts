@@ -12,12 +12,11 @@
           <li class="has-dropdown">
             <a href="#">Account</a>
             <ul class="dropdown">
-            <li><%= link_to "Profile", current_subscriber %></li>
-              <li><%= link_to "Settings", '#' %></li>
+              <li><%= link_to "Update Account", edit_subscriber_path(current_subscriber) %></li>
               <li class="divider"></li>
               <li><%= link_to "Sign Out", signout_path, method: "delete" %></li>
         <% else %>
-          <li class="name"><%= link_to 'Stay Informed', stayinformed_path %></li> 
+          <li class="name"><%= link_to 'Stay Informed', stayinformed_path %></li>
           <li class="name"><%= link_to "Sign In", signin_path %></li>
         <% end %>
       </ul>

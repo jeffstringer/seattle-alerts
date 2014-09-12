@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Subscriber do
 
-  before(:all) do 
+  before(:all) do
     Geocoder.configure(:lookup => :test)
 
     Geocoder::Lookup::Test.add_stub(
@@ -17,8 +17,8 @@ describe Subscriber do
   end
 
   before do
-    @subscriber = Subscriber.new(email: "chairman@starbucks.com", street: "1912 Pike Pl", 
-      latitude: 47.6101798, longitude: -122.3423919, password: "coffee", password_confirmation: "coffee", radius: 0.5) 
+    @subscriber = Subscriber.new(email: "chairman@starbucks.com", street: "1912 Pike Pl",
+      latitude: 47.6101798, longitude: -122.3423919, password: "coffee", password_confirmation: "coffee", radius: 0.5)
   end
 
   subject { @subscriber }

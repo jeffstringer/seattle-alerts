@@ -29,7 +29,8 @@ group :development, :test do
   gem 'guard-spork'
   gem 'childprocess'
   gem 'pry'
-end 
+  gem 'binding_of_caller'
+end
 
 gem 'sass-rails', '~> 4.0.2'
 gem 'uglifier', '>= 1.3.0'

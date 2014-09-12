@@ -19,13 +19,26 @@ class SubscribersController < ApplicationController
     end
   end
 
+  def edit
+    @subscriber = Subscriber.find(params[:id])
+  end
+
+   def update
+    @subscriber = Subscriber.find(params[:id])
+    if @subscriber.update(subscriber_params)
+      flash[:notice] = "Account updated."
+      redirect_to root_path
+    else
+      render 'edit'
+    end
+  end
+
   def destroy
     sign_out
     redirect_to root_url
   end
 
   private
-
     def subscriber_params
       params.require(:subscriber).permit(:email, :street, :radius, :password,
                                    :password_confirmation)
