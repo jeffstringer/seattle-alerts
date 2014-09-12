@@ -53,4 +53,16 @@ describe "Subscriber pages" do
       end
     end
   end
+
+  describe "update subscriber" do
+    let(:subscriber) { FactoryGirl.create(:subscriber) }
+    before { visit edit_subscriber_path(subscriber) }
+
+
+    before { visit signin_path }
+    subscriber = FactoryGirl.create(:subscriber)
+    before { click_button 'Update Account' }
+    subscriber = FactoryGirl.create(:subscriber_update)
+    expect(subscriber.radius).to eq 1.0
+  end
 end

@@ -5,6 +5,8 @@ class PoliceAlert < ActiveRecord::Base
     :event_clearance_date, :general_offense_number, :census_tract, :latitude,
     :longitude, :time_show
   validates_uniqueness_of :general_offense_number
+  has_many :police_notifications
+  has_many :subscribers, through: :police_notifications
 
   def self.fetch_police_data
     # for 911 POLICE data since 04/01/2013

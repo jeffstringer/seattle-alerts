@@ -8,11 +8,11 @@ class StaticPagesController < ApplicationController
       marker.json({:id => police_alert.id })
       marker.picture({
         # http://mapicons.nicolasmollet.com/
-        "url" => view_context.image_path('/assets/police.png'), 
-        "width" => 32, 
-        "height" => 37 
+        "url" => view_context.image_path('/assets/police.png'),
+        "width" => 32,
+        "height" => 37
       })
-      marker.infowindow render_to_string(:partial => '/layouts/police_alerts_infowindow', :locals => { :police_alert => police_alert } )  
+      marker.infowindow render_to_string(:partial => '/layouts/police_alerts_infowindow', :locals => { :police_alert => police_alert } )
     end
 
     #@fire_alerts = FireAlert.all
@@ -22,11 +22,11 @@ class StaticPagesController < ApplicationController
       marker.lng(fire_alert.longitude)
       marker.picture({
         # http://mapicons.nicolasmollet.com/
-        "url" => view_context.image_path('/assets/fire.png'), 
-        "width" => 32, 
-        "height" => 37 
+        "url" => view_context.image_path('/assets/fire.png'),
+        "width" => 32,
+        "height" => 37
       })
-      marker.infowindow render_to_string(:partial => '/layouts/fire_alerts_infowindow', :locals => { :fire_alert => fire_alert } )  
+      marker.infowindow render_to_string(:partial => '/layouts/fire_alerts_infowindow', :locals => { :fire_alert => fire_alert } )
     end
     @current_subscriber = current_subscriber
     @home = Gmaps4rails.build_markers(@current_subscriber) do |current_subscriber, marker|
@@ -35,14 +35,50 @@ class StaticPagesController < ApplicationController
       marker.json({:id => current_subscriber.id })
       marker.picture({
         # http://mapicons.nicolasmollet.com/
-        "url" => view_context.image_path('/assets/home.png'), 
-        "width" => 32, 
-        "height" => 37 
+        "url" => view_context.image_path('/assets/home.png'),
+        "width" => 32,
+        "height" => 37
       })
-      marker.infowindow render_to_string(:partial => '/layouts/current_subscriber_infowindow', :locals => { :subscriber => current_subscriber } )  
-    end 
+      marker.infowindow render_to_string(:partial => '/layouts/current_subscriber_infowindow', :locals => { :subscriber => current_subscriber } )
+    end
+    @subscribers = Subscriber.all
+    @police_alerts = PoliceAlert.all
+    @police_alerts.each do |p_alert|
+      @subscribers.each do |subscriber|
+        @police_notification = PoliceNotification.new
+        @police_notification.subscriber_id = subscriber.id
+        @police_notification.police_alert_id = p_alert.id
+        @police_notification.save if subscriber.distance_to([p_alert.latitude, p_alert.longitude]) <= subscriber.radius
+      end
+    end
+    @subscribers = Subscriber.all
+      @fire_alerts = FireAlert.all
+      @fire_alerts.each do |f_alert|
+      @subscribers.each do |subscriber|
+        @fire_notification = FireNotification.new
+        @fire_notification.subscriber_id = subscriber.id
+        @fire_notification.fire_alert_id = f_alert.id
+        @fire_notification.save if subscriber.distance_to([f_alert.latitude, f_alert.longitude]) <= subscriber.radius
+      end
+    end
   end
 
-  def about
+
+
+  def create
+    @subscriber = Subscriber.find()
+    @police_notification = PoliceNotification.new(police_notification_params)
+    @police_notification.save
+    @fire_notification = FireNotification.new(fire_notification_params)
+    @fire_notification.save
   end
+
+  private
+    def police_notification_params
+      params.require(:police_notification).permit(:user_id, :police_alert_id)
+    end
+
+    def fire_notification_params
+      params.require(:fire_notification).permit(:user_id, :fire_alert_id)
+    end
 end
