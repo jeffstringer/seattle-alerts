@@ -5,6 +5,10 @@ class Subscriber < ActiveRecord::Base
   validates :email, presence: true, format: { with: VALID_EMAIL_REGEX },
                     uniqueness: { case_sensitive: false }
   validates_presence_of :street
+  has_many :police_notifications
+  has_many :police_alerts, through: :police_notifications
+  has_many :fire_notifications
+  has_many :fire_alerts, through: :fire_notifications
 
   has_secure_password
   validates :password, length: { minimum: 6 }

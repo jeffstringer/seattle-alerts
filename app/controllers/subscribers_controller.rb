@@ -1,9 +1,5 @@
 class SubscribersController < ApplicationController
 
-  def show
-    @subscriber = Subscriber.find(params[:id])
-  end
-
   def new
     @subscriber = Subscriber.new
   end
@@ -17,6 +13,10 @@ class SubscribersController < ApplicationController
     else
       render 'new'
     end
+  end
+
+  def show
+    @subscriber = Subscriber.find(params[:id])
   end
 
   def edit
