@@ -6,6 +6,7 @@ FactoryGirl.define do
     password_confirmation 'coffee'
     latitude 47.6101798
     longitude -122.3423919
+    radius 0.5
   end
 
   factory :contact do

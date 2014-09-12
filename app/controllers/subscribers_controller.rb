@@ -27,7 +27,7 @@ class SubscribersController < ApplicationController
   private
 
     def subscriber_params
-      params.require(:subscriber).permit(:email, :street, :password,
+      params.require(:subscriber).permit(:email, :street, :radius, :password,
                                    :password_confirmation)
     end
 end

@@ -18,7 +18,7 @@ describe Subscriber do
 
   before do
     @subscriber = Subscriber.new(email: "chairman@starbucks.com", street: "1912 Pike Pl", 
-      latitude: 47.6101798, longitude: -122.3423919, password: "coffee", password_confirmation: "coffee") 
+      latitude: 47.6101798, longitude: -122.3423919, password: "coffee", password_confirmation: "coffee", radius: 0.5) 
   end
 
   subject { @subscriber }
@@ -30,6 +30,7 @@ describe Subscriber do
   it { should respond_to(:password_digest) }
   it { should respond_to(:password) }
   it { should respond_to(:password_confirmation) }
+  it { should respond_to(:radius) }
   it { should respond_to(:authenticate) }
 
   it { should be_valid }
