@@ -37,6 +37,7 @@ describe "Subscriber pages" do
         fill_in "street",                 with: "1912 Pike Pl"
         fill_in "password",               with: "coffee", :match => :first
         fill_in "confirmation",           with: "coffee", :match => :first
+
       end
 
       it "should create a subscriber" do
@@ -52,17 +53,5 @@ describe "Subscriber pages" do
         #it { should have_selector('div.alert.alert-success', text: 'Thank you') }
       end
     end
-  end
-
-  describe "update subscriber" do
-    let(:subscriber) { FactoryGirl.create(:subscriber) }
-    before { visit edit_subscriber_path(subscriber) }
-
-
-    before { visit signin_path }
-    subscriber = FactoryGirl.create(:subscriber)
-    before { click_button 'Update Account' }
-    subscriber = FactoryGirl.create(:subscriber_update)
-    expect(subscriber.radius).to eq 1.0
   end
 end
