@@ -47,9 +47,9 @@ class PoliceAlert < ActiveRecord::Base
     end
 
     police_alerts.each do |police_alert|
-      @police_alert = PoliceAlert.new(police_alert)
+      new_alert = PoliceAlert.new(police_alert)
       if PoliceAlert.exists?(general_offense_number: police_alert['general_offense_number']) == false
-        @police_alert.save
+        new_alert.save
       end
     end
   end
