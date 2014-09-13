@@ -80,6 +80,12 @@ body {
   font-weight: bold;
 }
 
+.block {
+  background-color: rgba(250,250,250,0.9);
+  border: solid rgba(250,250,250,0.9);
+  border-width: 10px;
+}
+
 // THESE ARE EXAMPLES YOU CAN MODIFY
 // create mixins using Foundation classes
 @mixin twelve-columns {

@@ -12,6 +12,7 @@
           <li class="has-dropdown">
             <a href="#">Account</a>
             <ul class="dropdown">
+              <li><%= link_to "My Alerts", subscriber_path(current_subscriber) %></li>
               <li><%= link_to "Update Account", edit_subscriber_path(current_subscriber) %></li>
               <li class="divider"></li>
               <li><%= link_to "Sign Out", signout_path, method: "delete" %></li>

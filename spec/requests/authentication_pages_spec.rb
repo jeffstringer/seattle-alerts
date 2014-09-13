@@ -5,14 +5,14 @@ describe 'Authentication' do
   subject { page }
 
   describe 'signin page' do
-    before { visit signin_path }
+    before { visit '/signin' }
 
     it { should have_content('Sign In') }
     it { should have_title('Sign In') }
   end
 
   describe 'signin' do
-    before { visit signin_path }
+    before { visit '/signin' }
 
     describe 'with invalid information' do
       before { click_button 'sign in' }
@@ -27,19 +27,16 @@ describe 'Authentication' do
     end
 
     describe 'with valid information' do
-        let(:subscriber) { FactoryGirl.create(:subscriber) }
+      let(:subscriber) { FactoryGirl.create(:subscriber) }
         
-        before do
-          fill_in 'email',    with: subscriber.email.upcase
-          fill_in 'password', with: subscriber.password
-          click_button 'sign in'
-        end
+      before do
+        visit '/signin'
+        fill_in 'email',    with: 'chairman@starbucks.com'
+        fill_in 'password', with: 'coffee'
+        click_button 'sign in'
+      end
 
-        it { should have_title(subscriber.email) }
-        it { should have_link('Profile',     href: subscriber_path(subscriber)) }
-        it { should have_link('Sign Out',    href: signout_path) }
-        it { should_not have_link('Sign In', href: signin_path) }
-        it { should_not have_link('Stay Informed', href: signin_path) }
+      it { should have_link 'Sign Out' }
 
       describe "followed by signout" do
         before { click_link "Sign Out" }

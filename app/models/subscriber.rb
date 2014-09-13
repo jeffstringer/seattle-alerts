@@ -3,6 +3,7 @@ class Subscriber < ActiveRecord::Base
   validates :email, presence: true, format: { with: VALID_EMAIL_REGEX },
                     uniqueness: { case_sensitive: false }
   validates_presence_of :street
+  validates :radius, presence: true
   has_many :police_notifications
   has_many :police_alerts, through: :police_notifications
   has_many :fire_notifications
@@ -18,7 +19,6 @@ class Subscriber < ActiveRecord::Base
   def address
     [street, 'Seattle', 'WA'].compact.join(', ')
   end
-
 
   def Subscriber.new_remember_token
     SecureRandom.urlsafe_base64

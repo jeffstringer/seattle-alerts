@@ -1,19 +1,12 @@
 require 'spec_helper'
+require 'launchy'
 
 describe "Subscriber pages" do
 
   subject { page }
 
-  describe "information page" do
-    let(:subscriber) { FactoryGirl.create(:subscriber) }
-    before { visit subscriber_path(subscriber) }
-
-    it { should have_content(subscriber.email) }
-    it { should have_title(subscriber.email) }
-  end
-
   describe "stay informed page" do
-    before { visit stayinformed_path }
+    before { visit '/stayinformed' }
 
     it { should have_content('Stay Informed') }
     it { should have_title(full_title('Stay Informed')) }
@@ -21,7 +14,7 @@ describe "Subscriber pages" do
 
   describe "Stay Informed" do
 
-    before { visit stayinformed_path }
+    before { visit '/stayinformed' }
 
     let(:submit) { "receive alerts" }
 
@@ -33,11 +26,11 @@ describe "Subscriber pages" do
 
     describe "with valid information" do
       before do
-        fill_in "email",                  with: "chairman@starbucks.com"
+        fill_in "email",                  with: "chairman_dude@starbucks.com"
         fill_in "street",                 with: "1912 Pike Pl"
         fill_in "password",               with: "coffee", :match => :first
         fill_in "confirmation",           with: "coffee", :match => :first
-
+        find('div.form', :text => 'Choose alert radius:').choose('1/2 mile')
       end
 
       it "should create a subscriber" do
@@ -47,10 +40,7 @@ describe "Subscriber pages" do
       describe "after saving the subscriber" do
         before { click_button submit }
         let(:subscriber) { Subscriber.find_by(email: 'chairman@starbucks.com') }
-
         it { should have_link('Sign Out') }
-        it { should have_title(subscriber.email) }
-        #it { should have_selector('div.alert.alert-success', text: 'Thank you') }
       end
     end
   end

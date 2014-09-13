@@ -10,19 +10,18 @@ describe 'Static Pages' do
   end
 
   describe "Main page" do
-    before { visit root_path }
+    before { visit '/' }
     let(:page_title) { '' }
 
     it { should have_content('Explore the map') }
     it { should have_css('div#map') }
-    it { should have_css('div#tweets') }
 
     it_should_behave_like "all static pages"
     it { should_not have_title('| Main') }
   end
 
   describe 'About page' do
-    before { visit about_path }
+    before { visit '/about' }
     let(:page_title) { 'About' }
 
     it_should_behave_like "all static pages"
@@ -30,7 +29,7 @@ describe 'Static Pages' do
   end
 
   it "should have the right links on the layout" do
-    visit root_path
+    visit '/'
     click_link "Seattle Alerts"
     expect(page).to have_title(full_title(''))
     click_link "About"
