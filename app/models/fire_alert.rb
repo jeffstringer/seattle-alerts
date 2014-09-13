@@ -1,6 +1,5 @@
 # FireAlert class
 class FireAlert < ActiveRecord::Base
-  # belongs_to :subscriber
   validates_presence_of :address, :datetime, :incident_number, :fire_type,
     :latitude, :longitude, :time_show
   validates_uniqueness_of :incident_number
@@ -43,6 +42,10 @@ class FireAlert < ActiveRecord::Base
         @fire_alert.save
       end
     end
+  end
+
+  def self.alerts
+    self.where(time_show: (Time.now - 1.day)..Time.now)
   end
 end
 

@@ -1,6 +1,5 @@
 # PoliceAlert class
 class PoliceAlert < ActiveRecord::Base
-  # belongs_to :subscriber
   validates_presence_of :hundred_block_location, :event_clearance_description,
     :event_clearance_date, :general_offense_number, :census_tract, :latitude,
     :longitude, :time_show
@@ -53,6 +52,10 @@ class PoliceAlert < ActiveRecord::Base
         @police_alert.save
       end
     end
+  end
+
+  def self.alerts
+    self.where(time_show: (Time.now - 1.day)..Time.now)
   end
 end
 

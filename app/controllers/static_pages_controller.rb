@@ -1,7 +1,6 @@
 class StaticPagesController < ApplicationController
   def index
-    #@police_alerts = PoliceAlert.all
-    @police_alerts = PoliceAlert.where(time_show: (Time.now - 1.day)..Time.now)
+    @police_alerts = PoliceAlert.alerts
     @police_hash = Gmaps4rails.build_markers(@police_alerts) do |police_alert, marker|
       marker.lat(police_alert.latitude)
       marker.lng(police_alert.longitude)
@@ -15,8 +14,7 @@ class StaticPagesController < ApplicationController
       marker.infowindow render_to_string(:partial => '/layouts/police_alerts_infowindow', :locals => { :police_alert => police_alert } )
     end
 
-    #@fire_alerts = FireAlert.all
-    @fire_alerts = FireAlert.where(time_show: (Time.now - 1.day)..Time.now)
+    @fire_alerts = FireAlert.alerts
     @fire_hash = Gmaps4rails.build_markers(@fire_alerts) do |fire_alert, marker|
       marker.lat(fire_alert.latitude)
       marker.lng(fire_alert.longitude)
@@ -42,8 +40,8 @@ class StaticPagesController < ApplicationController
       marker.infowindow render_to_string(:partial => '/layouts/current_subscriber_infowindow', :locals => { :subscriber => current_subscriber } )
     end
     @subscribers = Subscriber.all
-    @police_alerts = PoliceAlert.all
-    @police_alerts.each do |p_alert|
+    @police_alerts_all = PoliceAlert.all
+    @police_alerts_all.each do |p_alert|
       @subscribers.each do |subscriber|
         @police_notification = PoliceNotification.new
         @police_notification.subscriber_id = subscriber.id
@@ -51,9 +49,8 @@ class StaticPagesController < ApplicationController
         @police_notification.save if subscriber.distance_to([p_alert.latitude, p_alert.longitude]) <= subscriber.radius
       end
     end
-    @subscribers = Subscriber.all
-      @fire_alerts = FireAlert.all
-      @fire_alerts.each do |f_alert|
+    @fire_alerts_all = FireAlert.all
+    @fire_alerts_all.each do |f_alert|
       @subscribers.each do |subscriber|
         @fire_notification = FireNotification.new
         @fire_notification.subscriber_id = subscriber.id
@@ -61,16 +58,6 @@ class StaticPagesController < ApplicationController
         @fire_notification.save if subscriber.distance_to([f_alert.latitude, f_alert.longitude]) <= subscriber.radius
       end
     end
-  end
-
-
-
-  def create
-    @subscriber = Subscriber.find()
-    @police_notification = PoliceNotification.new(police_notification_params)
-    @police_notification.save
-    @fire_notification = FireNotification.new(fire_notification_params)
-    @fire_notification.save
   end
 
   private
