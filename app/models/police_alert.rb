@@ -57,6 +57,18 @@ class PoliceAlert < ActiveRecord::Base
   def self.alerts
     self.where(time_show: (Time.now - 1.day)..Time.now)
   end
+
+  def self.create_police_notifications
+      self.all.each do |p_alert|
+      Subscriber.all.each do |subscriber|
+        police_notification = PoliceNotification.new
+        police_notification.subscriber_id = subscriber.id
+        police_notification.police_alert_id = p_alert.id
+        police_notification.save if subscriber.distance_to([p_alert.latitude, p_alert.longitude]) <= subscriber.radius
+      end
+    end
+  end
 end
 
 PoliceAlert.fetch_police_data
+PoliceAlert.create_police_notifications

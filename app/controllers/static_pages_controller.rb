@@ -26,6 +26,7 @@ class StaticPagesController < ApplicationController
       })
       marker.infowindow render_to_string(:partial => '/layouts/fire_alerts_infowindow', :locals => { :fire_alert => fire_alert } )
     end
+
     @current_subscriber = current_subscriber
     @home = Gmaps4rails.build_markers(@current_subscriber) do |current_subscriber, marker|
       marker.lat(current_subscriber.latitude)
@@ -38,25 +39,6 @@ class StaticPagesController < ApplicationController
         "height" => 37
       })
       marker.infowindow render_to_string(:partial => '/layouts/current_subscriber_infowindow', :locals => { :subscriber => current_subscriber } )
-    end
-    @subscribers = Subscriber.all
-    @police_alerts_all = PoliceAlert.all
-    @police_alerts_all.each do |p_alert|
-      @subscribers.each do |subscriber|
-        @police_notification = PoliceNotification.new
-        @police_notification.subscriber_id = subscriber.id
-        @police_notification.police_alert_id = p_alert.id
-        @police_notification.save if subscriber.distance_to([p_alert.latitude, p_alert.longitude]) <= subscriber.radius
-      end
-    end
-    @fire_alerts_all = FireAlert.all
-    @fire_alerts_all.each do |f_alert|
-      @subscribers.each do |subscriber|
-        @fire_notification = FireNotification.new
-        @fire_notification.subscriber_id = subscriber.id
-        @fire_notification.fire_alert_id = f_alert.id
-        @fire_notification.save if subscriber.distance_to([f_alert.latitude, f_alert.longitude]) <= subscriber.radius
-      end
     end
   end
 

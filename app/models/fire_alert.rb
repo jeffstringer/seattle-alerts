@@ -37,9 +37,9 @@ class FireAlert < ActiveRecord::Base
     end
 
     fire_alerts.each do |fire_alert|
-      @fire_alert = FireAlert.new(fire_alert)
+      new_alert = FireAlert.new(fire_alert)
       if FireAlert.exists?(incident_number: fire_alert['incident_number']) == false
-        @fire_alert.save
+        new_alert.save
       end
     end
   end
@@ -47,6 +47,18 @@ class FireAlert < ActiveRecord::Base
   def self.alerts
     self.where(time_show: (Time.now - 1.day)..Time.now)
   end
+
+  def self.create_fire_notifications
+    self.all.each do |f_alert|
+      Subscriber.all.each do |subscriber|
+        fire_notification = FireNotification.new
+        fire_notification.subscriber_id = subscriber.id
+        fire_notification.fire_alert_id = f_alert.id
+        fire_notification.save if subscriber.distance_to([f_alert.latitude, f_alert.longitude]) <= subscriber.radius
+      end
+    end
+  end  
 end
 
 FireAlert.fetch_fire_data
+FireAlert.create_fire_notifications
