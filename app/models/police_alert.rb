@@ -1,4 +1,3 @@
-# PoliceAlert class
 class PoliceAlert < ActiveRecord::Base
   validates_presence_of :hundred_block_location, :event_clearance_description,
     :event_clearance_date, :general_offense_number, :census_tract, :latitude,
@@ -10,17 +9,12 @@ class PoliceAlert < ActiveRecord::Base
   def self.fetch_police_data
     # for 911 POLICE data since 04/01/2013
     endpoint = 'http://data.seattle.gov/resource/fw4z-a47w.json'
-
     # query is limited to 1000 records by default, approximately 1 day
     query ="$limit=1000"
-
     url = "#{endpoint}?#{query}"
     url = URI.escape(url)
-
     json = open(url).read
-
     police_alerts = JSON.parse(json)
-
     # deletes parameters not needed by app and converts time
     police_alerts.each do |police_alert|
       police_alert.delete('event_clearance_code')
@@ -64,11 +58,13 @@ class PoliceAlert < ActiveRecord::Base
         police_notification = PoliceNotification.new
         police_notification.subscriber_id = subscriber.id
         police_notification.police_alert_id = p_alert.id
-        police_notification.save if subscriber.distance_to([p_alert.latitude, p_alert.longitude]) <= subscriber.radius
+        if subscriber.distance_to([p_alert.latitude, p_alert.longitude]) <= subscriber.radius && PoliceNotification.exists?(police_alert_id: police_notification.police_alert_id) == false
+          police_notification.save
+        end   
       end
     end
   end
 end
 
-PoliceAlert.fetch_police_data
 PoliceAlert.create_police_notifications
+PoliceAlert.fetch_police_data

@@ -1,4 +1,3 @@
-# FireAlert class
 class FireAlert < ActiveRecord::Base
   validates_presence_of :address, :datetime, :incident_number, :fire_type,
     :latitude, :longitude, :time_show
@@ -9,19 +8,14 @@ class FireAlert < ActiveRecord::Base
   def self.fetch_fire_data
     # for 911 fire data for fire calls only and since 04/01/2013
     endpoint = 'http://data.seattle.gov/resource/4ss6-4s75.json'
-
     # query for calls for the past day: 60 s * 60 mins * 24 hrs
     timestamp = (Time.now - (60 * 60 * 24)).strftime('%F %H:%M:%S')
     # THEN CHANGE TO 295 TO GET NEXT 1000 fire_alerts
     query = "$where=datetime > '#{timestamp}'"
-
     url = "#{endpoint}?#{query}"
     url = URI.escape(url)
-
     json = open(url).read
-
     fire_alerts = JSON.parse(json)
-
     # deletes parameters not needed by app and converts time
     fire_alerts.each do |fire_alert|
       # FIRE: convert unix time to ISO 8601 format
@@ -54,11 +48,12 @@ class FireAlert < ActiveRecord::Base
         fire_notification = FireNotification.new
         fire_notification.subscriber_id = subscriber.id
         fire_notification.fire_alert_id = f_alert.id
-        fire_notification.save if subscriber.distance_to([f_alert.latitude, f_alert.longitude]) <= subscriber.radius
+        if subscriber.distance_to([f_alert.latitude, f_alert.longitude]) <= subscriber.radius && FireNotification.exists?(fire_alert_id: fire_notification.fire_alert_id) == false
+        fire_notification.save 
       end
     end
   end  
 end
 
-FireAlert.fetch_fire_data
 FireAlert.create_fire_notifications
+FireAlert.fetch_fire_data
