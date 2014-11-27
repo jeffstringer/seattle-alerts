@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-ruby '2.1.2'
+ruby '2.1.5'
 
 gem 'rails', '4.0.4'
 gem 'pg'
@@ -20,7 +20,6 @@ gem 'rb-readline'
 group :development, :test do
   gem 'better_errors'
   gem 'quiet_assets'
-  gem 'sqlite3'
   gem 'rspec-rails'
   gem 'guard-rspec'
   gem 'capybara'

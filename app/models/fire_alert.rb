@@ -6,7 +6,6 @@ class FireAlert < ActiveRecord::Base
   has_many :subscribers, through: :fire_notifications
 
   def self.fetch_fire_data
-    # for 911 fire data for fire calls only and since 04/01/2013
     endpoint = 'http://data.seattle.gov/resource/4ss6-4s75.json'
     # query for calls for the past day: 60 s * 60 mins * 24 hrs
     timestamp = (Time.now - (60 * 60 * 24)).strftime('%F %H:%M:%S')
@@ -49,7 +48,8 @@ class FireAlert < ActiveRecord::Base
         fire_notification.subscriber_id = subscriber.id
         fire_notification.fire_alert_id = f_alert.id
         if subscriber.distance_to([f_alert.latitude, f_alert.longitude]) <= subscriber.radius && FireNotification.exists?(fire_alert_id: fire_notification.fire_alert_id) == false
-        fire_notification.save 
+          fire_notification.save
+        end 
       end
     end
   end  
