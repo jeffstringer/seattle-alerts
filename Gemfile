@@ -22,7 +22,6 @@ group :development, :test do
   gem 'quiet_assets'
   gem 'rspec-rails'
   gem 'guard-rspec'
-  gem 'capybara'
   gem 'factory_girl_rails'
   gem 'spork-rails'
   gem 'guard-spork'
@@ -47,5 +46,7 @@ group :production do
 end
 
 group :test do
+  gem 'capybara'
+  gem 'shoulda-matchers'
   gem 'launchy'
 end

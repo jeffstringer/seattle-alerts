@@ -1,14 +1,6 @@
 require 'spec_helper'
 
 describe Contact do
-  
-  #describe 'Contact page' do
-  #  before { visit contacts_new_path }
-  #  let(:page_title) { 'Contact' }
-    
-  #  it { should have_content('Contact us!') }
-  #end
-
   before do
     @contact = Contact.new(email: "user@example.com", comment: "Great job!  Do you have plans for other cities, too?") 
   end  

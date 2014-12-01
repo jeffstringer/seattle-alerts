@@ -14,7 +14,10 @@ class PoliceAlert < ActiveRecord::Base
     url = URI.escape(url)
     json = open(url).read
     police_alerts = JSON.parse(json)
-    police_alerts.each do |police_alert|
+  end
+
+  def self.parse_police_data(array)
+    array.each do |police_alert|
       police_alert = police_alert.slice!('event_clearance_code','cad_event_number','event_clearance_subgroup',
        'event_clearance_group','cad_cdw_id','zone_beat','initial_type_description','district_sector',
        'initial_type_subgroup','initial_type_group','incident_location','at_scene_time')
@@ -29,10 +32,6 @@ class PoliceAlert < ActiveRecord::Base
     end
   end
 
-  def self.alerts
-    self.where(time_show: (Time.now - 1.day)..Time.now)
-  end
-
   def self.create_police_notifications
       self.all.each do |p_alert|
       Subscriber.all.each do |subscriber|
@@ -45,7 +44,11 @@ class PoliceAlert < ActiveRecord::Base
       end
     end
   end
+
+  def self.alerts
+    self.where(time_show: (Time.now - 1.day)..Time.now)
+  end
 end
 
+PoliceAlert.parse_police_data(PoliceAlert.fetch_police_data)
 PoliceAlert.create_police_notifications
-PoliceAlert.fetch_police_data

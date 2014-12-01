@@ -2,75 +2,69 @@ require 'spec_helper'
 
 describe PoliceAlert do
 
-  before { @police_alert = PoliceAlert.new(hundred_block_location: "2XX BLOCK OF VIRGINIA ST", event_clearance_description: "SUSPICIOUS PERSON", 
-    event_clearance_date: "Sat Apr 12, 2014 at 02:01 PM", general_offense_number: "2014111970", census_tract: "8002.1001", latitude: 47.612065558, longitude: -122.341322531, 
-    time_show: "2014-04-12 14:01:00") }
+  it { should validate_presence_of :hundred_block_location }
+  it { should validate_presence_of :event_clearance_description }
+  it { should validate_presence_of :event_clearance_date }
+  it { should validate_presence_of :general_offense_number }
+  it { should validate_presence_of :census_tract }
+  it { should validate_presence_of :latitude }
+  it { should validate_presence_of :longitude }
+  it { should validate_presence_of :time_show }
 
-  subject { @police_alert }
+  it { should validate_uniqueness_of :general_offense_number }
 
-  it { should respond_to(:hundred_block_location)}
-  it { should respond_to(:event_clearance_description)}
-  it { should respond_to(:event_clearance_date)}
-  it { should respond_to(:general_offense_number)}
-  it { should respond_to(:census_tract)}
-  it { should respond_to(:latitude)}
-  it { should respond_to(:longitude)}
-  it { should respond_to(:time_show)}
+  it { should have_many(:subscribers).through(:police_notifications) }
 
-  it { should be_valid }
-    describe "when hundred_block_location is not present" do
-      before { @police_alert.hundred_block_location = " " }
-    it { should_not be_valid }
-  end
+  array = [{"event_clearance_code"=>"177",
+                                  "cad_event_number"=>"14000396695",
+                                  "event_clearance_subgroup"=>"LIQUOR VIOLATIONS",
+                                  "event_clearance_group"=>"LIQUOR VIOLATIONS",
+                                  "cad_cdw_id"=>"2211952",
+                                  "event_clearance_date"=>"2013-11-28T08:43:00",
+                                  "zone_beat"=>"E1",
+                                  "initial_type_description"=>"DETOX - REQUEST FOR",
+                                  "district_sector"=>"E",
+                                  "initial_type_subgroup"=>"LIQUOR VIOLATIONS",
+                                  "incident_location"=>{"needs_recoding"=>false, "longitude"=>"-122.320863689", "latitude"=>"47.619323645"},
+                                  "hundred_block_location"=>"1XX BLOCK OF BROADWAY E",
+                                  "general_offense_number"=>"2014396695",
+                                  "event_clearance_description"=>"LIQUOR VIOLATION - INTOXICATED PERSON",
+                                  "longitude"=>"-122.320863689",
+                                  "latitude"=>"47.619323645",
+                                  "initial_type_group"=>"LIQUOR VIOLATIONS",
+                                  "census_tract"=>"7400.3005"},
+                                 {"event_clearance_code"=>"245",
+                                  "cad_event_number"=>"14000396683",
+                                  "event_clearance_subgroup"=>"DISTURBANCES",
+                                  "event_clearance_group"=>"DISTURBANCES",
+                                  "cad_cdw_id"=>"2211938",
+                                  "event_clearance_date"=>"2013-11-28T08:31:00",
+                                  "zone_beat"=>"G2",
+                                  "initial_type_description"=>"DISTURBANCE, MISCELLANEOUS/OTHER",
+                                  "district_sector"=>"G",
+                                  "initial_type_subgroup"=>"DISTURBANCES",
+                                  "incident_location"=>{"needs_recoding"=>false, "longitude"=>"-122.31276312", "latitude"=>"47.597490885"},
+                                  "hundred_block_location"=>"RAINIER AV S / S WELLER ST",
+                                  "general_offense_number"=>"2014396683",
+                                  "event_clearance_description"=>"DISTURBANCE, OTHER",
+                                  "longitude"=>"-122.312763120",
+                                  "latitude"=>"47.597490885",
+                                  "initial_type_group"=>"DISTURBANCES",
+                                  "census_tract"=>"9000.2004"}]
 
-  it { should be_valid }
-    describe "when event_clearance_description is not present" do
-      before { @police_alert.event_clearance_description = " " }
-    it { should_not be_valid }
-  end
+  describe '.parse_police_data(array)' do
 
-  it { should be_valid }
-    describe "when event_clearance_date is not present" do
-      before { @police_alert.event_clearance_date = " " }
-    it { should_not be_valid }
-  end
-
-  it { should be_valid }
-    describe "when general_offense_number is not present" do
-      before { @police_alert.general_offense_number = " " }
-    it { should_not be_valid }
-  end
-
-  it { should be_valid }
-    describe "when census_tract is not present" do
-      before { @police_alert.census_tract = " " }
-    it { should_not be_valid }
-  end
-
-  it { should be_valid }
-    describe "when latitude is not present" do
-      before { @police_alert.latitude = " " }
-    it { should_not be_valid }
-  end
-
-  it { should be_valid }
-    describe "when longitude is not present" do
-      before { @police_alert.longitude = " " }
-    it { should_not be_valid }
-  end
-
-  it { should be_valid }
-    describe "when time_show is not present" do
-      before { @police_alert.time_show = " " }
-    it { should_not be_valid }
-  end    
-
-  describe "when police_alert already exists" do
     before do
-      police_alert_with_same_general_offense_number = @police_alert.dup
-      police_alert_with_same_general_offense_number.save
+      PoliceAlert.all.each {|p| p.destroy }
+      PoliceAlert.parse_police_data(array)
     end
 
-    it { should_not be_valid }
+    it 'parses array of JSON objects from the SODA API' do
+      expect(PoliceAlert.count).to eq(2)
+    end
+
+    it 'saves the data in psql' do
+      expect(PoliceAlert.first.hundred_block_location).to eq("1XX BLOCK OF BROADWAY E")
+    end
   end
 end

@@ -6,30 +6,25 @@ class FireAlert < ActiveRecord::Base
   has_many :subscribers, through: :fire_notifications
 
   def self.fetch_fire_data
-    endpoint = 'http://data.seattle.gov/resource/4ss6-4s75.json'
-    # query for calls for the past day: 60 s * 60 mins * 24 hrs
+    endpoint = 'http://data.seattle.gov/resource/4ss6-4s75.json' 
     timestamp = (Time.now - (60 * 60 * 24)).strftime('%F %H:%M:%S')
-    # THEN CHANGE TO 295 TO GET NEXT 1000 fire_alerts
     query = "$where=datetime > '#{timestamp}'"
     url = "#{endpoint}?#{query}"
     url = URI.escape(url)
     json = open(url).read
     fire_alerts = JSON.parse(json)
-    # deletes parameters not needed by app and converts time
-    fire_alerts.each do |fire_alert|
-      # FIRE: convert unix time to ISO 8601 format
-      if fire_alert.length > 1
-        fire_alert.delete('report_location')
-        fire_alert['time_show'] = Time.at(fire_alert['datetime']).to_s
-        fire_alert['datetime'] = Time.at(fire_alert['datetime']).strftime('%a %b %e, %Y at %I:%M %p')
-        fire_alert['latitude'] = fire_alert['latitude'].to_f
-        fire_alert['longitude'] = fire_alert['longitude'].to_f
-        fire_alert['fire_type'] = fire_alert['type']
-        fire_alert.delete('type')
-      end
-    end
+  end
 
-    fire_alerts.each do |fire_alert|
+  def self.parse_fire_data(array)
+    array.each do |fire_alert|
+      if fire_alert.length > 1
+        # fire_alert.delete('report_location')
+        fire_alert['time_show'] = Time.at(fire_alert['datetime'])
+        fire_alert['datetime'] = Time.at(fire_alert['datetime']).strftime('%a %b %e, %Y at %I:%M %p')
+        fire_alert['fire_type'] = fire_alert['type']
+        # fire_alert.delete('type')
+        fire_alert = fire_alert.slice!('type','report_location')
+      end
       new_alert = FireAlert.new(fire_alert)
       if FireAlert.exists?(incident_number: fire_alert['incident_number']) == false
         new_alert.save
@@ -55,5 +50,5 @@ class FireAlert < ActiveRecord::Base
   end  
 end
 
+FireAlert.parse_fire_data(FireAlert.fetch_fire_data)
 FireAlert.create_fire_notifications
-FireAlert.fetch_fire_data
