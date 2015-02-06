@@ -18,11 +18,9 @@ class FireAlert < ActiveRecord::Base
   def self.parse_fire_data(array)
     array.each do |fire_alert|
       if fire_alert.length > 1
-        # fire_alert.delete('report_location')
         fire_alert['time_show'] = Time.at(fire_alert['datetime'])
         fire_alert['datetime'] = Time.at(fire_alert['datetime']).strftime('%a %b %e, %Y at %I:%M %p')
         fire_alert['fire_type'] = fire_alert['type']
-        # fire_alert.delete('type')
         fire_alert = fire_alert.slice!('type','report_location')
       end
       new_alert = FireAlert.new(fire_alert)
@@ -39,9 +37,7 @@ class FireAlert < ActiveRecord::Base
   def self.create_fire_notifications
     self.all.each do |f_alert|
       Subscriber.all.each do |subscriber|
-        fire_notification = FireNotification.new
-        fire_notification.subscriber_id = subscriber.id
-        fire_notification.fire_alert_id = f_alert.id
+        fire_notification = FireNotification.new(subscriber_id: subscriber.id, fire_alert_id: f_alert.id)
         if subscriber.distance_to([f_alert.latitude, f_alert.longitude]) <= subscriber.radius && FireNotification.exists?(fire_alert_id: fire_notification.fire_alert_id) == false
           fire_notification.save
         end 
