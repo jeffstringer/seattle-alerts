@@ -1,7 +1,14 @@
 <% provide(:title, @subscriber.email) %>
 
 <div class="block">
+  <h3>Police Alerts</h3>
   <% @subscriber.police_alerts.each do |alert| %>
-    <p><%= alert.hundred_block_location %>, <%= alert.event_clearance_description %>, <%= alert.event_clearance_date %></p>
+    <p><%= alert.event_clearance_date %>, <%= alert.hundred_block_location %>, <%= alert.event_clearance_description.downcase.titleize %></p>
+  <% end %>
+  <% if @subscriber.fire_alerts.length > 0 %>
+    <h2>Fire Alerts</h2>
+    <% @subscriber.fire_alerts.each do |alert| %>
+      <p><%= alert.datetime %>, <%= alert.address %>, <%= alert.fire_type.downcase.titleize %></p>
+    <% end %>
   <% end %>
 </div>
