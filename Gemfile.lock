@@ -66,6 +66,8 @@ GEM
       factory_girl (~> 4.4.0)
       railties (>= 3.0.0)
     ffi (1.9.3)
+    figaro (1.0.0)
+      thor (~> 0.14)
     formatador (0.2.5)
     foundation-rails (5.4.3.1)
       railties (>= 3.1.0)
@@ -107,6 +109,7 @@ GEM
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
+    mailgunner (2.1.0)
     method_source (0.8.2)
     mime-types (1.25.1)
     mini_portile (0.6.0)
@@ -242,6 +245,7 @@ DEPENDENCIES
   jbuilder (~> 1.2)
   jquery-rails
   launchy
+  mailgunner
   nokogiri
   pg
   pry
