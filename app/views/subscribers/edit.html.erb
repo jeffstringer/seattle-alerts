@@ -6,10 +6,10 @@
     <%= f.error_notification %>
     <%= f.input :email, autofocus: true, label: 'email', required: false %>
     <%= f.input :street, label: 'street (i.e. 85 Pike St)', required: false %>
-    <%= f.input :password, label: 'password (6 characters minimum)', required: false %>
-    <%= f.input :password_confirmation, :required => true, label: 'confirmation', required: false %>
     <%= f.label "choose alert radius:" %>
     <%= f.collection_radio_buttons :radius, [[0.5, '1/2 mile'] ,[1.0, '1 mile']], :first, :last %>
+    <%= f.input :password, label: 'password (6 characters minimum)', required: false %>
+    <%= f.input :password_confirmation, :required => true, label: 'confirmation', required: false %>
     <div class="row">
       <%= f.button :submit, 'receive alerts', class: 'submit', required: false %>
     </div>

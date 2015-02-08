@@ -2,12 +2,12 @@
 
 <div class="block">
   <h3>Police Alerts</h3>
-  <% @subscriber.police_alerts.each do |alert| %>
+  <% @subscriber.police_alerts.order('created_at DESC').limit(20).each do |alert| %>
     <p><%= alert.event_clearance_date %>, <%= alert.hundred_block_location %>, <%= alert.event_clearance_description.downcase.titleize %></p>
   <% end %>
   <% if @subscriber.fire_alerts.length > 0 %>
     <h2>Fire Alerts</h2>
-    <% @subscriber.fire_alerts.each do |alert| %>
+    <% @subscriber.fire_alerts.order('created_at DESC').limit(10).each do |alert| %>
       <p><%= alert.datetime %>, <%= alert.address %>, <%= alert.fire_type.downcase.titleize %></p>
     <% end %>
   <% end %>
