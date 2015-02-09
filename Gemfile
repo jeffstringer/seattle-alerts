@@ -48,4 +48,5 @@ group :test do
   gem 'capybara'
   gem 'shoulda-matchers'
   gem 'launchy'
+  gem 'database_cleaner'
 end

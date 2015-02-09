@@ -32,21 +32,19 @@ class PoliceAlert < ActiveRecord::Base
     end
   end
 
-  def self.create_police_notifications
-      self.all.each do |p_alert|
-      Subscriber.all.each do |subscriber|
-        police_notification = PoliceNotification.new(subscriber_id: subscriber.id, police_alert_id: p_alert.id)
-        if subscriber.distance_to([p_alert.latitude, p_alert.longitude]) <= subscriber.radius && PoliceNotification.exists?(police_alert_id: police_notification.police_alert_id) == false
-          police_notification.save
-        end   
-      end
-    end
-  end
-
   def self.alerts
     self.where(time_show: (Time.now - 1.day)..Time.now)
   end
 end
 
 PoliceAlert.parse_police_data(PoliceAlert.fetch_police_data)
-PoliceAlert.create_police_notifications
+PoliceNotification.create_police_notifications
+FireAlert.parse_fire_data(FireAlert.fetch_fire_data)
+FireNotification.create_fire_notifications
+subscribers = Notification.notification_subscribers(POLICE_NOTIFICATIONS, FIRE_NOTIFICATIONS)
+unless subscribers.nil?
+  subscribers.each do |subscriber|
+    SubscriberMailer.notification_email(POLICE_NOTIFICATIONS, FIRE_NOTIFICATIONS, subscriber).deliver
+  end
+end
+

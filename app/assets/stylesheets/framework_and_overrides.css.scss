@@ -73,17 +73,11 @@ div.alert.alert-notice {
   font-family: 'Source Serif Pro', serif;
 }
 
-
 .mainpage {
   .googlemap {
     @extend .small-8;
     @extend .columns;
     padding: 0 0 50px 0;
-  }
-  .twitter {
-    @extend .small-3;
-    @extend .columns;
-    padding: 0 40px;
   }
 }
 
@@ -91,8 +85,8 @@ div.alert.alert-notice {
   padding: 10px 0 0 0;
 }
 
-.form {
-  background-color: rgba(250,250,250,0.6);
+.form, .about {
+  background-color: rgba(250,250,250,0.0);
   border: solid rgba(250,250,250,0.6);
   border-width: 10px;
 }
