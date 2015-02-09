@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+  </head>
+  <body>
+    <h4>The following activity occurred within <%= @subscriber.radius %> mile of <%= @subscriber.address %>:</h4>
+    <% if @police_alerts.length > 0 %>
+      <h4>Police Response:</h4>
+      <% @police_alerts.each do |p| %>
+        <p><span><%= p.event_clearance_date %><span>, <span><%= p.hundred_block_location %></span>, <span><%= p.event_clearance_description.downcase.titleize %></span></p>
+      <% end %>
+    <% end %>
+    <% if @fire_alerts.length > 0 %>
+      <h4>Fire Response:</h4>
+      <% @fire_alerts.each do |f| %>
+        <p><span><%= f.datetime %><span>, <span><%= f.address %></span>, <span><%= f.fire_type.downcase.titleize %></span></p>
+      <% end %>
+    <% end %>
+    <br/>
+    <p>You are receiving Seattle Alerts emails: Unsubscribe</p>
+    <p>If you need assistance or have questions, please contact the admin at jeff.j.stringer@gmail.com</p>
+    <p>© 2015, Seattle Alerts </p>
+  </body>
+</html>

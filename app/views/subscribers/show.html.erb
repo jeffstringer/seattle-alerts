@@ -2,7 +2,7 @@
 
 <div class="block">
   <h3>Police Alerts</h3>
-  <% @subscriber.police_alerts.order('created_at DESC').limit(20).each do |alert| %>
+  <% @subscriber.police_alerts.order('created_at ASC').limit(20).each do |alert| %>
     <p><%= alert.event_clearance_date %>, <%= alert.hundred_block_location %>, <%= alert.event_clearance_description.downcase.titleize %></p>
   <% end %>
   <% if @subscriber.fire_alerts.length > 0 %>
