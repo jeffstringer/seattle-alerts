@@ -60,14 +60,4 @@ FactoryGirl.define do
     created_at "2015-02-06 18:02:56"
     updated_at "2015-02-06 18:02:56"
   end
-
-  factory :police_notification do
-    association :subscriber
-    association :police_alert
-  end
-
-  factory :fire_notification do
-    association :subscriber
-    association :fire_alert
-  end
 end
