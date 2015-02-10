@@ -49,19 +49,26 @@ div.alert.alert-notice {
   font-family: 'Source Serif Pro', serif;
 }
 
+div.alert-box.alert {
+  border-radius: 5px;
+  color: rgba(250,250,250,1.0);
+}
+
 #map img { max-width: none; }
 #map label { width: auto; display:inline; }
-.map_container img{max-width: none;}
+.map_container img{ max-width: none; }
 
 .top-bar {
   width: 100%;
   margin: 0 auto;
   font-family: 'Source Serif Pro', serif;
 }
+
 .top-bar .name {
   line-height: 45px;
   font-family: 'Source Serif Pro', serif;
 }
+
 .top-bar .name a {
   font-size: rem-calc(17);
   color: white;
@@ -78,6 +85,8 @@ div.alert.alert-notice {
     @extend .small-8;
     @extend .columns;
     padding: 0 0 50px 0;
+    border: solid rgba(250,250,250,0.9);
+    border-width: 10px;
   }
 }
 
@@ -85,9 +94,9 @@ div.alert.alert-notice {
   padding: 10px 0 0 0;
 }
 
-.form, .about {
-  background-color: rgba(250,250,250,0.0);
-  border: solid rgba(250,250,250,0.6);
+.form, .about, .block {
+  background-color: rgba(250,250,250,0.7);
+  border: solid rgba(250,250,250,0.9);
   border-width: 10px;
 }
 
@@ -95,10 +104,9 @@ div.alert.alert-notice {
   font-weight: bold;
 }
 
-.block {
-  background-color: rgba(250,250,250,0.9);
-  border: solid rgba(250,250,250,0.9);
-  border-width: 10px;
+input.button.submit {
+  background-color: #CC3428;
+  border-radius: 5px;
 }
 
 // THESE ARE EXAMPLES YOU CAN MODIFY
@@ -119,7 +127,7 @@ div.alert.alert-notice {
   }
 .form {
   @include grid-column(4);
-  padding: 0 0 0 0;
+  padding: 0;
   }
 .form-centered {
   @include six-columns-centered;

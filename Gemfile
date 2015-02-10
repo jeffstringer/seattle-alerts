@@ -20,6 +20,7 @@ gem 'rb-readline'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.0.0'
 gem 'jquery-rails'
+gem 'underscore-rails', '~> 1.7.0'
 gem 'turbolinks'
 gem 'jbuilder', '~> 1.2'
 

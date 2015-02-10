@@ -17,6 +17,17 @@
 //= require gmaps/google
 //= require foundation
 //= require_tree .
-$(function() {
-  $(document).foundation();
-});
+
+var ready;
+ready = function() {
+  $(function() {
+    $(document).foundation();
+  });
+  $('li#home.name').click(function() {
+    window.location = "http://localhost:3000/";
+  });
+};
+
+$(document).ready(ready);
+$(document).on('page:load', ready);
+

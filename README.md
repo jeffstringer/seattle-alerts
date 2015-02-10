@@ -3,8 +3,6 @@ A Rails app which converts JSON 911 data from data.seattle.gov and displays mark
 
 Seattle Alerts receives data from data.seattle.gov which utilizes an API produced by Socrata. The City of Seattle reports that the dataset is refreshed on a 4 hour interval, but appears to be updated more frequently. The 911 Fire data set is updated every five minutes.
 
-Seattle Alerts is my capstone project for the winter 2014 Ruby on Rails course at [Portland Code School](http://www.portlandcodeschool.com/).
-
 ##Setup
 In your terminal, clone this repo:
 
