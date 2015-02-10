@@ -7,7 +7,7 @@ class SessionsController < ApplicationController
     subscriber = Subscriber.find_by(email: params[:session][:email].downcase)
     if subscriber && subscriber.authenticate(params[:session][:password])
       sign_in subscriber
-      redirect_to subscriber
+      redirect_to root_url
     else
       flash.now[:error] = 'Invalid email/password combination'
       render 'new'

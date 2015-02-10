@@ -58,6 +58,11 @@ div.alert-box.alert {
 #map label { width: auto; display:inline; }
 .map_container img{ max-width: none; }
 
+div.googlemap {
+  border: solid rgba(250,250,250,0.9);
+  border-width: 10px;
+}
+
 .top-bar {
   width: 100%;
   margin: 0 auto;
