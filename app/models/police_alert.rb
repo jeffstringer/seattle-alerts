@@ -35,6 +35,10 @@ class PoliceAlert < ActiveRecord::Base
   def self.alerts
     self.where(time_show: (Time.now - 1.day)..Time.now)
   end
+
+  def self.subscriber_alerts(subscriber)
+    subscriber.police_alerts.where(time_show: (Time.now - 1.day)..Time.now)
+  end
 end
 
 PoliceAlert.parse_police_data(PoliceAlert.fetch_police_data)

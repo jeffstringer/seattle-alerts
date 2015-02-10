@@ -1,6 +1,10 @@
 class StaticPagesController < ApplicationController
   def index
-    @police_alerts = PoliceAlert.alerts
+    unless current_subscriber == nil
+      @police_alerts = PoliceAlert.subscriber_alerts(current_subscriber)
+    else
+      @police_alerts = PoliceAlert.alerts
+    end
     @police_hash = Gmaps4rails.build_markers(@police_alerts) do |police_alert, marker|
       marker.lat(police_alert.latitude)
       marker.lng(police_alert.longitude)
@@ -14,7 +18,11 @@ class StaticPagesController < ApplicationController
       marker.infowindow render_to_string(:partial => '/layouts/police_alerts_infowindow', :locals => { :police_alert => police_alert } )
     end
 
-    @fire_alerts = FireAlert.alerts
+    unless current_subscriber == nil
+      @fire_alerts = FireAlert.subscriber_alerts(current_subscriber)
+    else
+      @fire_alerts = FireAlert.alerts
+    end
     @fire_hash = Gmaps4rails.build_markers(@fire_alerts) do |fire_alert, marker|
       marker.lat(fire_alert.latitude)
       marker.lng(fire_alert.longitude)
