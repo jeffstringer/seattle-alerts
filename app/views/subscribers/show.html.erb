@@ -1,12 +1,14 @@
 <% provide(:title, @subscriber.email) %>
 
 <div class="block">
-  <h3>My Police Alerts</h3>
-  <% @subscriber.police_alerts.order('created_at ASC').limit(20).each do |alert| %>
-    <p><%= alert.event_clearance_date %>, <%= alert.hundred_block_location %>, <%= alert.event_clearance_description.downcase.titleize %></p>
+  <% if @subscriber.police_alerts.length > 0 %>
+    <h3>My Police Alerts</h3>
+    <% @subscriber.police_alerts.order('created_at ASC').limit(20).each do |alert| %>
+      <p><%= alert.event_clearance_date %>, <%= alert.hundred_block_location %>, <%= alert.event_clearance_description.downcase.titleize %></p>
+    <% end %>
   <% end %>
   <% if @subscriber.fire_alerts.length > 0 %>
-    <h2>My Fire Alerts</h2>
+    <h3>My Fire Alerts</h3>
     <% @subscriber.fire_alerts.order('created_at DESC').limit(10).each do |alert| %>
       <p><%= alert.datetime %>, <%= alert.address %>, <%= alert.fire_type.downcase.titleize %></p>
     <% end %>
