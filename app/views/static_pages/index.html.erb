@@ -14,7 +14,7 @@
     </div>   
     <script type="text/javascript">
       handler = Gmaps.build('Google');
-      handler.buildMap({ provider: {Zoom: 8}, internal: {id: 'map'}}, 
+      handler.buildMap({ provider: {}, internal: {id: 'map'}}, 
         function() {
           current_subscriber = (<%= raw @current_subscriber.to_json %>);
           markers = handler.addMarkers(<%= raw @police_hash.to_json %>);
@@ -33,6 +33,7 @@
             handler.map.centerOn({ lat: 47.6101798, lng: -122.3423919});
           }
         });
+      console.log(handler);
     </script>
     </div>
   </body>

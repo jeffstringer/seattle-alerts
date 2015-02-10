@@ -19,6 +19,15 @@ class SubscriberMailer < ActionMailer::Base
     end   
   end
 
+  def update_email(subscriber)
+    @subscriber = subscriber
+
+    mail(to: subscriber.email, from: "Seattle Alerts <jeff.j.stringer@gmail.com>", subject: "Account Updated") do |format|
+      format.html 
+      format.text
+    end   
+  end
+
   def notification_email(police_notifications, fire_notifications, subscriber)
     @subscriber = subscriber
     @police_alerts = []

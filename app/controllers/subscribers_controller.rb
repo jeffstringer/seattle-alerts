@@ -26,6 +26,7 @@ class SubscribersController < ApplicationController
    def update
     @subscriber = Subscriber.find(params[:id])
     if @subscriber.update(subscriber_params)
+      SubscriberMailer.update_email(@subscriber).deliver
       flash[:notice] = "Account updated."
       redirect_to root_path
     else
