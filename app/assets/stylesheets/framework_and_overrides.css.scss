@@ -51,10 +51,22 @@ div.alert.alert-notice {
   background-color: green;
   color: rgba(250,250,250,1.0);
   padding-left: 5px;
+  margin-top: 5px;
   padding-top: 3px;
   padding-bottom: 3px;
-  width: 30%;
   font-family: 'Source Serif Pro', serif;
+  border-radius: 5px;
+}
+
+div.alert.alert-error {
+  background-color: red;
+  color: rgba(250,250,250,1.0);
+  padding-left: 5px;
+  margin-top: 5px;
+  padding-top: 3px;
+  padding-bottom: 3px;
+  font-family: 'Source Serif Pro', serif;
+  border-radius: 5px;
 }
 
 div.alert-box.alert {

@@ -8,7 +8,7 @@ class SubscribersController < ApplicationController
     @subscriber = Subscriber.new(subscriber_params)
     if @subscriber.save
       sign_in @subscriber
-      flash[:success] = 'Thank you for subscribing to Seattle Alerts!'
+      flash[:notice] = 'Thank you for subscribing to Seattle Alerts!'
       redirect_to root_path
     else
       render 'new'
