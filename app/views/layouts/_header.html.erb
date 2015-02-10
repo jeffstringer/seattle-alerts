@@ -17,7 +17,7 @@
               <li ><%= link_to "Sign Out", signout_path, method: "delete" %></li>
         <% else %>
           <li class="name"><%= link_to 'Stay Informed', stayinformed_path %></li>
-          <li class="name"><%= link_to "Sign In", signin_path %></li>
+          <li id="signin" class="name"><%= link_to "Sign In", signin_path %></li>
         <% end %>
       </ul>
     </div>

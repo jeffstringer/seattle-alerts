@@ -13,6 +13,10 @@ a {
   font-family: 'Source Serif Pro', serif !important;
 }
 
+li#home.name a:hover {
+  color: #CC3428;
+}
+
 // change .container with media queries
 @media screen and (min-width:900px) {
   .container {

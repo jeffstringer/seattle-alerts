@@ -13,16 +13,26 @@
       <div id="map" style='width: 980px; height: 700px;'></div>
     </div>   
     <script type="text/javascript">
-      handler = Gmaps.build('Google', { markers: { maxRandomDistance: null } });
-      handler.buildMap({ provider: { Zoom: 12}, internal: {id: 'map'}}, 
-        function(){
-        markers = handler.addMarkers(<%=raw @police_hash.to_json %>);
-        markers = handler.addMarkers(<%=raw @fire_hash.to_json %>);
-        markers = handler.addMarkers(<%=raw @home.to_json %>);
-        handler.map.centerOn({ lat: 47.6101798, lng: -122.3423919});
-        handler.bounds.extendWith(markers);
-        handler.fitMapToBounds();
-      });
+      handler = Gmaps.build('Google');
+      handler.buildMap({ provider: {Zoom: 8}, internal: {id: 'map'}}, 
+        function() {
+          current_subscriber = (<%= raw @current_subscriber.to_json %>);
+          markers = handler.addMarkers(<%= raw @police_hash.to_json %>);
+          markers = handler.addMarkers(<%= raw @fire_hash.to_json %>);
+          handler.bounds.extendWith(markers);
+          handler.fitMapToBounds();
+          if (current_subscriber != null) {
+            markers = handler.addMarkers([
+              { "lat": current_subscriber.latitude, "lng": current_subscriber.longitude,
+                "picture": { "url": "/assets/home.png", "width":  32, "height": 37 },
+                "infowindow": current_subscriber.street
+              }
+            ]);
+            handler.map.centerOn({ lat: current_subscriber.latitude, lng: current_subscriber.longitude});
+          } else {
+            handler.map.centerOn({ lat: 47.6101798, lng: -122.3423919});
+          }
+        });
     </script>
     </div>
   </body>
