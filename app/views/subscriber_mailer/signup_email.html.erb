@@ -8,5 +8,9 @@
     <p>Email: <%= @subscriber.email %></p>
     <p>Street Adress: <%= @subscriber.street %></p>
     <p>Alert Distance: <%= @subscriber.radius %></p>
+    <br/>
+    <p>Like to change anything? <%= link_to "Update Account", edit_subscriber_url(@subscriber) %>
+    <p>If you need assistance or have questions, please contact the admin at jeff.j.stringer@gmail.com</p>
+    <p>© 2015, Seattle Alerts </p>
   </body>
 </html>
