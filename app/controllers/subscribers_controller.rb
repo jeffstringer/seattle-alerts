@@ -34,8 +34,11 @@ class SubscribersController < ApplicationController
   end
 
   def destroy
-    sign_out
-    redirect_to root_url
+    @subscriber = Subscriber.find(params[:id])
+    if @subscriber.destroy
+      flash[:notice] = "Your account has successfully been deleted."
+      redirect_to root_url
+    end
   end
 
   private

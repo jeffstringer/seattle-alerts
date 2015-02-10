@@ -14,4 +14,7 @@
       <%= f.button :submit, 'receive alerts', class: 'submit', required: false %>
     </div>
   <% end %>
+  <%= link_to 'delete account', subscriber_path(@subscriber),
+                             :data => {:confirm => "Are you sure?",
+                                       :method => "delete"}, :id => "delete" %>
 </div>
