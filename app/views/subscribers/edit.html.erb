@@ -11,7 +11,7 @@
     <%= f.input :password, label: 'password (6 characters minimum)', required: false %>
     <%= f.input :password_confirmation, :required => true, label: 'confirmation', required: false %>
     <div class="row">
-      <%= f.button :submit, 'receive alerts', class: 'submit', required: false %>
+      <%= f.button :submit, 'update', class: 'submit', required: false %>
     </div>
   <% end %>
   <%= link_to 'delete account', subscriber_path(@subscriber),

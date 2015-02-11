@@ -18,8 +18,7 @@
 //= require foundation
 //= require_tree .
 
-var ready;
-ready = function() {
+var ready = function() {
   $(function() {
     $(document).foundation();
   });

@@ -4,9 +4,10 @@
 
 // override for the 'Home' navigation link
 
-* h1, h2, h3, h4, h5, h6, p, label, input, input.button {
+* h1, h2, h3, h4, h5, h6, p, label, input, input.button, th, tr {
   font-family: 'Source Serif Pro', serif;
 }
+
 
 a {
   font-size: rem-calc(17) !important;
@@ -17,8 +18,28 @@ a#delete {
   color: grey;
 }
 
+a#delete:hover {
+  color: #CC3428;
+}
+
 li#home.name a:hover {
   color: #CC3428;
+}
+
+table {
+  background-color: rgba(250,250,250,0.5);;
+}
+
+th {
+  font-family: bold;
+}
+
+h3.show {
+  margin-top: 0;
+  margin-bottom: 0;
+  padding-left: 12px;
+  height: 36px;
+  background-color: rgba(250,250,250,0.5);;
 }
 
 // change .container with media queries

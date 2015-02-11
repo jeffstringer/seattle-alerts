@@ -2,15 +2,45 @@
 
 <div class="block">
   <% if @subscriber.police_alerts.length > 0 %>
-    <h3>My Police Alerts</h3>
-    <% @subscriber.police_alerts.order('time_show DESC').limit(30).each do |alert| %>
-      <p><%= alert.event_clearance_date %>, <%= alert.hundred_block_location %>, <%= alert.event_clearance_description.downcase.titleize %></p>
-    <% end %>
+    <h3 class="show">My Police Alerts</h3>
+    <table>
+      <thead>
+        <tr>
+          <th width="100">Date</th>
+          <th width="100">Approximate Location</th>
+          <th width="150">Description</th>
+        </tr>
+      </thead>
+      <tbody>
+      <% @subscriber.police_alerts.order('time_show DESC').limit(30).each do |alert| %>
+        <tr>
+          <td><%= alert.event_clearance_date %></td>
+          <td><%= alert.hundred_block_location %></td>
+          <td><%= alert.event_clearance_description.downcase.titleize %></td>
+        </tr>
+      <% end %>
+      </tbody>  
+    </table>
   <% end %>
-  <% if @subscriber.fire_alerts.length > 0 %>
-    <h3>My Fire Alerts</h3>
-    <% @subscriber.fire_alerts.order('time_show DESC').limit(15).each do |alert| %>
-      <p><%= alert.datetime %>, <%= alert.address %>, <%= alert.fire_type.downcase.titleize %></p>
-    <% end %>
+    <% if @subscriber.fire_alerts.length > 0 %>
+    <h3 class="show">My Fire Alerts</h3>
+    <table>
+      <thead>
+        <tr>
+          <th width="100">Date</th>
+          <th width="100">Approximate Location</th>
+          <th width="150">Description</th>
+        </tr>
+      </thead>
+      <tbody>
+      <% @subscriber.fire_alerts.order('time_show DESC').limit(15).each do |alert| %>
+        <tr>
+          <td><%= alert.datetime %></td>
+          <td><%= alert.address %></td>
+          <td><%= alert.fire_type.downcase.titleize %></td>
+        </tr>
+      <% end %>
+      </tbody>  
+    </table>
   <% end %>
 </div>
