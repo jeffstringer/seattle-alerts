@@ -6,16 +6,46 @@
   <body>
     <h4>The following activity occurred within <%= @subscriber.radius %> mile of <%= @subscriber.address %>:</h4>
     <% if @police_alerts.length > 0 %>
-      <h4>Police Response:</h4>
-      <% @police_alerts.each do |p| %>
-        <p><span><%= p.event_clearance_date %><span>, <span><%= p.hundred_block_location %></span>, <span><%= p.event_clearance_description.downcase.titleize %></span></p>
-      <% end %>
+      <h4 class="show">Police Alerts</h4>
+      <table>
+        <thead>
+          <tr>
+            <th width="100">Date</th>
+            <th width="100">Approximate Location</th>
+            <th width="150">Description</th>
+          </tr>
+        </thead>
+        <tbody>
+        <% @police_alerts.each do |p| %>
+          <tr>
+            <td><%= p.event_clearance_date %></td>
+            <td><%= p.hundred_block_location %></td>
+            <td><%= p.event_clearance_description.downcase.titleize %></td>
+          </tr>
+        <% end %>
+        </tbody>  
+      </table>
     <% end %>
     <% if @fire_alerts.length > 0 %>
-      <h4>Fire Response:</h4>
-      <% @fire_alerts.each do |f| %>
-        <p><span><%= f.datetime %><span>, <span><%= f.address %></span>, <span><%= f.fire_type.downcase.titleize %></span></p>
-      <% end %>
+      <h4 class="show">Fire Alerts</h4>
+      <table>
+        <thead>
+          <tr>
+            <th width="100">Date</th>
+            <th width="100">Approximate Location</th>
+            <th width="150">Description</th>
+          </tr>
+        </thead>
+        <tbody>
+        <% @fire_alerts.each do |f| %>
+          <tr>
+            <td><%= f.datetime %></td>
+            <td><%= f.address %></td>
+            <td><%= f.fire_type.downcase.titleize %></td>
+          </tr>
+        <% end %>
+        </tbody>  
+      </table>
     <% end %>
     <br/>
     <p>You are receiving Seattle Alerts emails: Unsubscribe</p>
