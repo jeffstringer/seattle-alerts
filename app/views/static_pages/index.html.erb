@@ -22,6 +22,7 @@
           handler.bounds.extendWith(markers);
           handler.fitMapToBounds();
           if (current_subscriber != null) {
+            console.log(current_subscriber);
             markers = handler.addMarkers([
               { "lat": current_subscriber.latitude, "lng": current_subscriber.longitude,
                 "picture": { "url": "/assets/home.png", "width":  32, "height": 37 },
