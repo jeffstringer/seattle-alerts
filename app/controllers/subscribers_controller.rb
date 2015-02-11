@@ -26,7 +26,6 @@ class SubscribersController < ApplicationController
    def update
     @subscriber = Subscriber.find(params[:id])
     if @subscriber.update(subscriber_params)
-      PoliceAlert.start_all
       flash[:notice] = "Account updated."
       redirect_to root_path
     else
