@@ -9,7 +9,7 @@
   <% end %>
   <% if @subscriber.fire_alerts.length > 0 %>
     <h3>My Fire Alerts</h3>
-    <% @subscriber.fire_alerts.order('datetime DESC').limit(15).each do |alert| %>
+    <% @subscriber.fire_alerts.order('time_show DESC').limit(15).each do |alert| %>
       <p><%= alert.datetime %>, <%= alert.address %>, <%= alert.fire_type.downcase.titleize %></p>
     <% end %>
   <% end %>
