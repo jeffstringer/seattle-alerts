@@ -1,19 +1,19 @@
 <div class="contain-to-grid sticky">
   <nav class="top-bar" data-topbar>
     <ul class="title-area">
-      <li id="home" class="name"><%= link_to 'Seattle Alerts', root_path %></li>
-      <li class="toggle-topbar menu-icon"><a href="#">Menu</a></li>
+      <li id="home" class="name"><%= link_to 'Seattle Alerts', root_path, id: "title" %></li>
+      <li class="toggle-topbar menu-icon"><a href="#"><span></span></a></li>
     </ul>
     <div class="top-bar-section">
       <ul class="right">
         <% if signed_in? %>
-          <li ><%= link_to "My Alerts", subscriber_path(current_subscriber) %></li>
-          <li ><%= link_to "Account", edit_subscriber_path(current_subscriber) %></li>
-          <li ><%= link_to "Sign Out", signout_path, method: "delete" %></li>
+          <li><%= link_to "My Alerts", subscriber_path(current_subscriber) %></li>
+          <li><%= link_to "Account", edit_subscriber_path(current_subscriber) %></li>
+          <li><%= link_to "Sign Out", signout_path, method: "delete" %></li>
         <% else %>
-          <li class="name"><%= link_to 'About', about_path %></li>
-          <li class="name"><%= link_to 'Stay Informed', stayinformed_path %></li>
-          <li id="signin" class="name"><%= link_to "Sign In", signin_path %></li>
+          <li><%= link_to 'About', about_path %></li>
+          <li><%= link_to 'Stay Informed', stayinformed_path %></li>
+          <li><%= link_to "Sign In", signin_path %></li>
         <% end %>
       </ul>
     </div>

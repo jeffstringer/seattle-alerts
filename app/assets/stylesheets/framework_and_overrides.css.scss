@@ -1,8 +1,22 @@
-// import the CSS framework
 @import "foundation";
 @import url(http://fonts.googleapis.com/css?family=Source+Serif+Pro);
 
-// override for the 'Home' navigation link
+@media screen and (min-width:900px) {
+  .container {
+    width: 1000px;
+    margin: 0 auto;
+  }
+}
+
+@media screen and (max-width:1000px) {
+  li#home.name, .real h4, .p { 
+    padding-left: 10px; 
+  }
+  div.googlemap, div.block, div.form {
+    width: 95%;
+    margin-left: 10px;
+  }
+}
 
 * h1, h2, h3, h4, h5, h6, p, label, input, input.button, th, tr {
   font-family: 'Source Serif Pro', serif;
@@ -39,14 +53,6 @@ h4.show {
   padding-left: 12px;
   height: 36px;
   background-color: rgba(250,250,250,0.5);;
-}
-
-// change .container with media queries
-@media screen and (min-width:900px) {
-  .container {
-    width: 1000px;
-    margin: 0 auto;
-  }
 }
 
 body {
