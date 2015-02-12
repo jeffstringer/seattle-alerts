@@ -6,7 +6,12 @@
     width: 1000px;
     margin: 0 auto;
   }
+  div.googlemap div#map{
+    height: 700px;
+    width: 100%;
+  }
 }
+
 
 @media screen and (max-width:1000px) {
   li#home.name, .real h4, .p { 
@@ -22,11 +27,18 @@
     width: 334px;
     margin-left: 10px; 
   }
+  div.googlemap div#map{
+    height: 700px;
+    width: 100%;
+  }
 }
 
 @media screen and (max-width:450px) {
   div.form {
     width: 100%;
+  }
+  div.googlemap div#map {
+    height: 400px;
   }
 }
 
@@ -73,16 +85,6 @@ body {
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
-}
-
-.googlemap #map {
-  width: 100%;
-}
-
-@media screen and (max-width:1000px) {
-  .googlemap #map {
-  width: 600px;
- }
 }
 
 div.alert.alert-notice {
@@ -141,16 +143,6 @@ div.googlemap {
 .top-bar-section .has-dropdown {
   font-size: rem-calc(17);
   font-family: 'Source Serif Pro', serif;
-}
-
-.mainpage {
-  .googlemap {
-    @extend .small-8;
-    @extend .columns;
-    padding: 0 0 50px 0;
-    border: solid rgba(250,250,250,0.9);
-    border-width: 10px;
-  }
 }
 
 .slogan .real {
