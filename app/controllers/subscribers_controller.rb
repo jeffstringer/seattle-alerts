@@ -26,6 +26,7 @@ class SubscribersController < ApplicationController
    def update
     @subscriber = Subscriber.find(params[:id])
     if @subscriber.update(subscriber_params)
+      binding.pry
       flash[:notice] = "Account updated."
       redirect_to root_path
     else
@@ -43,7 +44,7 @@ class SubscribersController < ApplicationController
 
   private
     def subscriber_params
-      params.require(:subscriber).permit(:email, :street, :radius, :password,
+      params.require(:subscriber).permit(:email, :street, :radius, :notify, :password,
                                    :password_confirmation)
     end
 end
