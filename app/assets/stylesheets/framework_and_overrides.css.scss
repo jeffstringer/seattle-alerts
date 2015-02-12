@@ -6,9 +6,6 @@
     width: 1000px;
     margin: 0 auto;
   }
-  div.googlemap div#map{
-    height: 510px;
-  }
 }
 
 @media screen and (max-width:1000px) {
@@ -25,22 +22,29 @@
     width: 334px;
     margin-left: 10px; 
   }
-  div.googlemap div#map{
-    height: 510px;
-  }
 }
 
 @media screen and (max-width:450px) {
   div.form {
     width: 100%;
   }
-  div.googlemap div#map{
-    height: 420px;
-  }
 }
 
 div.googlemap div#map {
   width: 100%;
+}
+
+div.googlemap {
+  position:relative;
+  padding-bottom: 95%;
+  margin-bottom: 1px;;
+  height: 100%;
+  overflow:hidden;
+}
+
+div#map {
+  position:absolute;
+  height: 100%;
 }
 
 #map img { max-width: none; }
