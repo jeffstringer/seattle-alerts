@@ -3,5 +3,3 @@ task :start_all => :environment do
   PoliceAlert.start_all
 end
 
-
-

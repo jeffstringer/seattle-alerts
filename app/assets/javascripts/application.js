@@ -23,7 +23,17 @@ var ready = function() {
     $(document).foundation();
   });
   $('li#home.name').click(function() {
-    window.location = "http://seattle-alerts.herokuapp.com/";
+    window.location = "http://localhost:3000/";
+  });
+  $('a#about').click(function() {
+    $(function() {
+      $(document).foundation();
+    });  
+  });
+  $('a#informed').click(function() {
+    $(function() {
+      $(document).foundation();
+    }); 
   });
 };
 
