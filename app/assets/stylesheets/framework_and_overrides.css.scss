@@ -12,7 +12,20 @@
   li#home.name, .real h4, .p { 
     padding-left: 10px; 
   }
-  div.googlemap, div.block, div.form {
+  div.googlemap, div.block {
+    width: 100%;
+  }
+}
+
+@media only screen and (min-width:451px) and (max-width:999px) {
+  div.form {
+    width: 334px;
+    margin-left: 10px; 
+  }
+}
+
+@media screen and (max-width:450px) {
+  div.form {
     width: 100%;
   }
 }
