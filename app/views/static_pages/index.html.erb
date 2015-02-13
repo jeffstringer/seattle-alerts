@@ -8,10 +8,16 @@
   <body> 
     <div class="googlemap">
       <div id="map"></div>
-    </div>   
+    </div>
+
     <script type="text/javascript">
+      var mapOptions = {
+        mapTypeControl: false,
+        scaleControl: true,
+        streetViewControl: false
+      };
       handler = Gmaps.build('Google', {markers: {clusterer: {gridSize: 30, maxZoom: 20}}});
-      handler.buildMap({internal: {id: 'map'}}, 
+      handler.buildMap({provider: mapOptions, internal: {id: 'map'}}, 
         function() {
           current_subscriber = (<%= raw @current_subscriber.to_json %>);
           markers = handler.addMarkers(<%= raw @police_hash.to_json %>);
