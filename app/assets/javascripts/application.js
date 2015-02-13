@@ -24,6 +24,9 @@ var ready = function() {
   });
   $('li#home.name').click(function() {
     window.location = "http://seattle-alerts.herokuapp.com/";
+    $(function() {
+      $(document).foundation();
+    });
   });
   $('a#about').click(function() {
     $(function() {
