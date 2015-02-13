@@ -22,6 +22,12 @@ var ready = function() {
   $(function() {
     $(document).foundation();
   });
+  if ($('div.alert.alert-notice').length ) {
+    $('h4').remove();
+  }
+  if ($('div.alert.alert-error').length ) {
+    $('h4').remove();
+  }
   $('li#home.name').click(function() {
     window.location = "http://seattle-alerts.herokuapp.com/";
     $(function() {
@@ -39,7 +45,6 @@ var ready = function() {
     }); 
   });
   $('input.button.submit').click(function() {
-    $('h4').remove();
     $(function() {
       $(document).foundation();
     }); 
