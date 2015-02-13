@@ -175,6 +175,10 @@ div.alert-box.alert {
   padding: 10px 0 0 0;
 }
 
+.real {
+  text-align: center;
+}
+
 .form, .about, .block {
   background-color: rgba(250,250,250,0.7);
   border: solid rgba(250,250,250,0.9);
@@ -188,6 +192,16 @@ div.alert-box.alert {
 input.button.submit {
   background-color: #CC3428;
   border-radius: 5px;
+}
+
+#contacts {
+  text-align: center;
+}
+
+img.contact {
+  padding-right: 15%;
+  padding-left: 15%;
+  padding-bottom: 10px;
 }
 
 // THESE ARE EXAMPLES YOU CAN MODIFY

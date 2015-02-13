@@ -2,7 +2,18 @@
 <div class="body">
   <body>
     <div class="block">
-      <p>Seattle Alerts consumes an API available at <a href="https://data.seattle.gov/Public-Safety/Seattle-Police-Department-911-Incident-Response/3k2p-39jp">data.seattle.gov</a> which is produced by <a href="http://www.socrata.com/">Socrata</a>.  The City of Seattle reports that the dataset is refreshed on a 4 hour interval, but is sometimes updated more frequently.  The 911 Fire data set is updated every five minutes.</p>
+      <p>Thank you for visiting Seattle Alerts!</p>
+
+      <p>Prior to subscribing or logging in, the map displays all events which occurred within the past 24 hours. Upon subscribing, a user will by default receive an alert email when activity occurs within the specified radius of the user's address. When a user signs in to their account, the user may view their respective alerts on the map that occured within the past 24 hours. Users may also view a list of the most recent 30 police alerts and 15 fire alerts on the alerts page. Users can also unsubscribe from alert emails by updating their account.</p>
+
+      <p>I built the site with Ruby on Rails using Test Driven Development and Zurb Foundation for the front-end framework. When users sign up, the geocoder gem converts the Seattle address to latitude and longitude. The app accesses public data from <a href="https://data.seattle.gov/Public-Safety/Seattle-Police-Department-911-Incident-Response/3k2p-39jp">data.seattle.gov</a>. The app parses the JSON data, saves the data, then uses the gmaps4rails gem to convert event latitude, longitude and pertitent data to create markers for the map. The app compares the user's latitude and longitude to event data and if an event occurs within the provided radius, it creates a notification.</p>
+
+      <p>The City of Seattle reports that the dataset is refreshed on a 4 hour interval, but is sometimes updated more or less frequently. The City reports the 911 Fire data set is updated every five minutes. The app accesses the API periodically rather than continuously so there is a lapse between the occurence and a user's notification.</p>
+
+      <div id="contacts" class="row">
+        <a href="https://github.com/JeffStringer/seattle-alerts"><img class="contact" src="assets/github-iso-black.png"></a>
+        <a href="https://www.linkedin.com/in/jeffstringer1/"><img class="contact" src="assets/linkedin-iso-black.png"></a>
+      </div>  
     </div>  
   </body>
 </div>  
