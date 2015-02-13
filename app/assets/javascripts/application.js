@@ -39,6 +39,7 @@ var ready = function() {
     }); 
   });
   $('input.button.submit').click(function() {
+    $('h4').remove();
     $(function() {
       $(document).foundation();
     }); 

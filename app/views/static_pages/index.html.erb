@@ -10,7 +10,7 @@
       <div id="map"></div>
     </div>   
     <script type="text/javascript">
-      handler = Gmaps.build('Google');
+      handler = Gmaps.build('Google', {markers: {clusterer: {gridSize: 40}}});
       handler.buildMap({internal: {id: 'map'}}, 
         function() {
           current_subscriber = (<%= raw @current_subscriber.to_json %>);
@@ -28,7 +28,7 @@
             handler.getMap().setZoom(15);
           } else {
             handler.map.centerOn({ lat: 47.6101798, lng: -122.3423919});
-            handler.getMap().setZoom(12);
+            handler.getMap().setZoom(11);
           }
         });
     </script>
