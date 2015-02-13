@@ -1,10 +1,18 @@
 @import "foundation";
 @import url(http://fonts.googleapis.com/css?family=Source+Serif+Pro);
 
-@media screen and (min-width:900px) {
+@media screen and (min-width:999px) {
   .container {
     width: 1000px;
     margin: 0 auto;
+  }
+  div.googlemap {
+    position:fixed !important;
+    position:relative;
+    margin-top: 5px;
+    top: 100px;
+    bottom: 0;
+    width: 1000px;
   }
 }
 
@@ -22,24 +30,34 @@
     width: 334px;
     margin-left: 10px; 
   }
+  div.googlemap {
+    position:fixed !important;
+    position:relative;
+    margin-top: 5px;
+    top: 100px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
 }
 
 @media screen and (max-width:450px) {
   div.form {
     width: 100%;
   }
+  div.googlemap {
+    position:fixed !important;
+    position:relative;
+    margin-top: 5px;
+    top: 100px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
 }
 
 div.googlemap div#map {
   width: 100%;
-}
-
-div.googlemap {
-  position:relative;
-  padding-bottom: 95%;
-  margin-bottom: 1px;;
-  height: 100%;
-  overflow:hidden;
 }
 
 div#map {
