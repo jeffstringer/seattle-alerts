@@ -42,6 +42,9 @@
     left: 0;
     right: 0;
   }
+  h4 {
+    margin-top: -5px;
+  }
 }
 
 @media screen and (max-width:450px) {
@@ -81,7 +84,7 @@ div.googlemap {
 }
 
 .infowindow {
-  color: #3F402E;
+  color: #2a2a2a;
 }
 
 * h1, h2, h3, h4, h5, h6, p, label, input, input.button, th, tr, .infowindow {
