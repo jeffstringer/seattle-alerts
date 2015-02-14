@@ -1,7 +1,9 @@
 @import "foundation";
 
-* h1, h2, h3, h4, h5, h6, p, label, input, input.button, tr, .infowindow, a#title, a#about, a#signin, a#informed, a#myalerts, a#account, a#signout, a#delete, div.alert.alert-notice, div.alert.alert-error, div.alert-box.alert {
-  font-family: Helvetica, Verdana, Arial, Sans-Serif;
+$alert-font: Helvetica, Verdana, Arial, Sans-Serif;
+
+h1, h2, h3, h4, h5, h6, p, label, input, input.button, tr, .infowindow, a#title, a#about, a#signin, a#informed, a#myalerts, a#account, a#signout, a#delete, div.alert.alert-notice, div.alert.alert-error, div.alert-box.alert {
+  font-family: $alert-font;
 }
 
 body {
@@ -19,6 +21,12 @@ body {
   }
   a#signin, a#signout {
     padding-right: 0px;
+  }
+  a#title, a#about, a#signin, a#informed, a#myalerts, a#account, a#signout, input.button.tiny {
+    font-weight: 300;
+  }
+  label {
+    font-weight: 500px;
   }
   div.googlemap {
     position:fixed !important;
@@ -43,6 +51,12 @@ body {
 }
 
 @media only screen and (min-width:451px) and (max-width:999px) {
+  a#title, a#about, a#signin, a#informed, a#myalerts, a#account, a#signout {
+    font-weight: 300;
+  }
+  label {
+    font-weight: 500;
+  }
   div.form {
     width: 334px;
     margin-left: 10px; 
@@ -62,6 +76,12 @@ body {
 }
 
 @media screen and (max-width:450px) {
+  a#title, a#about, a#signin, a#informed, a#myalerts, a#account, a#signout, label {
+    font-weight: 400;
+  }
+  label, input.button.tiny {
+    font-weight: 500;
+  }
   div.form {
     width: 100%;
   }
@@ -118,7 +138,7 @@ table {
 
 th {
   font-family: bold;
-  font-family: Helvetica, Verdana, Arial, Sans-Serif !important;
+  font-family: $alert-font !important;
 }
 
 h4.show {
@@ -166,7 +186,6 @@ div.alert-box.alert {
 a#title, a#about, a#signin, a#informed, a#myalerts, a#account, a#signout {
   font-size: rem-calc(17);
   color: #FAFAFA;
-  font-weight: 300;
 }
 
 a#title:hover {
@@ -221,7 +240,6 @@ input.button.tiny {
   border-radius: 5px;
   margin-bottom: 10px;
   color: #FAFAFA;
-  font-weight: 300;
 }
 
 input#subscriber_radius_05, input#subscriber_notify_false {
