@@ -7,9 +7,9 @@
     <div class="top-bar-section">
       <ul class="right">
         <% if signed_in? %>
-          <li><%= link_to "My Alerts", subscriber_path(current_subscriber) %></li>
-          <li><%= link_to "Account", edit_subscriber_path(current_subscriber) %></li>
-          <li><%= link_to "Sign Out", signout_path, method: "delete" %></li>
+          <li><%= link_to "My Alerts", subscriber_path(current_subscriber), id: "myalerts" %></li>
+          <li><%= link_to "Account", edit_subscriber_path(current_subscriber), id: "account" %></li>
+          <li><%= link_to "Sign Out", signout_path, method: "delete", id: "signout" %></li>
         <% else %>
           <li><%= link_to 'About', about_path, id: "about" %></li>
           <li><%= link_to 'Stay Informed', stayinformed_path, id: "informed" %></li>

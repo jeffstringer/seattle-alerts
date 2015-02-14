@@ -1,13 +1,23 @@
 @import "foundation";
-@import url(http://fonts.googleapis.com/css?family=Source+Serif+Pro);
-@import url(http://fonts.googleapis.com/css?family=Lato:400,300italic,700italic);
+
+* h1, h2, h3, h4, h5, h6, p, label, input, input.button, tr, .infowindow, a#title, a#about, a#signin, a#informed, a#myalerts, a#account, a#signout, a#delete, div.alert.alert-notice, div.alert.alert-error, div.alert-box.alert {
+  font-family: Helvetica, Verdana, Arial, Sans-Serif;
+}
+
+body {
+  background: url('/assets/COA_Seattle.jpg') no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
 
 @media screen and (min-width:999px) {
   .container {
     width: 1000px;
     margin: 0 auto;
   }
-  a#signin {
+  a#signin, a#signout {
     padding-right: 0px;
   }
   div.googlemap {
@@ -17,6 +27,9 @@
     top: 100px;
     bottom: 0;
     width: 1000px;
+  }
+  div.form {
+    width: 334px;
   }
 }
 
@@ -79,7 +92,7 @@ div#map {
 #map label { width: auto; display:inline; }
 .map_container img{ max-width: none; }
 
-div.googlemap {
+div.googlemap, .form, .about, .block  {
   border: solid rgba(250,250,250,0.9);
   border-width: 10px;
 }
@@ -88,30 +101,15 @@ div.googlemap {
   color: #2a2a2a;
 }
 
-* h1, h2, h3, h4, h5, h6, p, label, input, input.button, th, tr, .infowindow {
-  font-family: 'Lato', sans-serif;
-}
-
-a {
-  font-size: rem-calc(17) !important;
-  font-family: 'Lato', sans-serif !important;
-}
-
-a#title {
-  font-family: 'Lato', sans-serif;
-}
-
 a#delete {
+  font-size: rem-calc(14);
   color: grey;
+  padding-left: 7px;
+  padding-bottom: 10px;
 }
 
 a#delete:hover {
   color: #CC3428;
-}
-
-li#home.name a:hover {
-  color: #CC3428;
-  font-weight: bold;
 }
 
 table {
@@ -120,6 +118,7 @@ table {
 
 th {
   font-family: bold;
+  font-family: Helvetica, Verdana, Arial, Sans-Serif !important;
 }
 
 h4.show {
@@ -130,14 +129,6 @@ h4.show {
   background-color: rgba(250,250,250,0.5);;
 }
 
-body {
-  background: url('/assets/COA_Seattle.jpg') no-repeat center center fixed;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-}
-
 div.alert.alert-notice {
   background-color: green;
   color: rgba(250,250,250,1.0);
@@ -145,7 +136,6 @@ div.alert.alert-notice {
   margin-top: 5px;
   padding-top: 3px;
   padding-bottom: 3px;
-  font-family: 'Lato', sans-serif;  
   border-radius: 5px;
 }
 
@@ -156,7 +146,6 @@ div.alert.alert-error {
   margin-top: 5px;
   padding-top: 3px;
   padding-bottom: 3px;
-  font-family: 'Lato', sans-serif;  
   border-radius: 5px;
 }
 
@@ -168,46 +157,75 @@ div.alert-box.alert {
 .top-bar {
   width: 100%;
   margin: 0 auto;
-  font-family: 'Lato', sans-serif;
 }
 
 .top-bar .name {
   line-height: 45px;
-  font-family: 'Lato', sans-serif;
 }
 
-.top-bar .name a {
+a#title, a#about, a#signin, a#informed, a#myalerts, a#account, a#signout {
   font-size: rem-calc(17);
-  color: white;
-  font-family: 'Lato', sans-serif;
+  color: #FAFAFA;
+  font-weight: 300;
 }
 
-.top-bar-section .has-dropdown {
-  font-size: rem-calc(17);
-  font-family: 'Lato', sans-serif;
+a#title:hover {
+  color: #CC3428;
+  font-weight: 400;
 }
 
-.slogan .real {
-  padding: 10px 0 0 0;
+.slogan {
+  padding-top: 10px;
 }
 
 .real {
   text-align: center;
 }
 
-.form, .about, .block {
+.about, .block {
   background-color: rgba(250,250,250,0.7);
-  border: solid rgba(250,250,250,0.9);
-  border-width: 10px;
+  padding-left: 5px;
+  padding-top: 10px;
 }
 
-.form, label {
-  font-weight: bold;
+.form {
+  background-color: rgba(250,250,250,0.8);
+  padding-left: 5px;
+  text-transform: lowercase;
 }
 
-input.button.submit {
+.radio {
+  border: solid #d3d3d3;
+  border-width: 1px;
+  background-color: white;
+  padding-top: 5px;
+  margin-bottom: 5px;
+  height: 37px;
+}
+
+input#subscriber_password, input#session_email {
+  margin-bottom: 5px;
+}
+
+label.password, label.email {
+  padding-top: 10px;
+}
+
+label {
+  padding-left: 5px;
+}
+
+input.button.tiny {
+  font-size: rem-calc(14);
   background-color: #CC3428;
   border-radius: 5px;
+  margin-bottom: 10px;
+  color: #FAFAFA;
+  font-weight: 300;
+}
+
+input#subscriber_radius_05, input#subscriber_notify_false {
+  margin-left: 10px;
 }
 
 #contacts {
@@ -218,40 +236,4 @@ img.contact {
   padding-right: 15%;
   padding-left: 15%;
   padding-bottom: 10px;
-}
-
-// THESE ARE EXAMPLES YOU CAN MODIFY
-// create mixins using Foundation classes
-@mixin twelve-columns {
-  @extend .small-12;
-  @extend .columns;
-  }
-@mixin six-columns-centered {
-  @extend .small-6;
-  @extend .columns;
-  @extend .text-center;
-  }
-// create your own classes
-// to make views framework-neutral
-.column {
-  @include six-columns-centered;
-  }
-.form {
-  @include grid-column(4);
-  padding: 0;
-  }
-.form-centered {
-  @include six-columns-centered;
-  }
-.submit {
-  @extend .button;
-  @extend .tiny;
-  @extend .round;
-  font-size: rem-calc(13);
-  }
-// apply styles to HTML elements
-// to make views framework-neutral
-main {
-  @include twelve-columns;
-  background-color: #eee;
 }

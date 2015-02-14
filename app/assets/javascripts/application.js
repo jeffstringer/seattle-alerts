@@ -19,20 +19,14 @@
 //= require_tree .
 
 var ready = function() {
-  $(function() {
-    $(document).foundation();
-  });
   if ($('div.alert.alert-notice').length ) {
     $('h4').remove();
   }
   if ($('div.alert.alert-error').length ) {
     $('h4').remove();
   }
-  $('li#home.name').click(function() {
+  $('a#title').click(function() {
     window.location = "http://seattle-alerts.herokuapp.com/";
-    $(function() {
-      $(document).foundation();
-    });
   });
   $('a#about').click(function() {
     $(function() {
