@@ -19,6 +19,9 @@ body {
     width: 1000px;
     margin: 0 auto;
   }
+  a#title {
+    font-size: rem-calc(17);
+  }
   a#signin, a#signout {
     padding-right: 0px;
   }
@@ -54,6 +57,9 @@ body {
   a#title, a#about, a#signin, a#informed, a#myalerts, a#account, a#signout {
     font-weight: 300;
   }
+  a#title {
+    font-size: rem-calc(17);
+  }
   label {
     font-weight: 500;
   }
@@ -78,6 +84,9 @@ body {
 @media screen and (max-width:450px) {
   a#title, a#about, a#signin, a#informed, a#myalerts, a#account, a#signout, label {
     font-weight: 400;
+  }
+  a#title {
+    font-size: rem-calc(20);
   }
   label, input.button.tiny {
     font-weight: 500;
@@ -119,13 +128,18 @@ div.googlemap, .form, .about, .block  {
 
 .infowindow {
   color: #2a2a2a;
+  font-weight: 500;
+  width: 190px;
+}
+
+.alert-info {
+  font-weight: 600;
 }
 
 a#delete {
   font-size: rem-calc(14);
   color: grey;
   padding-left: 7px;
-  padding-bottom: 10px;
 }
 
 a#delete:hover {
@@ -183,8 +197,12 @@ div.alert-box.alert {
   line-height: 45px;
 }
 
-a#title, a#about, a#signin, a#informed, a#myalerts, a#account, a#signout {
+a#about, a#signin, a#informed, a#myalerts, a#account, a#signout {
   font-size: rem-calc(17);
+  color: #FAFAFA;
+}
+
+a#title {
   color: #FAFAFA;
 }
 
@@ -210,6 +228,7 @@ a#title:hover {
 .form {
   background-color: rgba(250,250,250,0.8);
   padding-left: 5px;
+  padding-bottom: 10px;
   text-transform: lowercase;
 }
 
@@ -240,6 +259,10 @@ input.button.tiny {
   border-radius: 5px;
   margin-bottom: 10px;
   color: #FAFAFA;
+}
+
+li .toggle-topbar {
+  background-color: green;
 }
 
 input#subscriber_radius_05, input#subscriber_notify_false {
