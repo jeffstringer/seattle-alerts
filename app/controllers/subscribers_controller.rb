@@ -7,9 +7,14 @@ class SubscribersController < ApplicationController
   def create
     @subscriber = Subscriber.new(subscriber_params)
     if @subscriber.save
-      sign_in @subscriber
-      flash[:notice] = 'Thank you for subscribing to Seattle Alerts!'
-      redirect_to root_path
+      binding.pry
+      if @subscriber.latitude == nil
+        flash.now[:error] = 'The API failed to geocode your address. Please try again later.'
+      else  
+        sign_in @subscriber
+        flash[:notice] = 'Thank you for subscribing to Seattle Alerts!'
+        redirect_to root_path
+      end
     else
       render 'new'
     end
@@ -24,9 +29,10 @@ class SubscribersController < ApplicationController
   end
 
    def update
+    street = params['subscriber']['street']
     @subscriber = Subscriber.find(params[:id])
+    @subscriber.destroy_notifications unless @subscriber.street == street
     if @subscriber.update(subscriber_params)
-      binding.pry
       flash[:notice] = "Account updated."
       redirect_to root_path
     else
