@@ -7,9 +7,9 @@ class SubscribersController < ApplicationController
   def create
     @subscriber = Subscriber.new(subscriber_params)
     if @subscriber.save
-      binding.pry
       if @subscriber.latitude == nil
         flash.now[:error] = 'The API failed to geocode your address. Please try again later.'
+        @subscriber.destroy
       else  
         sign_in @subscriber
         flash[:notice] = 'Thank you for subscribing to Seattle Alerts!'
