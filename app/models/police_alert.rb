@@ -52,16 +52,14 @@ class PoliceAlert < ActiveRecord::Base
       end
     end
   end
-end
 
-PoliceAlert.parse_police_data(PoliceAlert.fetch_police_data)
-PoliceNotification.create_police_notifications
-FireAlert.parse_fire_data(FireAlert.fetch_fire_data)
-FireNotification.create_fire_notifications
-subscribers = Notification.notification_subscribers(POLICE_NOTIFICATIONS, FIRE_NOTIFICATIONS)
-unless subscribers.nil?
-  subscribers.each do |subscriber|
-    SubscriberMailer.notification_email(POLICE_NOTIFICATIONS, FIRE_NOTIFICATIONS, subscriber).deliver if subscriber.notify == true
+  def self.destroy_all
+    PoliceAlert.all.each { |p| p.destroy }
+    FireAlert.all.each { |f| f.destroy }
+    PoliceNotification.all.each { |p| p.destroy }
+    FireNotification.all.each {|f| f.destroy }
   end
 end
+
+PoliceAlert.start_all
 
