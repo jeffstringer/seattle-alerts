@@ -40,15 +40,43 @@ class PoliceAlert < ActiveRecord::Base
     subscriber.police_alerts.where(time_show: (Time.now - 1.day)..Time.now)
   end
 
+  def self.create_police_notifications
+    @@police_notification = []
+    PoliceAlert.all.each do |p_alert|
+      Subscriber.all.each do |subscriber|
+        police_notification = PoliceNotification.new(subscriber_id: subscriber.id, police_alert_id: p_alert.id)
+        if subscriber.distance_to([p_alert.latitude, p_alert.longitude]) <= subscriber.radius && 
+          PoliceNotification.exists?(police_alert_id: police_notification.police_alert_id) == false
+          police_notification.save
+          @@police_notifications << police_notification
+        end
+      end
+    end
+  end
+
+  def self.create_fire_notifications
+    @@fire_notifications = []
+    FireAlert.all.each do |f_alert|
+      Subscriber.all.each do |subscriber|
+        fire_notification = FireNotification.new(subscriber_id: subscriber.id, fire_alert_id: f_alert.id)
+        if subscriber.distance_to([f_alert.latitude, f_alert.longitude]) <= subscriber.radius && 
+          FireNotification.exists?(fire_alert_id: fire_notification.fire_alert_id) == false
+          fire_notification.save
+          @@fire_notifications << fire_notification
+        end 
+      end
+    end
+  end
+
   def self.start_all
     PoliceAlert.parse_police_data(PoliceAlert.fetch_police_data)
-    PoliceNotification.create_police_notifications
+    PoliceAlert.create_police_notifications
     FireAlert.parse_fire_data(FireAlert.fetch_fire_data)
-    FireNotification.create_fire_notifications
-    subscribers = Notification.notification_subscribers(POLICE_NOTIFICATIONS, FIRE_NOTIFICATIONS)
+    PoliceAlert.create_fire_notifications
+    subscribers = Notification.notification_subscribers(@@police_notifications, @@fire_notifications)
     unless subscribers.nil?
       subscribers.each do |subscriber|
-        SubscriberMailer.notification_email(POLICE_NOTIFICATIONS, FIRE_NOTIFICATIONS, subscriber).deliver if subscriber.notify == true
+        SubscriberMailer.notification_email(@@police_notifications, @@fire_notifications, subscriber).deliver if subscriber.notify == true
       end
     end
   end
