@@ -19,29 +19,23 @@
 //= require_tree .
 
 var ready = function() {
+  setTimeout(function(){ 
+    $(function() { $(document).foundation(); }); 
+  }, 500);
   if ($('div.alert.alert-notice').length ) {
     $('h4').remove();
   }
   if ($('div.alert.alert-error').length ) {
     $('h4').remove();
   }
+  $('a#toggle').click(function() {
+    $("div.googlemap").css("top", "190px");
+  });
   $('a#title').click(function() {
     window.location = "http://seattle-alerts.herokuapp.com/";
   });
-  $('a#about').click(function() {
-    $(function() {
-      $(document).foundation();
-    });  
-  });
-  $('a#informed').click(function() {
-    $(function() {
-      $(document).foundation();
-    }); 
-  });
   $('input.button.submit').click(function() {
-    $(function() {
-      $(document).foundation();
-    }); 
+    $(function() { $(document).foundation(); }); 
   });
 };
 

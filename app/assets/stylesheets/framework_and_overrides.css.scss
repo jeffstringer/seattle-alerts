@@ -42,6 +42,9 @@ body {
   div.form {
     width: 334px;
   }
+  div.slogan {
+    padding-top: 10px;
+  }
 }
 
 @media screen and (max-width:1000px) {
@@ -79,6 +82,9 @@ body {
   h4 {
     margin-top: -5px;
   }
+  div.slogan {
+    padding-top: 10px;
+  }
 }
 
 @media screen and (max-width:450px) {
@@ -87,6 +93,10 @@ body {
   }
   a#title {
     font-size: rem-calc(20);
+  }
+  li#home.name {
+    height: 40px;
+    padding-bottom: 10px;
   }
   label, input.button.tiny {
     font-weight: 500;
@@ -97,14 +107,19 @@ body {
   div.googlemap {
     position:fixed !important;
     position:relative;
-    margin-top: 5px;
-    top: 40px;
+    top: 45px;
     bottom: 0;
     left: 0;
     right: 0;
   }
+  .slogan {
+    height: 0;
+  }
   .real {
     visibility: hidden;
+  }
+  p {
+    font-size: rem-calc(15);
   }
 }
 
@@ -209,10 +224,6 @@ a#title {
 a#title:hover {
   color: #CC3428;
   font-weight: 400;
-}
-
-.slogan {
-  padding-top: 10px;
 }
 
 .real {
