@@ -29,7 +29,12 @@ var ready = function() {
     $('h4').remove();
   }
   $('a#toggle').click(function() {
-    $("div.googlemap").css("top", "190px");
+    var height = $("div.googlemap").css("top");
+    if ( height === "190px") {
+      $("div.googlemap").css("top", "45px");
+    } else {
+      $("div.googlemap").css("top", "190px");
+    }
   });
   $('a#title').click(function() {
     window.location = "http://seattle-alerts.herokuapp.com/";
