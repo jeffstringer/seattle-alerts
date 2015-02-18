@@ -21,8 +21,10 @@
       <% end %>
       </tbody>  
     </table>
+  <% else %>
+    <p>You currently have no police alerts.</p>
   <% end %>
-    <% if @subscriber.fire_alerts.length > 0 %>
+  <% if @subscriber.fire_alerts.length > 0 %>
     <h4 class="show">My Fire Alerts</h4>
     <table>
       <thead>
@@ -42,5 +44,7 @@
       <% end %>
       </tbody>  
     </table>
+  <% else %>
+    <p>You currently have no fire alerts.</p>
   <% end %>
 </div>
