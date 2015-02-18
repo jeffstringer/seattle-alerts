@@ -56,7 +56,7 @@ body {
   }
 }
 
-@media only screen and (min-width:451px) and (max-width:999px) {
+@media only screen and (min-width:641px) and (max-width:999px) {
   a#title, a#about, a#signin, a#informed, a#myalerts, a#account, a#signout {
     font-weight: 300;
   }
@@ -87,7 +87,7 @@ body {
   }
 }
 
-@media screen and (max-width:450px) {
+@media screen and (max-width:640px) {
   a#title, a#about, a#signin, a#informed, a#myalerts, a#account, a#signout, label {
     font-weight: 400;
   }
