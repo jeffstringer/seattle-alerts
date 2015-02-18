@@ -57,7 +57,7 @@ class PoliceAlert < ActiveRecord::Base
     PoliceAlert.all.each { |p| p.destroy }
     FireAlert.all.each { |f| f.destroy }
     PoliceNotification.all.each { |p| p.destroy }
-    FireNotification.all.each {|f| f.destroy }
+    FireNotification.all.each { |f| f.destroy }
   end
 end
 

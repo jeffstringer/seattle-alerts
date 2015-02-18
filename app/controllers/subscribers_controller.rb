@@ -7,8 +7,8 @@ class SubscribersController < ApplicationController
   def create
     @subscriber = Subscriber.new(subscriber_params)
     if @subscriber.save
-      if @subscriber.latitude == nil
-        flash.now[:error] = 'The API failed to geocode your address. Please try again later.'
+      if @subscriber.latitude == nil || @subscriber.longitude == nil
+        flash.now[:error] = 'The Bing API failed to geocode your address. Please try again later.'
         @subscriber.destroy
       else  
         sign_in @subscriber
