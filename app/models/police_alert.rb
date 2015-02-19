@@ -41,14 +41,17 @@ class PoliceAlert < ActiveRecord::Base
   end
 
   def self.start_all
+    t = Time.now
     PoliceAlert.parse_police_data(PoliceAlert.fetch_police_data)
     PoliceNotification.create_police_notifications
     FireAlert.parse_fire_data(FireAlert.fetch_fire_data)
     FireNotification.create_fire_notifications
-    subscribers = Notification.notification_subscribers(POLICE_NOTIFICATIONS, FIRE_NOTIFICATIONS)
+    police_notifications = PoliceNotification.where("created_at >= ?", t)
+    fire_notifications = FireNotification.where("created_at >= ?", t)
+    subscribers = Notification.notification_subscribers(police_notifications, fire_notifications)
     unless subscribers.nil?
       subscribers.each do |subscriber|
-        SubscriberMailer.notification_email(POLICE_NOTIFICATIONS, FIRE_NOTIFICATIONS, subscriber).deliver if subscriber.notify == true
+        SubscriberMailer.notification_email(police_notifications, fire_notifications, subscriber).deliver if subscriber.notify == true
       end
     end
   end
