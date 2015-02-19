@@ -36,6 +36,5 @@ class FireAlert < ActiveRecord::Base
 
   def self.subscriber_alerts(subscriber)
     subscriber.fire_alerts.where(time_show: (Time.now - 1.day)..Time.now)
-  end 
+  end
 end
-

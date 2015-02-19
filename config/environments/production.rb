@@ -1,7 +1,5 @@
 SeattleAlerts::Application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
-  POLICE_NOTIFICATIONS = []
-  FIRE_NOTIFICATIONS = []
 
   # Code is not reloaded between requests.
   config.cache_classes = true
