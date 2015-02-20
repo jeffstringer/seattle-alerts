@@ -1,4 +1,5 @@
 class SubscribersController < ApplicationController
+  before_filter :authorize, except: [:new, :create]
 
   def new
     @subscriber = Subscriber.new
