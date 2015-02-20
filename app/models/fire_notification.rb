@@ -9,7 +9,6 @@ class FireNotification < ActiveRecord::Base
         if subscriber.distance_to([f_alert.latitude, f_alert.longitude]) <= subscriber.radius && 
           FireNotification.exists?(fire_alert_id: fire_notification.fire_alert_id) == false
           fire_notification.save
-          FIRE_NOTIFICATIONS << fire_notification
         end 
       end
     end

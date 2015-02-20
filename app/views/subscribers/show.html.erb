@@ -1,6 +1,7 @@
 <% provide(:title, @subscriber.email) %>
 
 <div class="block">
+  <p class="location">Activity within <%= @subscriber.radius =%> mile of <%= @subscriber.street =%>:</p>
   <% if @subscriber.police_alerts.length > 0 %>
     <h4 class="show">My Police Alerts</h4>
     <table>

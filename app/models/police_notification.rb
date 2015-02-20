@@ -9,7 +9,6 @@ class PoliceNotification < ActiveRecord::Base
         if subscriber.distance_to([p_alert.latitude, p_alert.longitude]) <= subscriber.radius && 
           PoliceNotification.exists?(police_alert_id: police_notification.police_alert_id) == false
           police_notification.save
-          POLICE_NOTIFICATIONS << police_notification
         end
       end
     end

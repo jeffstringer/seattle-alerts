@@ -1,6 +1,7 @@
 @import "foundation";
 
 $alert-font: Helvetica, Verdana, Arial, Sans-Serif;
+$light: #FAFAFA;
 
 h1, h2, h3, h4, h5, h6, p, label, input, input.button, tr, .infowindow, a#title, a#about, a#signin, a#informed, a#myalerts, a#account, a#signout, a#delete, div.alert.alert-notice, div.alert.alert-error, div.alert-box.alert {
   font-family: $alert-font;
@@ -170,12 +171,23 @@ th {
   font-family: $alert-font !important;
 }
 
-h4.show {
+.show, .location {
+  padding-left: 12px;
+  margin-right: 3px;
+}
+
+.show {
   margin-top: 0;
   margin-bottom: 0;
-  padding-left: 12px;
-  height: 36px;
   background-color: rgba(250,250,250,0.5);;
+}
+
+.location {
+  color: #696969;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  margin-bottom: 5px;;
+  background-color: rgba(250,250,250,1.0);;
 }
 
 div.alert.alert-notice {
@@ -214,11 +226,11 @@ div.alert-box.alert {
 
 a#about, a#signin, a#informed, a#myalerts, a#account, a#signout {
   font-size: rem-calc(17);
-  color: #FAFAFA;
+  color: $light;
 }
 
 a#title {
-  color: #FAFAFA;
+  color: $light;
 }
 
 a#title:hover {
@@ -269,7 +281,7 @@ input.button.tiny {
   background-color: #CC3428;
   border-radius: 5px;
   margin-bottom: 10px;
-  color: #FAFAFA;
+  color: $light;
 }
 
 input#subscriber_radius_05, input#subscriber_notify_false {
