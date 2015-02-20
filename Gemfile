@@ -23,6 +23,7 @@ gem 'jquery-rails'
 gem 'underscore-rails', '~> 1.7.0'
 gem 'turbolinks'
 gem 'jbuilder', '~> 1.2'
+gem 'newrelic_rpm'
 
 group :development, :test do
   gem 'better_errors'
