@@ -233,6 +233,14 @@
         styles: styleArray
       };
 
+      var scaleInterval = setInterval(function() {
+        var scale = $(".gm-style-cc:not(.gmnoprint):contains(' km')");
+        if (scale.length) {
+          scale.click();
+          clearInterval(scaleInterval);
+        }
+      }, 100);
+
       handler = Gmaps.build('Google', {markers: {clusterer: {gridSize: 30, maxZoom: 20}}});
       handler.buildMap({provider: mapOptions, internal: {id: 'map'}}, 
         function() {
