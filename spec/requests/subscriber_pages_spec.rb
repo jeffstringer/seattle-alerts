@@ -30,7 +30,7 @@ describe "Subscriber pages" do
         fill_in "street",                 with: "1912 Pike Pl"
         fill_in "password",               with: "coffee", :match => :first
         fill_in "confirmation",           with: "coffee", :match => :first
-        find('div.form', :text => 'Choose alert radius:').choose('1/2 mile')
+        choose("subscriber_radius_05")
       end
 
       it "should create a subscriber" do

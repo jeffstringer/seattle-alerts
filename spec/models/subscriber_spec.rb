@@ -8,8 +8,6 @@ describe Subscriber do
     Geocoder::Lookup::Test.add_stub(
     "1912 Pike Pl, Seattle, WA", [
     {
-      'latitude'     => 47.6101798,
-      'longitude'    => -122.3423919,
       'street'      => '1912 Pike Pl'
         }
       ]
@@ -33,8 +31,8 @@ describe Subscriber do
   it { should respond_to(:radius) }
   it { should respond_to(:authenticate) }
 
-  #it { should have_many(:police_alerts) }
-  #it { should have_many(:fire_alerts) }
+  it { should have_many(:police_alerts) }
+  it { should have_many(:fire_alerts) }
 
   describe "when email is not present" do
     before { @subscriber.email = " " }
@@ -82,11 +80,6 @@ describe Subscriber do
     end
   end
 
-  describe "when street is not present" do
-    before { @subscriber.street = " " }
-    it { should_not be_valid }
-  end
-
   describe "when password is not present" do
     before do
       @subscriber = Subscriber.new(email: "chairman@starbucks.com", street: "1912 Pike Pl",
@@ -118,10 +111,5 @@ describe Subscriber do
       let(:subscriber_for_invalid_password) { found_subscriber.authenticate("invalid") }
       it { should_not eq subscriber_for_invalid_password }
     end
-  end
-
-  describe "remember token" do
-    before { @subscriber.save }
-    # its(:remember_token) { should_not be_blank }
   end
 end

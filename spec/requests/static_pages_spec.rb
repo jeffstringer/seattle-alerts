@@ -13,7 +13,6 @@ describe 'Static Pages' do
     before { visit '/' }
     let(:page_title) { '' }
 
-    it { should have_content('Explore the map') }
     it { should have_css('div#map') }
 
     it_should_behave_like "all static pages"

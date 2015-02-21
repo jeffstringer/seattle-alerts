@@ -18,11 +18,9 @@ describe 'Authentication' do
       before { click_button 'sign in' }
 
       it { should have_title('Sign In') }
-      # it { should have_selector('div.alert.alert-error') }
 
       describe "after visiting another page" do
         before { click_link "Seattle Alerts" }
-       # it { should_not have_selector('div.alert.alert-error') }
       end
     end
 
@@ -34,13 +32,9 @@ describe 'Authentication' do
         fill_in 'email',    with: 'chairman@starbucks.com'
         fill_in 'password', with: 'coffee'
         click_button 'sign in'
-      end
-
-      it { should have_link 'Sign Out' }
-
-      describe "followed by signout" do
-        before { click_link "Sign Out" }
-        it { should have_link('Sign In') }
+        it { should have_link 'Sign Out' }
+        click_link 'Sign Out'
+        it { should have_button('sign In') }
       end
     end  
   end

@@ -55,12 +55,12 @@ describe PoliceAlert do
   describe '.parse_police_data(array)' do
 
     before do
-      PoliceAlert.all.each {|p| p.destroy }
+      PoliceAlert.all.each { |p| p.destroy }
       PoliceAlert.parse_police_data(array)
     end
 
     it 'parses array of JSON objects from the SODA API' do
-      expect(PoliceAlert.count).to eq(2)
+      expect(PoliceAlert.all.count).to eq(2)
     end
 
     it 'saves the data in psql' do
