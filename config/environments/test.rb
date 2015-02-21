@@ -36,4 +36,6 @@ SeattleAlerts::Application.configure do
 
   # Speed up tests by lowering bcrypt's cost function.
   ActiveModel::SecurePassword.min_cost = true
+
+  config.action_mailer.default_url_options = { :host => 'http://seattle-alerts.herokuapp.com' }
 end

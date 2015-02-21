@@ -14,32 +14,27 @@ describe FireAlert do
 
   it { should have_many(:subscribers).through(:fire_notifications) }
 
-  array = [{"address"=>"1320 Nw 75th St",
-             "longitude"=> -122.372835,
-             "latitude"=> 47.683247,
-             "incident_number"=>"F140130546",
-             "datetime"=>"Sun Nov 30, 2014 at 12:13 PM",
-             "time_show"=>"2014-11-30 12:13:00 -0800",
-             "fire_type"=>"Auto Fire Alarm"}, {"address"=>"7711 43rd Av Ne",
-             "longitude"=> -122.282094,
-             "latitude"=> 47.684910,
-             "incident_number"=>"F140130550",
-             "datetime"=>"Sun Nov 30, 2014 at 12:27 PM",
-             "time_show"=>"2014-11-30 12:27:00 -0800",
-             "fire_type"=>"Auto Fire Alarm"}]
+  array = [
+            {"address"=>"1000 4th Av",
+            "longitude"=>"-122.332909",
+            "latitude"=>"47.606088",
+            "incident_number"=>"F150019090",
+            "datetime"=>1424468700,
+            "type"=>"Auto Fire Alarm",
+            "report_location"=>{"needs_recoding"=>false, "longitude"=>"-122.332909", "latitude"=>"47.606088"}},
+            {"address"=>"3715 West Stevens Way Ne",
+            "longitude"=>"-122.307565",
+            "latitude"=>"47.652021",
+            "incident_number"=>"F150019128",
+            "datetime"=>1424475660,
+            "type"=>"Auto Fire Alarm",
+            "report_location"=>{"needs_recoding"=>false, "longitude"=>"-122.307565", "latitude"=>"47.652021"}}]
 
   describe '.parse_fire_data(array)' do
-
-    it 'parses array of JSON objects from the SODA API' do
-      FireAlert.all.each { |f| f.destroy }
-      FireAlert.parse_fire_data(array)
-      expect(FireAlert.all.count).to eq(2)
-    end
-
     it 'saves the data in psql' do
-      FireAlert.all.each { |f| f.destroy }
+      PoliceAlert.destroy_all
       FireAlert.parse_fire_data(array)
-      expect(FireAlert.first.address).to eq("1320 Nw 75th St")
+      expect(FireAlert.first.address).to eq("1000 4th Av")
     end
   end             
 end

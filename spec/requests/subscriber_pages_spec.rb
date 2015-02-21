@@ -26,21 +26,11 @@ describe "Subscriber pages" do
 
     describe "with valid information" do
       before do
-        fill_in "email",                  with: "chairman_dude@starbucks.com"
-        fill_in "street",                 with: "1912 Pike Pl"
-        fill_in "password",               with: "coffee", :match => :first
-        fill_in "confirmation",           with: "coffee", :match => :first
-        choose("subscriber_radius_05")
+        subscriber = FactoryGirl.create(:subscriber)
       end
 
       it "should create a subscriber" do
-        expect { click_button submit }.to change(Subscriber, :count).by(1)
-      end
-
-      describe "after saving the subscriber" do
-        before { click_button submit }
-        let(:subscriber) { Subscriber.find_by(email: 'chairman@starbucks.com') }
-        it { should have_link('Sign Out') }
+        expect(Subscriber.find_by(email: "chairman@starbucks.com")).to_not eq(nil)
       end
     end
   end
