@@ -51,7 +51,7 @@ class PoliceAlert < ActiveRecord::Base
     subscribers = Notification.notification_subscribers(police_notifications, fire_notifications)
     unless subscribers.nil?
       subscribers.each do |subscriber|
-        SubscriberMailer.notification_email(police_notifications, fire_notifications, subscriber).deliver if subscriber.notify == true
+        SubscriberMailer.notification_email(police_notifications, fire_notifications, subscriber).deliver! if subscriber.notify == true
       end
     end
   end
