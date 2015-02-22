@@ -2,13 +2,13 @@
 <div class="body">
   <body>
     <div class="block">
-      <p>Thank you for visiting Seattle Alerts!</p>
+      <p>When a guest visits the site, the map displays all events which occurred within the past 24 hours. Upon subscribing, a user will receive an alert email when activity occurs within the specified radius of the user's address. When a user signs in, the user may view on the map their respective alerts which occured within the past 24 hours. Users may also view a list of the most recent 30 police alerts and 15 fire alerts on the alerts page. Users can unsubscribe from alert emails by updating their account.</p>
 
-      <p>Prior to subscribing or logging in, the map displays all events which occurred within the past 24 hours. Upon subscribing, a user will by default receive an alert email when activity occurs within the specified radius of the user's address. When a user signs in, the user may view their respective alerts on the map that occured within the past 24 hours. Users may also view a list of the most recent 30 police alerts and 15 fire alerts on the alerts page. Users can also unsubscribe from alert emails by updating their account.</p>
-
-      <p>I built the site with Ruby on Rails using Test Driven Development and Zurb Foundation for the front-end framework. When users sign up, the geocoder gem converts the user's Seattle address to latitude and longitude. The app accesses public JSON data from <a href="https://data.seattle.gov/Public-Safety/Seattle-Police-Department-911-Incident-Response/3k2p-39jp">data.seattle.gov</a>. The app parses the data, then uses the gmaps4rails gem to convert event latitude, longitude and pertitent data to create markers which are displayed via the Google maps API. The app compares the user's latitude and longitude to event data and if an event occurs within the provided radius, it creates a notification.</p>
+      <p>When users sign up, the geocoder gem converts the user's Seattle address to latitude and longitude. The app accesses public JSON data from <a href="https://data.seattle.gov/Public-Safety/Seattle-Police-Department-911-Incident-Response/3k2p-39jp">data.seattle.gov</a>. The app parses the data, then uses the gmaps4rails gem to convert event latitude, longitude and pertitent data to create markers which are displayed via the Google maps API. The app compares the user's latitude and longitude to event data and if an event occurs within the provided radius, it creates a notification.</p>
 
       <p>The City of Seattle reports that the police data is refreshed on a 4 hour interval, but is sometimes updated more or less frequently. The City reports the fire data is updated every five minutes. The app accesses the API once a day so there is a lapse between the occurence and a user's notification.</p>
+
+      <p>Seattle Alerts is a full-stack project. I developed the back end with Ruby on Rails using Test Driven Development. The front-end framework is Zurb Foundation and I customized the responsiveness, mobile views and google maps API using JavaScript and JQuery.</p>
 
       <div id="contacts" class="row">
         <a href="https://github.com/JeffStringer/seattle-alerts"><img class="contact" src="assets/github-iso-black.png"></a>
