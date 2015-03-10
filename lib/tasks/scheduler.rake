@@ -3,3 +3,7 @@ task :start_all => :environment do
   PoliceAlert.start_all
 end
 
+task :count_all => :environment do
+  PoliceAlert.count_all
+end
+
