@@ -56,16 +56,11 @@ class PoliceAlert < ActiveRecord::Base
     end
   end
 
-  def self.count_all
-    count = PoliceAlert.count + FireAlert.count + PoliceNotification.count + FireNotification.count
-    PoliceAlert.destroy_all if count > 9500
-  end
-
   def self.destroy_all
-    PoliceAlert.all.each { |p| p.destroy }
-    FireAlert.all.each { |f| f.destroy }
-    PoliceNotification.all.each { |p| p.destroy }
-    FireNotification.all.each { |f| f.destroy }
+    PoliceAlert.destroy_all
+    FireAlert.destroy_all
+    PoliceNotification.destroy_all
+    FireNotification.destroy_all
   end
 end
 
