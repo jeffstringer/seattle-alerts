@@ -56,7 +56,7 @@ class PoliceAlert < ActiveRecord::Base
     end
   end
 
-  def self.destroy_all
+  def self.clean_db
     PoliceAlert.destroy_all
     FireAlert.destroy_all
     PoliceNotification.destroy_all
