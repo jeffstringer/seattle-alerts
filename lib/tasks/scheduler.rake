@@ -1,9 +1,9 @@
 desc "This task updates police, fire database from SODA APIs"
-task :start_all => :environment do
-  PoliceAlert.start_all
+task :start_app => :environment do
+  StartApp.call
 end
 
-task :count_all => :environment do
-  PoliceAlert.count_all
+task :clean_app => :environment do
+  CleanApp.call
 end
 
