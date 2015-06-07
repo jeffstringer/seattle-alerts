@@ -7,15 +7,15 @@ class StartApp
   end
 
   def self.call_police
-    police_data = PoliceData.new
-    police_results = police_data.fetch('http://data.seattle.gov/resource/fw4z-a47w.json')
+    police_data = PoliceData.new('http://data.seattle.gov/resource/fw4z-a47w.json')
+    police_results = police_data.fetch
     PoliceAlert.parse_police_data(police_results)
     PoliceNotification.create_police_notifications
   end
 
   def self.call_fire
-    fire_data = FireData.new
-    fire_results = fire_data.fetch('http://data.seattle.gov/resource/4ss6-4s75.json')
+    fire_data = FireData.new('http://data.seattle.gov/resource/4ss6-4s75.json')
+    fire_results = fire_data.fetch
     FireAlert.parse_fire_data(fire_results)
     FireNotification.create_fire_notifications
   end
