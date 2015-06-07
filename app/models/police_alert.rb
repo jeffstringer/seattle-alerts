@@ -6,16 +6,6 @@ class PoliceAlert < ActiveRecord::Base
   has_many :police_notifications
   has_many :subscribers, through: :police_notifications
 
-  def self.fetch_police_data
-    endpoint = 'http://data.seattle.gov/resource/fw4z-a47w.json'
-    # query is limited to 1000 records by default, approximately 1 day
-    query ="$limit=1000"
-    url = "#{endpoint}?#{query}"
-    url = URI.escape(url)
-    json = open(url).read
-    police_alerts = JSON.parse(json)
-  end
-
   def self.parse_police_data(array)
     array.each do |police_alert|
       police_alert = police_alert.slice!('event_clearance_code','cad_event_number','event_clearance_subgroup',
