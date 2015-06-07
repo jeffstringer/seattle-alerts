@@ -31,5 +31,7 @@ class PoliceAlert < ActiveRecord::Base
   end
 end
 
-StartApp.call
+if Rails.env.development?
+  SeattleAlert.call
+end
 

@@ -1,4 +1,4 @@
-class StartApp
+class SeattleAlert
 
   def self.call
     self.call_police
