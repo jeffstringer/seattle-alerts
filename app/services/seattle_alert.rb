@@ -1,22 +1,22 @@
 class SeattleAlert
 
   def self.call
-    self.call_police
-    self.call_fire
-    self.call_notifications
+    call_police
+    call_fire
+    call_notifications
   end
 
   def self.call_police
     police_data = PoliceData.new('http://data.seattle.gov/resource/fw4z-a47w.json')
     police_results = police_data.fetch
-    PoliceAlert.parse_police_data(police_results)
+    PoliceAlert.parse_data(police_results)
     PoliceNotification.create_police_notifications
   end
 
   def self.call_fire
     fire_data = FireData.new('http://data.seattle.gov/resource/4ss6-4s75.json')
     fire_results = fire_data.fetch
-    FireAlert.parse_fire_data(fire_results)
+    FireAlert.parse_data(fire_results)
     FireNotification.create_fire_notifications
   end
 
@@ -27,7 +27,7 @@ class SeattleAlert
     subscribers = NotifySubscribers.call(police_notifications, fire_notifications)
     unless subscribers.nil?
       subscribers.each do |subscriber|
-        SubscriberMailer.notification_email(police_notifications, fire_notifications, subscriber).deliver! if subscriber.notify == true
+        SubscriberMailer.notification_email(police_notifications, fire_notifications, subscriber).deliver! if subscriber.notify?
       end
     end
   end

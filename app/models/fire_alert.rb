@@ -5,26 +5,27 @@ class FireAlert < ActiveRecord::Base
   has_many :fire_notifications, dependent: :destroy
   has_many :subscribers, through: :fire_notifications
 
-  def self.parse_fire_data(array)
-    array.each do |fire_alert|
-      if fire_alert.length > 1
-        fire_alert['time_show'] = Time.at(fire_alert['datetime'])
-        fire_alert['datetime'] = Time.at(fire_alert['datetime']).strftime('%a %b %e, %Y at %I:%M %p')
-        fire_alert['fire_type'] = fire_alert['type']
-        fire_alert = fire_alert.slice!('type','report_location')
+  def self.parse_data(raw_alerts)
+    raw_alerts.each do |raw_alert|
+      if raw_alert.length > 1
+        raw_alert['time_show'] = Time.at(raw_alert['datetime'])
+        raw_alert['datetime'] = Time.at(raw_alert['datetime']).strftime('%a %b %e, %Y at %I:%M %p')
+        raw_alert['fire_type'] = raw_alert['type']
+        raw_alert = raw_alert.slice!('type','report_location')
       end
-      new_alert = FireAlert.new(fire_alert)
-      if FireAlert.exists?(incident_number: fire_alert['incident_number']) == false
-        new_alert.save
-      end
+      create_alert(raw_alert)
     end
   end
 
-  def self.alerts
+  def self.create_alert(raw_alert)
+    create(raw_alert) unless exists?(incident_number: raw_alert['incident_number'])
+  end
+
+  def self.alerts_past_day
     self.where(time_show: (Time.now - 1.day)..Time.now)
   end
 
-  def self.subscriber_alerts(subscriber)
+  def self.sub_alerts_past_day(subscriber)
     subscriber.fire_alerts.where(time_show: (Time.now - 1.day)..Time.now)
   end
 end
