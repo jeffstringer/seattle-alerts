@@ -1,9 +1,10 @@
-desc "This task updates police, fire database from SODA APIs"
-task :start_app => :environment do
-  StartApp.call
+desc "This task fetches data from SODA APIs, creates alerts and notifications"
+task :seattle_alert_call => :environment do
+  SeattleAlert.call
 end
 
-task :clean_app => :environment do
-  CleanApp.call
+desc "This task destroys all data except subscribers"
+task :reset_db_call => :environment do
+  ResetDB.call
 end
 
