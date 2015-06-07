@@ -21,11 +21,11 @@ class Subscriber < ActiveRecord::Base
     [street, 'Seattle', 'WA'].compact.join(', ')
   end
 
-  def Subscriber.new_remember_token
+  def self.new_remember_token
     SecureRandom.urlsafe_base64
   end
 
-  def Subscriber.digest(token)
+  def self.digest(token)
     Digest::SHA1.hexdigest(token.to_s)
   end
 
