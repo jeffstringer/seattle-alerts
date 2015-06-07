@@ -1,6 +1,6 @@
-module Notification
+class NotifySubscribers
 
-  def self.notification_subscribers(police_notifications,fire_notifications)
+  def self.call(police_notifications,fire_notifications)
     subscribers = []
     unless police_notifications.nil?
       police_notifications.each do |p|

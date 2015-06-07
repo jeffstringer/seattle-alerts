@@ -8,7 +8,7 @@ class StartApp
     FireNotification.create_fire_notifications
     police_notifications = PoliceNotification.where("created_at >= ?", t)
     fire_notifications = FireNotification.where("created_at >= ?", t)
-    subscribers = Notification.notification_subscribers(police_notifications, fire_notifications)
+    subscribers = NotifySubscribers.call(police_notifications, fire_notifications)
     unless subscribers.nil?
       subscribers.each do |subscriber|
         SubscriberMailer.notification_email(police_notifications, fire_notifications, subscriber).deliver! if subscriber.notify == true
