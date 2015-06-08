@@ -8,7 +8,7 @@ class StaticPagesController < ApplicationController
       marker.json({:id => police_alert.id })
       marker.picture({
         # http://mapicons.nicolasmollet.com/
-        "url" => view_context.image_path('/assets/police.png'),
+        "url" => view_context.image_path('police.png'),
         "width" => 32,
         "height" => 37
       })
@@ -21,7 +21,7 @@ class StaticPagesController < ApplicationController
       marker.lng(fire_alert.longitude)
       marker.picture({
         # http://mapicons.nicolasmollet.com/
-        "url" => view_context.image_path('/assets/fire.png'),
+        "url" => view_context.image_path('fire.png'),
         "width" => 32,
         "height" => 37
       })
