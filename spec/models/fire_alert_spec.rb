@@ -32,8 +32,8 @@ describe FireAlert do
 
   describe '.parse_fire_data(array)' do
     it 'saves the data in psql' do
-      PoliceAlert.destroy_all
-      FireAlert.parse_fire_data(array)
+      FireAlert.destroy_all
+      FireAlert.parse_data(array)
       expect(FireAlert.first.address).to eq("1000 4th Av")
     end
   end             

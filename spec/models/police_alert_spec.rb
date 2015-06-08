@@ -52,13 +52,10 @@ describe PoliceAlert do
                                   "initial_type_group"=>"DISTURBANCES",
                                   "census_tract"=>"9000.2004"}]
 
-  describe '.parse_police_data(array)' do
-    before do
-      PoliceAlert.destroy_all
-      PoliceAlert.parse_police_data(array)
-    end
-
+  describe '.parse_data(array)' do
     it 'saves the data in psql' do
+      PoliceAlert.destroy_all
+      PoliceAlert.parse_data(array)
       expect(PoliceAlert.first.hundred_block_location).to eq("1XX BLOCK OF BROADWAY E")
     end
   end
