@@ -27,7 +27,7 @@ class SeattleAlert
     subscribers = NotifySubscribers.call(police_notifications, fire_notifications)
     unless subscribers.nil?
       subscribers.each do |subscriber|
-        SubscriberMailer.notification_email(police_notifications, fire_notifications, subscriber).deliver! if subscriber.notify?
+        SubscriberMailer.notification_email(police_notifications, fire_notifications, subscriber).deliver_now if subscriber.notify?
       end
     end
   end

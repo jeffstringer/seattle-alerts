@@ -41,10 +41,10 @@ class Subscriber < ActiveRecord::Base
     end
 
     def signup_email
-      SubscriberMailer.signup_email(self).deliver
+      SubscriberMailer.signup_email(self).deliver_now
     end
 
     def subscriber_email
-      SubscriberMailer.subscriber_email(self).deliver
+      SubscriberMailer.subscriber_email(self).deliver_now
     end
 end
