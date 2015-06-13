@@ -29,13 +29,6 @@ FactoryGirl.define do
     radius 0.5
   end
 
-  factory :contact do
-    email 'jade@bluesky.com'
-    comment 'Hey there!  Great job on the Seattle Alerts!
-    It would be great if you had more choices on the main page like
-    being able to see things that happened a year ago.'
-  end
-
   factory :police_alert do
     hundred_block_location  '42XX BLOCK OF S KENYON ST'
     event_clearance_description 'PERSON WITH A GUN'
