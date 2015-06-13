@@ -261,7 +261,7 @@ a#title:hover {
   background-color: white;
   padding-top: 5px;
   margin-bottom: 5px;
-  height: 37px;
+  height: auto;
 }
 
 input#subscriber_password, input#session_email {
@@ -285,7 +285,7 @@ input.button.tiny {
 }
 
 input#subscriber_radius_05, input#subscriber_notify_false {
-  margin-left: 10px;
+  margin-left: 0px;
 }
 
 #contacts {
