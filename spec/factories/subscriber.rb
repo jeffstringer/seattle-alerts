@@ -4,7 +4,7 @@ FactoryGirl.define do
     street '1912 Pike Pl'
     password 'coffee'
     password_confirmation 'coffee'
-    radius 0.5
+    radius 1.0
   end
 
   factory :subscriber2, class: Subscriber do

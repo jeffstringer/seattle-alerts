@@ -8,8 +8,6 @@ describe SeattleAlert do
   let(:police_notification) { PoliceNotification.create(police_alert_id: police_alert.id, subscriber_id: subscriber.id) }
   let(:fire_notification) { FireNotification.create(fire_alert_id: fire_alert.id, subscriber_id: subscriber.id) }
 
-  before { ActionMailer::Base.deliveries.clear }
-
   context "#call" do
     
     it "sends email upon alert within subscribers radius" do
