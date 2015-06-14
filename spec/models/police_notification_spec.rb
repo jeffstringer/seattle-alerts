@@ -22,8 +22,7 @@ describe PoliceNotification do
     end
 
     it "does not create a notification when alert occurs outside radius" do
-      @police_alert.update_attributes(hundred_block_location:'42XX BLOCK OF S KENYON ST', latitude: 47.53154278,
-                                      longitude: -122.279449045)
+      @police_alert.update_attributes(latitude: 47.53154278, longitude: -122.279449045)
       expect(@subscriber.police_notifications).to be_empty
       expect(@subscriber.distance_to([@police_alert.latitude, @police_alert.longitude])).to be > @subscriber.radius
       expect(@subscriber.police_notifications).to be_empty
