@@ -1,7 +1,10 @@
 class ResetDB
 
   def self.call
-    if count_all >= 9900 
+    if Rails.env.development?
+      PoliceAlert.destroy_all
+      FireAlert.destroy_all
+    elsif count_all >= 9900 
       PoliceAlert.destroy_all
       FireAlert.destroy_all
     end
