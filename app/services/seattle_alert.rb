@@ -21,7 +21,7 @@ class SeattleAlert
   end
 
   def self.call_notifications
-    t = Time.now
+    t = 15.minute.ago
     police_notifications = PoliceNotification.where("created_at >= ?", t)
     fire_notifications = FireNotification.where("created_at >= ?", t)
     subscribers = NotifySubscribers.call(police_notifications, fire_notifications)
