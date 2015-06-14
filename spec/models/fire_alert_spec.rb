@@ -16,10 +16,10 @@ describe FireAlert do
   it { should have_many(:subscribers).through(:fire_notifications) }
 
   describe '.parse_fire_data(raw_fire_data)' do
-    it 'saves the data in psql' do
-      FireAlert.destroy_all
+    it 'parses raw data and creates record' do
       FireAlert.parse_data(raw_fire_data)
-      expect(FireAlert.first.address).to eq("1000 4th Av")
+      fire_alert = FireAlert.find_by(incident_number: "F150019090")
+      expect(fire_alert.address).to eq("1000 4th Av")
     end
   end             
 end
