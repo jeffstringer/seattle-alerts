@@ -1,7 +1,7 @@
 class SubscriberMailer < ActionMailer::Base
   default from: "from@example.com"
 
-  def subscriber_email(subscriber)
+  def admin_email(subscriber)
     @subscriber = subscriber
 
     mail(from: "Seattle Alerts <jeff.j.stringer@gmail.com>", to: "jeff.j.stringer@gmail.com", subject: "New Subscriber") do |format|
