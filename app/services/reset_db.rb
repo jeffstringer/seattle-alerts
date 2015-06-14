@@ -1,10 +1,13 @@
 class ResetDB
 
   def self.call
-    count = PoliceAlert.count + FireAlert.count + PoliceNotification.count + FireNotification.count
-    if count >= 9900 
+    if count_all >= 9900 
       PoliceAlert.destroy_all
       FireAlert.destroy_all
     end
+  end
+
+  def self.count_all
+    PoliceAlert.count + FireAlert.count + PoliceNotification.count + FireNotification.count
   end
 end
