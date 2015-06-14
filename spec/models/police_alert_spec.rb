@@ -17,10 +17,10 @@ describe PoliceAlert do
   it { should have_many(:subscribers).through(:police_notifications) }
 
   describe '.parse_data(array)' do
-    it 'saves the data in psql' do
-      PoliceAlert.destroy_all
+    it 'parses raw data and creates record' do
       PoliceAlert.parse_data(raw_police_data)
-      expect(PoliceAlert.first.hundred_block_location).to eq("1XX BLOCK OF BROADWAY E")
+      police_alert = PoliceAlert.find_by(general_offense_number: "2014396695")
+      expect(police_alert.hundred_block_location).to eq("1XX BLOCK OF BROADWAY E")
     end
   end
 end
