@@ -41,4 +41,6 @@ SeattleAlerts::Application.configure do
     user_name: ENV["GMAIL_USERNAME"], 
     password: ENV["GMAIL_PASSWORD"]
   }
+
+  ENV["REDISTOGO_URL"] = 'redis://redistogo:6a23db82f0b859389502e33bc0239208@hammerjaw.redistogo.com:11228/'
  end
