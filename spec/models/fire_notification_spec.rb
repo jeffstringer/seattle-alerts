@@ -5,7 +5,7 @@ describe FireNotification do
   before do
     @subscriber = FactoryGirl.create(:subscriber)
     @subscriber.save
-    @fire_alert = FactoryGirl.create(:fire_alert)
+    @fire_alert = FactoryGirl.create(:fire_alert, created_at: Time.now)
   end
 
   describe "associations" do
