@@ -5,7 +5,7 @@ describe PoliceNotification do
   before do
     @subscriber = FactoryGirl.create(:subscriber)
     @subscriber.save
-    @police_alert = FactoryGirl.create(:police_alert)
+    @police_alert = FactoryGirl.create(:police_alert, created_at: Time.now)
   end
 
   describe "associations" do
