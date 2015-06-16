@@ -24,11 +24,16 @@ class SeattleAlert
     t = 15.minute.ago
     police_notifications = PoliceNotification.where("created_at >= ?", t)
     fire_notifications = FireNotification.where("created_at >= ?", t)
-    subscribers = NotifySubscribers.call(police_notifications, fire_notifications)
-    unless subscribers.nil?
-      subscribers.each do |subscriber|
-        SubscriberMailer.notification_email(police_notifications, fire_notifications, subscriber).deliver_now! if subscriber.notify?
-      end
+    subscribers = self.subscribers_to_notify(police_notifications, fire_notifications)
+    subscribers.each do |subscriber|
+      SubscriberMailer.notification_email(police_notifications, fire_notifications, subscriber).deliver_now! if subscriber.notify?
     end
   end
+
+  private   
+
+    def self.subscribers_to_notify(police_notifications, fire_notifications)
+      subscriber_ids = (police_notifications.pluck(:subscriber_id) + fire_notifications.pluck(:subscriber_id)).uniq!
+      subscribers = Subscriber.where(id: subscriber_ids)
+    end
 end
