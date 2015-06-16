@@ -3,7 +3,7 @@ class FireNotification < ActiveRecord::Base
   belongs_to :fire_alert
 
   def self.create_fire_notifications
-    self.recent_fire_alerts.all.each do |f_alert|
+    self.recent_fire_alerts.each do |f_alert|
       Subscriber.all.each do |subscriber|
         if subscriber.distance_to([f_alert.latitude, f_alert.longitude]) <= subscriber.radius && 
           !self.exists?(fire_alert_id: f_alert.id)
