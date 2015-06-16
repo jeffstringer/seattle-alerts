@@ -1,8 +1,8 @@
 class SubscriberMailer < ActionMailer::Base
   default from: "from@example.com"
 
-  def admin_email(subscriber)
-    @subscriber = subscriber
+  def admin_email(subscriber_id)
+    @subscriber = Subscriber.find(subscriber_id)
 
     mail(from: "Seattle Alerts <jeff.j.stringer@gmail.com>", to: "jeff.j.stringer@gmail.com", subject: "New Subscriber") do |format|
       format.html 
@@ -10,19 +10,19 @@ class SubscriberMailer < ActionMailer::Base
     end   
   end
 
-  def signup_email(subscriber)
-    @subscriber = subscriber
+  def signup_email(subscriber_id)
+    @subscriber = Subscriber.find(subscriber_id)
 
-    mail(to: subscriber.email, from: "Seattle Alerts <jeff.j.stringer@gmail.com>", subject: "Welcome to Seattle Alerts") do |format|
+    mail(to: @subscriber.email, from: "Seattle Alerts <jeff.j.stringer@gmail.com>", subject: "Welcome to Seattle Alerts") do |format|
       format.html 
       format.text
     end   
   end
 
-  def update_email(subscriber)
-    @subscriber = subscriber
+  def update_email(subscriber_id)
+    @subscriber = Subscriber.find(subscriber_id)
 
-    mail(to: subscriber.email, from: "Seattle Alerts <jeff.j.stringer@gmail.com>", subject: "Account Updated") do |format|
+    mail(to: @subscriber.email, from: "Seattle Alerts <jeff.j.stringer@gmail.com>", subject: "Account Updated") do |format|
       format.html 
       format.text
     end   

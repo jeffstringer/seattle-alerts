@@ -1,5 +1,5 @@
 class Subscriber < ActiveRecord::Base
-  after_create :signup_email, :admin_email
+  after_create :admin_email, :signup_email
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(?:\.[a-z\d\-]+)*\.[a-z]+\z/i
   validates :email, presence: true, format: { with: VALID_EMAIL_REGEX },
                     uniqueness: { case_sensitive: false }
@@ -40,11 +40,11 @@ class Subscriber < ActiveRecord::Base
       self.remember_token = Subscriber.digest(Subscriber.new_remember_token)
     end
 
-    def signup_email
-      SubscriberMailer.signup_email(self).deliver_now!
+    def admin_email
+      SubscriberMailer.admin_email(self.id).deliver_now!
     end
 
-    def admin_email
-      SubscriberMailer.admin_email(self).deliver_now!
+    def signup_email
+      SubscriberMailer.signup_email(self.id).deliver_now!
     end
 end
