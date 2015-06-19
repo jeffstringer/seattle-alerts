@@ -1,7 +1,9 @@
 class FireAlert < ActiveRecord::Base
+
   validates_presence_of :address, :datetime, :incident_number, :fire_type,
     :latitude, :longitude, :time_show
   validates_uniqueness_of :incident_number
+
   has_many :fire_notifications, dependent: :destroy
   has_many :subscribers, through: :fire_notifications
 
