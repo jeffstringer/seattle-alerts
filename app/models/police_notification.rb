@@ -3,7 +3,7 @@ class PoliceNotification < ActiveRecord::Base
   belongs_to :subscriber
   belongs_to :police_alert
 
-  scope :recent_police_alerts, -> { where("created_at >= ?", 15.minute.ago) }
+  scope :recent_notifications, -> { where("created_at >= ?", 15.minute.ago) }
 
   def self.create_notifications
     PoliceAlert.recent_alerts.each do |alert|

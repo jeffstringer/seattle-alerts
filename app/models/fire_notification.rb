@@ -3,6 +3,8 @@ class FireNotification < ActiveRecord::Base
   belongs_to :subscriber
   belongs_to :fire_alert
 
+  scope :recent_notifications, -> { where("created_at >= ?", 15.minute.ago) }
+
   def self.create_notifications
     FireAlert.recent_alerts.each do |alert|
       Subscriber.all.each do |subscriber|
