@@ -29,11 +29,6 @@ class Subscriber < ActiveRecord::Base
     Digest::SHA1.hexdigest(token.to_s)
   end
 
-  def destroy_notifications
-    self.police_notifications.each { |p| p.destroy }
-    self.fire_notifications.each { |f| f.destroy }
-  end
-
   private
 
     def create_remember_token
