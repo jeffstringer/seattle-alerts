@@ -5,6 +5,13 @@ class FireAlert < ActiveRecord::Base
   has_many :fire_notifications, dependent: :destroy
   has_many :subscribers, through: :fire_notifications
 
+  scope :recent_for_subscriber, -> (subscriber_id) { 
+    where("fire_alerts.created_at > ?", 15.minute.ago).
+    joins(:fire_notifications).
+    where("fire_notifications.subscriber_id = ?", subscriber_id).
+    order(time_show: :desc).limit(30) 
+  }
+
   def self.parse_data(raw_alerts)
     raw_alerts.each do |raw_alert|
       if raw_alert.length > 1

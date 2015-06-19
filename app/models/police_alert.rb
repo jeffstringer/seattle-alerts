@@ -6,6 +6,13 @@ class PoliceAlert < ActiveRecord::Base
   has_many :police_notifications, dependent: :destroy
   has_many :subscribers, through: :police_notifications
 
+  scope :recent_for_subscriber, -> (subscriber_id) { 
+    where("police_alerts.created_at > ?", 15.minute.ago).
+    joins(:police_notifications).
+    where("police_notifications.subscriber_id = ?", subscriber_id).
+    order(time_show: :desc).limit(30) 
+  }
+
   def self.parse_data(raw_alerts)
     raw_alerts.each do |raw_alert|
       raw_alert = raw_alert.slice!('event_clearance_code','cad_event_number','event_clearance_subgroup',
