@@ -21,9 +21,8 @@ class SeattleAlert
   end
 
   def self.call_notifications
-    t = 15.minute.ago
-    police_notifications = PoliceNotification.where("created_at >= ?", t)
-    fire_notifications = FireNotification.where("created_at >= ?", t)
+    police_notifications = PoliceNotification.where("created_at >= ?", 15.minute.ago)
+    fire_notifications = FireNotification.where("created_at >= ?", 15.minute.ago)
     subscribers = self.subscribers_to_notify(police_notifications, fire_notifications)
     subscribers.each do |subscriber|
       SubscriberMailer.notification_email(subscriber.id).deliver_now! if subscriber.notify?
