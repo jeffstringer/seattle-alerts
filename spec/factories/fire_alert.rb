@@ -7,7 +7,7 @@ FactoryGirl.define do
     longitude -122.3423913 
     fire_type "Auto Fire Alarm"
     time_show "2015-02-05 18:26:00"
-    created_at "2015-02-06 18:02:56"
-    updated_at "2015-02-06 18:02:56"
+    created_at 10.minutes.ago
+    updated_at 10.minutes.ago
   end
 end

@@ -8,7 +8,7 @@ FactoryGirl.define do
     latitude  47.6087797
     longitude -122.3398541
     time_show '2014-11-27 17:44:00'
-    created_at  '2014-11-27 19:23:14'
-    updated_at  '2014-11-27 19:23:14'
+    created_at  10.minutes.ago
+    updated_at  10.minutes.ago
   end
 end
