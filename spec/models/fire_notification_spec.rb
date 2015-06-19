@@ -13,10 +13,10 @@ describe FireNotification do
     it { should belong_to(:fire_alert) }
   end
 
-  context ".create_fire_notifications" do  
+  context ".create_notifications" do  
     it "creates a notification when alert occurs within subscriber's radius" do
       expect(@subscriber.fire_notifications).to be_empty
-      FireNotification.create_fire_notifications
+      FireNotification.create_notifications
       expect(@subscriber.distance_to([@fire_alert.latitude, @fire_alert.longitude])).to be < @subscriber.radius
       expect(@subscriber.fire_notifications).to_not be_empty
     end

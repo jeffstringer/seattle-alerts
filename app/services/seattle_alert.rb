@@ -10,14 +10,14 @@ class SeattleAlert
     police_data = PoliceData.new('http://data.seattle.gov/resource/fw4z-a47w.json')
     police_results = police_data.fetch
     PoliceAlert.parse_data(police_results)
-    PoliceNotification.create_police_notifications
+    PoliceNotification.create_notifications
   end
 
   def self.call_fire
     fire_data = FireData.new('http://data.seattle.gov/resource/4ss6-4s75.json')
     fire_results = fire_data.fetch
     FireAlert.parse_data(fire_results)
-    FireNotification.create_fire_notifications
+    FireNotification.create_notifications
   end
 
   def self.call_notifications

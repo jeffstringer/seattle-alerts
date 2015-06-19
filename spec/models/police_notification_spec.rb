@@ -13,10 +13,10 @@ describe PoliceNotification do
     it { should belong_to(:police_alert) }
   end
 
-  context ".create_police_notifications" do  
+  context ".create_notifications" do  
     it "creates a notification when alert occurs within subscriber's radius" do
       expect(@subscriber.police_notifications).to be_empty
-      PoliceNotification.create_police_notifications
+      PoliceNotification.create_notifications
       expect(@subscriber.distance_to([@police_alert.latitude, @police_alert.longitude])).to be < @subscriber.radius
       expect(@subscriber.police_notifications).to_not be_empty
     end
