@@ -14,6 +14,8 @@ class PoliceAlert < ActiveRecord::Base
     where("police_notifications.subscriber_id = ?", subscriber_id).
     order(time_show: :desc).limit(30) 
   }
+  scope :past_day_alerts, -> { where(time_show: (Time.now - 1.day)..Time.now) }
+  scope :recent_alerts, -> { where("created_at >= ?", 15.minute.ago) }
 
   def self.parse_data(raw_alerts)
     raw_alerts.each do |raw_alert|
@@ -32,11 +34,8 @@ class PoliceAlert < ActiveRecord::Base
     create(raw_alert) unless exists?(general_offense_number: raw_alert['general_offense_number'])
   end
 
-  def self.alerts_past_day
-    self.where(time_show: (Time.now - 1.day)..Time.now)
-  end
-
-  def self.sub_alerts_past_day(subscriber)
+  def self.sub_alerts_past_day(subscriber_id)
+    subscriber = Subscriber.find(subscriber_id)
     subscriber.police_alerts.where(time_show: (Time.now - 1.day)..Time.now)
   end
 end
