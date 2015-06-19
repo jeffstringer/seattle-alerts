@@ -21,9 +21,7 @@ class SeattleAlert
   end
 
   def self.call_notifications
-    police_notifications = PoliceNotification.recent_notifications
-    fire_notifications = FireNotification.recent_notifications
-    subscribers = self.subscribers_to_notify(police_notifications, fire_notifications)
+    subscribers = self.subscribers_to_notify
     subscribers.each do |subscriber|
       SubscriberMailer.notification_email(subscriber.id).deliver_now! if subscriber.notify?
     end
@@ -31,7 +29,9 @@ class SeattleAlert
 
   private   
 
-    def self.subscribers_to_notify(police_notifications, fire_notifications)
+    def self.subscribers_to_notify
+      police_notifications = PoliceNotification.recent_notifications
+      fire_notifications = FireNotification.recent_notifications
       subscriber_ids = (police_notifications.pluck(:subscriber_id) + fire_notifications.pluck(:subscriber_id)).uniq!
       subscribers = Subscriber.where(id: subscriber_ids)
     end
