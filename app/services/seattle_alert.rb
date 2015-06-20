@@ -30,8 +30,8 @@ class SeattleAlert
   private   
 
     def self.subscribers_to_notify
-      police_notifications = PoliceNotification.recent_notifications
-      fire_notifications = FireNotification.recent_notifications
+      police_notifications = PoliceNotification.new_notifications
+      fire_notifications = FireNotification.new_notifications
       subscriber_ids = (police_notifications.pluck(:subscriber_id) + fire_notifications.pluck(:subscriber_id)).uniq!
       subscribers = Subscriber.where(id: subscriber_ids)
     end

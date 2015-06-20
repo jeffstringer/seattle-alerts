@@ -31,8 +31,8 @@ class SubscriberMailer < ActionMailer::Base
   def notification_email(subscriber_id)
     @subscriber = Subscriber.find(subscriber_id)
 
-    @police_alerts = PoliceAlert.recent_for_subscriber(subscriber_id)
-    @fire_alerts = FireAlert.recent_for_subscriber(subscriber_id)
+    @police_alerts = PoliceAlert.subscriber_new_alerts(subscriber_id)
+    @fire_alerts = FireAlert.subscriber_new_alerts(subscriber_id)
 
     mail(to: @subscriber.email, from: "Seattle Alerts <jeff.j.stringer@gmail.com>", subject: "Activity Occurred in Your Area") do |format|
       format.html 
