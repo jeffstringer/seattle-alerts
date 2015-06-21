@@ -30,7 +30,7 @@ class FireAlert < ActiveRecord::Base
         raw_alert['fire_type'] = raw_alert['type']
         raw_alert = raw_alert.slice!('type','report_location')
       end
-      create_alert(raw_alert)
+      create_alert(raw_alert) unless raw_alert['fire_type'].include?("Alarm")
     end
   end
 
