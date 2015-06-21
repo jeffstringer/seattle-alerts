@@ -48,14 +48,14 @@ module DataSupport
       "latitude"=>"47.606088",
       "incident_number"=>"F150019090",
       "datetime"=>1424468700,
-      "type"=>"Auto Fire Alarm",
+      "type"=>"Bark Fire",
       "report_location"=>{"needs_recoding"=>false, "longitude"=>"-122.332909", "latitude"=>"47.606088"}},
       {"address"=>"3715 West Stevens Way Ne",
       "longitude"=>"-122.307565",
       "latitude"=>"47.652021",
       "incident_number"=>"F150019128",
       "datetime"=>1424475660,
-      "type"=>"Auto Fire Alarm",
+      "type"=>"Bark Fire",
       "report_location"=>{"needs_recoding"=>false, "longitude"=>"-122.307565", "latitude"=>"47.652021"}}
     ]
   end
