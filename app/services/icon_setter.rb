@@ -34,8 +34,8 @@ class IconSetter
       "ROBBERY" => 'shooting.png',
       "SHOPLIFT" => 'theft.png', 
       "THEFT" => 'theft.png', 
-      "TRESPASS" => 'robbery.png', 
       "TRAFFIC" => 'car.png', 
+      "TRESPASS" => 'robbery.png', 
       "SUSPICIOUS" => 'unk.png', 
       "VEHICLE" => 'car.png', 
       "WEAPON" => 'fight.png'
