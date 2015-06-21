@@ -6,12 +6,8 @@ class StaticPagesController < ApplicationController
       marker.lat(police_alert.latitude)
       marker.lng(police_alert.longitude)
       marker.json({:id => police_alert.id })
-      marker.picture({
-        # http://mapicons.nicolasmollet.com/
-        "url" => view_context.image_path('police.png'),
-        "width" => 32,
-        "height" => 37
-      })
+      icon = IconSetter.call(police_alert)
+      marker.picture({ "url" => view_context.image_path(icon), "width" => 32, "height" => 37 })
       marker.infowindow render_to_string(:partial => '/layouts/police_alerts_infowindow', :locals => { :police_alert => police_alert } )
     end
 
@@ -19,12 +15,8 @@ class StaticPagesController < ApplicationController
     @fire_hash = Gmaps4rails.build_markers(@fire_alerts) do |fire_alert, marker|
       marker.lat(fire_alert.latitude)
       marker.lng(fire_alert.longitude)
-      marker.picture({
         # http://mapicons.nicolasmollet.com/
-        "url" => view_context.image_path('fire.png'),
-        "width" => 32,
-        "height" => 37
-      })
+      marker.picture({ "url" => view_context.image_path('fire.png'), "width" => 32, "height" => 37 })
       marker.infowindow render_to_string(:partial => '/layouts/fire_alerts_infowindow', :locals => { :fire_alert => fire_alert } )
     end
 
