@@ -6,7 +6,7 @@ class StaticPagesController < ApplicationController
       marker.lat(police_alert.latitude)
       marker.lng(police_alert.longitude)
       marker.json({:id => police_alert.id })
-      icon = IconSetter.call(police_alert)
+      icon = IconSetter.call(police_alert.event_clearance_description)
       marker.picture({ "url" => view_context.image_path(icon), "width" => 32, "height" => 37 })
       marker.infowindow render_to_string(:partial => '/layouts/police_alerts_infowindow', :locals => { :police_alert => police_alert } )
     end
