@@ -32,7 +32,7 @@ class PoliceAlert < ActiveRecord::Base
       t = Time.parse(raw_alert['event_clearance_date'])
       raw_alert['event_clearance_date'] = t.strftime('%a %b %e, %Y at %I:%M %p')
       raw_alert['time_show'] = Time.parse(raw_alert['event_clearance_date']).to_s
-      create_alert(raw_alert)
+      create_alert(raw_alert) unless raw_alert['event_clearance_description'].include?("ALARMS")
     end
   end
 
