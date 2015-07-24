@@ -78,7 +78,7 @@ SeattleAlerts::Application.configure do
   # Use default logging formatter so that PID and timestamp are not suppressed.
   config.log_formatter = ::Logger::Formatter.new
 
-  ActionMailer::Base.default_url_options = { :host => 'http://seattle-alerts.herokuapp.com/' }
+  config.action_mailer.default_url_options = { :host => 'http://seattle-alerts.herokuapp.com/' }
   ActionMailer::Base.smtp_settings = {
     :port           => ENV['MAILGUN_SMTP_PORT'],
     :address        => ENV['MAILGUN_SMTP_SERVER'],
