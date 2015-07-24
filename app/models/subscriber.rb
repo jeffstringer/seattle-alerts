@@ -17,7 +17,7 @@ class Subscriber < ActiveRecord::Base
 
   before_save { email.downcase! }
   before_create :create_remember_token
-  after_create :admin_email, :signup_email
+  after_create :signup_email, :admin_email
 
   geocoded_by :address
 
@@ -40,7 +40,7 @@ class Subscriber < ActiveRecord::Base
     end
 
     def admin_email
-      SubscriberMailer.admin_email(id).deliver_now!
+      SubscriberMailer.admin_email(id).deliver_later!
     end
 
     def signup_email
