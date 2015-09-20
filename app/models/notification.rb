@@ -12,7 +12,7 @@ module Notification
   end
 
   def new_notifications
-    alert_type.where("created_at >= ?", 15.minute.ago)
+    self.name.constantize.where("created_at >= ?", 15.minute.ago)
   end
 
   private
