@@ -11,16 +11,22 @@ module Notification
     end
   end
 
-  def alert_name
-    alert = self.name.split /(?=[A-Z])/
-    alert.first
+  def new_notifications
+    alert_type.where("created_at >= ?", 15.minute.ago)
   end
 
-  def alert_type
-    (alert_name + "Alert").constantize
-  end
+  private
 
-  def alert_id
-    (alert_name.downcase + "_alert_id").to_sym
-  end
+    def alert_name
+      alert = self.name.split /(?=[A-Z])/
+      alert.first
+    end
+
+    def alert_type
+      "#{alert_name}Alert".constantize
+    end
+
+    def alert_id
+      "#{alert_name.downcase}_alert_id".to_sym
+    end
 end
