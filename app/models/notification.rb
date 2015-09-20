@@ -18,8 +18,7 @@ module Notification
   private
 
     def alert_name
-      alert = self.name.split /(?=[A-Z])/
-      alert.first
+      self.name.split(/(?=[A-Z])/).first
     end
 
     def alert_type
