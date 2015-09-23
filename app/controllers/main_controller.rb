@@ -1,4 +1,4 @@
-class StaticPagesController < ApplicationController
+class MainController < ApplicationController
   def index
     @current_subscriber = current_subscriber
     current_subscriber.nil? ? @police_alerts = PoliceAlert.past_day_alerts : @police_alerts = PoliceAlert.subscriber_past_day_alerts(current_subscriber.id)
