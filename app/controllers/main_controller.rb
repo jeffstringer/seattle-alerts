@@ -1,15 +1,14 @@
 class MainController < ApplicationController
   def index
     current_subscriber.nil? ? @police_alerts = PoliceAlert.past_day_alerts : @police_alerts = PoliceAlert.subscriber_past_day_alerts(current_subscriber.id)
-    @police_json = police_json
-
+    police_json
     current_subscriber.nil? ? @fire_alerts = FireAlert.past_day_alerts : @fire_alerts = FireAlert.subscriber_past_day_alerts(current_subscriber.id)
-    @fire_json = fire_json
+    fire_json
   end
 
   private
     def police_json
-      Gmaps4rails.build_markers(@police_alerts) do |police_alert, marker|
+      @police_json = Gmaps4rails.build_markers(@police_alerts) do |police_alert, marker|
         marker.lat(police_alert.latitude)
         marker.lng(police_alert.longitude)
         marker.json({:id => police_alert.id })
@@ -20,7 +19,7 @@ class MainController < ApplicationController
     end
 
     def fire_json
-      Gmaps4rails.build_markers(@fire_alerts) do |fire_alert, marker|
+      @fire_json = Gmaps4rails.build_markers(@fire_alerts) do |fire_alert, marker|
         marker.lat(fire_alert.latitude)
         marker.lng(fire_alert.longitude)
         marker.picture({ "url" => view_context.image_path('fire.png'), "width" => 32, "height" => 37 })
