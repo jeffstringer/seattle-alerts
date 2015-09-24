@@ -1,14 +1,14 @@
 class MainController < ApplicationController
   def index
     current_subscriber.nil? ? @police_alerts = PoliceAlert.past_day_alerts : @police_alerts = PoliceAlert.subscriber_past_day_alerts(current_subscriber.id)
-    @police_hash = police_hash
+    @police_json = police_json
 
     current_subscriber.nil? ? @fire_alerts = FireAlert.past_day_alerts : @fire_alerts = FireAlert.subscriber_past_day_alerts(current_subscriber.id)
-    @fire_hash = fire_hash
+    @fire_json = fire_json
   end
 
   private
-    def police_hash
+    def police_json
       Gmaps4rails.build_markers(@police_alerts) do |police_alert, marker|
         marker.lat(police_alert.latitude)
         marker.lng(police_alert.longitude)
@@ -19,7 +19,7 @@ class MainController < ApplicationController
       end
     end
 
-    def fire_hash
+    def fire_json
       Gmaps4rails.build_markers(@fire_alerts) do |fire_alert, marker|
         marker.lat(fire_alert.latitude)
         marker.lng(fire_alert.longitude)
@@ -27,7 +27,7 @@ class MainController < ApplicationController
         marker.infowindow render_to_string(:partial => '/layouts/fire_alerts_infowindow', :locals => { :fire_alert => fire_alert } )
       end
     end
-    
+
     def police_notification_params
       params.require(:police_notification).permit(:user_id, :police_alert_id)
     end
