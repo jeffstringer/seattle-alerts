@@ -44,16 +44,19 @@ var ready = function() {
   $('a#about').click(function() {
     setTimeout(function(){
       window.location = "http://seattle-alerts.herokuapp.com/about";
+      $(function() { $(document).foundation(); });
     }, 10);
   });
   $('a#stayinformed').click(function() {
     setTimeout(function(){
       window.location = "http://seattle-alerts.herokuapp.com/stayinformed";
+      $(function() { $(document).foundation(); });
     }, 10);
   });
   $('a#signin').click(function() {
     setTimeout(function(){
       window.location = "http://seattle-alerts.herokuapp.com/signin";
+      $(function() { $(document).foundation(); });
     }, 10);
   });
   $('input.button.submit').click(function() {
