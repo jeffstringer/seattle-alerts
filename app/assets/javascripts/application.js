@@ -37,7 +37,24 @@ var ready = function() {
     }
   });
   $('a#title').click(function() {
-    window.location = "http://seattle-alerts.herokuapp.com/";
+    setTimeout(function(){
+      window.location = "http://seattle-alerts.herokuapp.com/";
+    }, 10)
+  });
+  $('a#about').click(function() {
+    setTimeout(function(){
+      window.location = "http://seattle-alerts.herokuapp.com/about";
+    }, 10);
+  });
+  $('a#stayinformed').click(function() {
+    setTimeout(function(){
+      window.location = "http://seattle-alerts.herokuapp.com/stayinformed";
+    }, 10);
+  });
+  $('a#signin').click(function() {
+    setTimeout(function(){
+      window.location = "http://seattle-alerts.herokuapp.com/signin";
+    }, 10);
   });
   $('input.button.submit').click(function() {
     $(function() { $(document).foundation(); }); 

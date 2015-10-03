@@ -3,7 +3,7 @@
 $alert-font: Helvetica, Verdana, Arial, Sans-Serif;
 $light: #FAFAFA;
 
-h1, h2, h3, h4, h5, h6, p, label, input, input.button, tr, .infowindow, a#title, a#about, a#signin, a#informed, a#myalerts, a#account, a#signout, a#delete, div.alert.alert-notice, div.alert.alert-error, div.alert-box.alert {
+h1, h2, h3, h4, h5, h6, p, label, input, input.button, tr, .infowindow, a#title, a#about, a#signin, a#stayinformed, a#myalerts, a#account, a#signout, a#delete, div.alert.alert-notice, div.alert.alert-error, div.alert-box.alert {
   font-family: $alert-font;
 }
 
@@ -26,7 +26,7 @@ body {
   a#signin, a#signout {
     padding-right: 0px;
   }
-  a#title, a#about, a#signin, a#informed, a#myalerts, a#account, a#signout, input.button.tiny {
+  a#title, a#about, a#signin, a#stayinformed, a#myalerts, a#account, a#signout, input.button.tiny {
     font-weight: 300;
   }
   label {
@@ -58,7 +58,7 @@ body {
 }
 
 @media only screen and (min-width:641px) and (max-width:999px) {
-  a#title, a#about, a#signin, a#informed, a#myalerts, a#account, a#signout {
+  a#title, a#about, a#signin, a#stayinformed, a#myalerts, a#account, a#signout {
     font-weight: 300;
   }
   a#title {
@@ -89,7 +89,7 @@ body {
 }
 
 @media screen and (max-width:640px) {
-  a#title, a#about, a#signin, a#informed, a#myalerts, a#account, a#signout, label {
+  a#title, a#about, a#signin, a#stayinformed, a#myalerts, a#account, a#signout, label {
     font-weight: 400;
   }
   a#title {
@@ -224,7 +224,7 @@ div.alert-box.alert {
   line-height: 45px;
 }
 
-a#about, a#signin, a#informed, a#myalerts, a#account, a#signout {
+a#about, a#signin, a#stayinformed, a#myalerts, a#account, a#signout {
   font-size: rem-calc(17);
   color: $light;
 }
