@@ -4,7 +4,7 @@ class ResetDB
     if Rails.env.development?
       PoliceAlert.destroy_all
       FireAlert.destroy_all
-    elsif count_all >= 9900 
+    elsif count_all >= 7000 
       PoliceAlert.destroy_all
       FireAlert.destroy_all
     end
