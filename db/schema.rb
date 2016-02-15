@@ -16,7 +16,7 @@ ActiveRecord::Schema.define(version: 20150607025412) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "fire_alerts", force: true do |t|
+  create_table "fire_alerts", force: :cascade do |t|
     t.string   "address"
     t.string   "datetime"
     t.string   "incident_number"
@@ -28,14 +28,14 @@ ActiveRecord::Schema.define(version: 20150607025412) do
     t.datetime "updated_at"
   end
 
-  create_table "fire_notifications", force: true do |t|
+  create_table "fire_notifications", force: :cascade do |t|
     t.integer  "subscriber_id"
     t.integer  "fire_alert_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "police_alerts", force: true do |t|
+  create_table "police_alerts", force: :cascade do |t|
     t.string   "hundred_block_location"
     t.string   "event_clearance_description"
     t.string   "event_clearance_date"
@@ -48,14 +48,14 @@ ActiveRecord::Schema.define(version: 20150607025412) do
     t.datetime "updated_at"
   end
 
-  create_table "police_notifications", force: true do |t|
+  create_table "police_notifications", force: :cascade do |t|
     t.integer  "subscriber_id"
     t.integer  "police_alert_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "subscribers", force: true do |t|
+  create_table "subscribers", force: :cascade do |t|
     t.string   "email"
     t.string   "street"
     t.datetime "created_at"
