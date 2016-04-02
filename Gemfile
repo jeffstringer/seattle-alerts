@@ -27,6 +27,10 @@ gem 'uglifier', '>= 1.3.0'
 gem 'underscore-rails', '~> 1.7.0'
 gem 'whenever', :require => false
 
+group :production do
+  gem 'rails_12factor', '0.0.2'
+end
+
 group :development, :test do
   gem 'better_errors'
   gem 'binding_of_caller'
@@ -38,14 +42,6 @@ group :development, :test do
   gem 'pry'
   gem 'rspec-rails'
   gem 'spork-rails'
-end
-
-group :doc do
-  gem 'sdoc', require: false
-end
-
-group :production do
-  gem 'rails_12factor', '0.0.2'
 end
 
 group :test do
