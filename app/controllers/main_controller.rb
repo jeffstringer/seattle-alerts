@@ -1,8 +1,8 @@
 class MainController < ApplicationController
   def index
-    current_subscriber.nil? ? @police_alerts = PoliceAlert.past_day_alerts : @police_alerts = PoliceAlert.subscriber_past_day_alerts(current_subscriber.id)
+    @police_alerts = current_subscriber.nil? ? PoliceAlert.past_day_alerts : PoliceAlert.subscriber_past_day_alerts(current_subscriber.id)
     police_json
-    current_subscriber.nil? ? @fire_alerts = FireAlert.past_day_alerts : @fire_alerts = FireAlert.subscriber_past_day_alerts(current_subscriber.id)
+    @fire_alerts = current_subscriber.nil? ? FireAlert.past_day_alerts : FireAlert.subscriber_past_day_alerts(current_subscriber.id)
     fire_json
   end
 
