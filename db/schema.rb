@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150607025412) do
+ActiveRecord::Schema.define(version: 20160404023048) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,6 +27,8 @@ ActiveRecord::Schema.define(version: 20150607025412) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "fire_alerts", ["incident_number"], name: "index_fire_alerts_on_incident_number", unique: true, using: :btree
 
   create_table "fire_notifications", force: :cascade do |t|
     t.integer  "subscriber_id"
@@ -47,6 +49,8 @@ ActiveRecord::Schema.define(version: 20150607025412) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "police_alerts", ["general_offense_number"], name: "index_police_alerts_on_general_offense_number", unique: true, using: :btree
 
   create_table "police_notifications", force: :cascade do |t|
     t.integer  "subscriber_id"
