@@ -1,5 +1,5 @@
 <div class="infowindow">
   <span class="alert-info"><%= police_alert.event_clearance_description.downcase.titleize %></span><br/>
   <span><%= police_alert.hundred_block_location %></span><br/>
-	<span><%= police_alert.event_clearance_date %></span>
+	<span><%= police_alert.event_clearance_date.to_time.strftime('%A, %b %e %Y %l:%M %p').squish %></span>
 </div>
