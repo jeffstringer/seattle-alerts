@@ -24,17 +24,14 @@ class FireAlert < ActiveRecord::Base
 
   def self.parse_data(raw_alerts)
     raw_alerts.each do |raw_alert|
-      if raw_alert.length > 1
-        raw_alert['time_show'] = Time.at(raw_alert['datetime'])
-        raw_alert['datetime'] = Time.at(raw_alert['datetime']).strftime('%a %b %e, %Y at %I:%M %p')
-        raw_alert['fire_type'] = raw_alert['type']
-        raw_alert = raw_alert.slice!('type','report_location')
+      if raw_alert.many?
+        alert = FireAlertCleaner.new(raw_alert)
+        unless alert.type.include?("ALARMS")
+          create({address: alert.address, datetime: alert.datetime, incident_number: alert.incident_number,
+                  latitude: alert.latitude, longitude: alert.longitude, fire_type: alert.type,
+                  time_show: alert.time_show})
+        end
       end
-      create_alert(raw_alert) unless raw_alert['fire_type'].include?("Alarm")
     end
-  end
-
-  def self.create_alert(raw_alert)
-    create(raw_alert) unless exists?(incident_number: raw_alert['incident_number'])
   end
 end

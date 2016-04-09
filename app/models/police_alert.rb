@@ -25,19 +25,13 @@ class PoliceAlert < ActiveRecord::Base
 
   def self.parse_data(raw_alerts)
     raw_alerts.each do |raw_alert|
-      raw_alert = raw_alert.slice!('event_clearance_code','cad_event_number','event_clearance_subgroup',
-       'event_clearance_group','cad_cdw_id','zone_beat','initial_type_description','district_sector',
-       'initial_type_subgroup','initial_type_group','incident_location','at_scene_time')
-      raw_alert['time_show'] = raw_alert['event_clearance_date']
-      t = Time.parse(raw_alert['event_clearance_date'])
-      raw_alert['event_clearance_date'] = t.strftime('%a %b %e, %Y at %I:%M %p')
-      raw_alert['time_show'] = Time.parse(raw_alert['event_clearance_date']).to_s
-      create_alert(raw_alert) unless raw_alert['event_clearance_description'].include?("ALARMS")
+      alert = PoliceAlertCleaner.new(raw_alert)
+      unless alert.event_clearance_description.include?("ALARMS")
+        create({hundred_block_location: alert.hundred_block_location, event_clearance_description: alert.event_clearance_description,
+          event_clearance_date: alert.event_clearance_date, general_offense_number: alert.general_offense_number,
+          census_tract: alert.census_tract, latitude: alert.latitude, longitude: alert.longitude, time_show: alert.time_show})
+      end
     end
-  end
-
-  def self.create_alert(raw_alert)
-    create(raw_alert) unless exists?(general_offense_number: raw_alert['general_offense_number'])
   end
 end
 
