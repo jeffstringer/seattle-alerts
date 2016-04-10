@@ -9,7 +9,6 @@ describe PoliceAlertCleaner do
 
     it 'creates an object from json' do 
       expect(alert.census_tract).to eq(data['census_tract'])
-      expect(alert.event_clearance_date).to eq(data['event_clearance_date'])
       expect(alert.event_clearance_description).to eq(data['event_clearance_description'])
       expect(alert.general_offense_number).to eq(data['general_offense_number'])
       expect(alert.hundred_block_location).to eq(data['hundred_block_location'])

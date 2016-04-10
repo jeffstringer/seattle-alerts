@@ -11,21 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160404023048) do
+ActiveRecord::Schema.define(version: 20160409170516) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "fire_alerts", force: :cascade do |t|
     t.string   "address"
-    t.string   "datetime"
     t.string   "incident_number"
     t.float    "latitude"
     t.float    "longitude"
     t.string   "fire_type"
-    t.datetime "time_show"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.datetime "datetime"
   end
 
   add_index "fire_alerts", ["incident_number"], name: "index_fire_alerts_on_incident_number", unique: true, using: :btree
@@ -40,14 +39,13 @@ ActiveRecord::Schema.define(version: 20160404023048) do
   create_table "police_alerts", force: :cascade do |t|
     t.string   "hundred_block_location"
     t.string   "event_clearance_description"
-    t.string   "event_clearance_date"
     t.string   "general_offense_number"
     t.string   "census_tract"
     t.float    "latitude"
     t.float    "longitude"
-    t.datetime "time_show"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.datetime "event_clearance_date"
   end
 
   add_index "police_alerts", ["general_offense_number"], name: "index_police_alerts_on_general_offense_number", unique: true, using: :btree

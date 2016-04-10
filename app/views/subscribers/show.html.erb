@@ -13,9 +13,9 @@
         </tr>
       </thead>
       <tbody>
-      <% @subscriber.police_alerts.order('time_show DESC').limit(30).each do |alert| %>
+      <% @subscriber.police_alerts.order('event_clearance_date DESC').limit(30).each do |alert| %>
         <tr>
-          <td><%= alert.event_clearance_date %></td>
+          <td><%= I18n.l(alert.event_clearance_date, format: :short).squish %></td>
           <td><%= alert.hundred_block_location %></td>
           <td><%= alert.event_clearance_description.downcase.titleize %></td>
         </tr>
@@ -36,9 +36,9 @@
         </tr>
       </thead>
       <tbody>
-      <% @subscriber.fire_alerts.order('time_show DESC').limit(15).each do |alert| %>
+      <% @subscriber.fire_alerts.order('datetime DESC').limit(15).each do |alert| %>
         <tr>
-          <td><%= alert.datetime %></td>
+          <td><%= I18n.l(alert.datetime, format: :short).squish %></td>
           <td><%= alert.address %></td>
           <td><%= alert.fire_type.downcase.titleize %></td>
         </tr>

@@ -9,7 +9,6 @@ describe FireAlert do
   it { should validate_presence_of :fire_type }
   it { should validate_presence_of :latitude }
   it { should validate_presence_of :longitude }
-  it { should validate_presence_of :time_show }
 
   it { should validate_uniqueness_of :incident_number }
 

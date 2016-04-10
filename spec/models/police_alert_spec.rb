@@ -10,7 +10,6 @@ describe PoliceAlert do
   it { should validate_presence_of :census_tract }
   it { should validate_presence_of :latitude }
   it { should validate_presence_of :longitude }
-  it { should validate_presence_of :time_show }
 
   it { should validate_uniqueness_of :general_offense_number }
 

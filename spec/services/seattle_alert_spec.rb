@@ -31,7 +31,7 @@ describe SeattleAlert do
         body = mail.body.encoded
         expect(body).to match(police_alert.hundred_block_location)
         expect(body).to match(police_alert.event_clearance_description.downcase.titleize)
-        expect(body).to match(police_alert.event_clearance_date)
+        expect(body).to match(I18n.l(police_alert.event_clearance_date, format: :short).squish)
       end
 
       it "renders fire_alert information in the email body" do
@@ -40,7 +40,7 @@ describe SeattleAlert do
         body = mail.body.encoded
         expect(body).to match(fire_alert.address)
         expect(body).to match(fire_alert.fire_type)
-        expect(body).to match(fire_alert.datetime)
+        expect(body).to match(I18n.l(fire_alert.datetime, format: :short).squish)
       end
     end
   end

@@ -18,7 +18,7 @@
         <tbody>
         <% @police_alerts.each do |p| %>
           <tr>
-            <td><%= p.event_clearance_date %></td>
+            <td><%= I18n.l(p.event_clearance_date, format: :short).squish %></td>
             <td><%= p.hundred_block_location %></td>
             <td><%= p.event_clearance_description.downcase.titleize %></td>
           </tr>
@@ -39,7 +39,7 @@
         <tbody>
         <% @fire_alerts.each do |f| %>
           <tr>
-            <td><%= f.datetime %></td>
+            <td><%= I18n.l(f.datetime, format: :short).squish %></td>
             <td><%= f.address %></td>
             <td><%= f.fire_type.downcase.titleize %></td>
           </tr>
