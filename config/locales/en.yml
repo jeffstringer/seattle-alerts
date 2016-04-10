@@ -23,5 +23,5 @@ en:
   hello: "Hello world"
   time:
     formats:
-      long: '%A, %b %e %Y %l:%M %p'
-      short: '%a, %b %e %Y %l:%M %p'
+      long: '%A, %B %e at %l:%M %p'
+      short: '%a, %b %e %l:%M %p'
