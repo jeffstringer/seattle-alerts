@@ -3,7 +3,7 @@ class SodaData
   attr_accessor :data_type
 
   def initialize(data_type)
-    self.data_type = data_type
+    @data_type = data_type
   end
 
   def fetch

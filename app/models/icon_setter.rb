@@ -3,7 +3,7 @@ class IconSetter
   attr_accessor :event_description, :event_words, :new_string
 
   def initialize(event_description)
-    self.event_description = event_description
+    @event_description = event_description
   end
 
   def self.call(event_description)
