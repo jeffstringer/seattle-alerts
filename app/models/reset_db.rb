@@ -1,4 +1,4 @@
-class ResetDB
+module ResetDB
 
   def self.call
     if Rails.env.development?

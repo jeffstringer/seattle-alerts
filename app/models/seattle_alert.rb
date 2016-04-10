@@ -1,4 +1,4 @@
-class SeattleAlert
+module SeattleAlert
 
   def self.call
     call_police
