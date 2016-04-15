@@ -25,13 +25,18 @@ class PoliceAlert < ActiveRecord::Base
 
   def self.parse_data(raw_alerts)
     raw_alerts.each do |raw_alert|
-      alert = PoliceAlertCleaner.new(raw_alert)
-      unless alert.event_clearance_description.include?("ALARMS")
-        create({hundred_block_location: alert.hundred_block_location, event_clearance_description: alert.event_clearance_description,
-          event_clearance_date: alert.event_clearance_date, general_offense_number: alert.general_offense_number,
-          census_tract: alert.census_tract, latitude: alert.latitude, longitude: alert.longitude})
+      unless raw_alert['event_clearance_description'].include?("alarms")
+        alert = PoliceAlert.new({hundred_block_location: raw_alert['hundred_block_location'], event_clearance_description: raw_alert['event_clearance_description'],
+          event_clearance_date: raw_alert['event_clearance_date'], general_offense_number: raw_alert['general_offense_number'],
+          census_tract: raw_alert['census_tract'], latitude: raw_alert['latitude'], longitude: raw_alert['longitude']})
+        alert.set_time
+        alert.save
       end
     end
+  end
+
+  def set_time
+    self.event_clearance_date = Time.parse(event_clearance_date.to_s)
   end
 end
 
