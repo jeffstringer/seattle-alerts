@@ -40,10 +40,10 @@ class Subscriber < ActiveRecord::Base
     end
 
     def admin_email
-      SubscriberMailer.admin_email(id).deliver_later!
+      SubscriberMailer.admin_email(self).deliver_later!
     end
 
     def signup_email
-      SubscriberMailer.signup_email(id).deliver_now!
+      SubscriberMailer.signup_email(self).deliver_now!
     end
 end
