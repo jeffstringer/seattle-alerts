@@ -28,17 +28,19 @@ SeattleAlerts::Application.configure do
   config.assets.debug = true
   config.assets.raise_runtime_errors = true
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
-  config.action_mailer.delivery_method = :smtp  
+  config.action_mailer.delivery_method = :smtp
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.perform_deliveries = true
 
-  config.action_mailer.smtp_settings = { 
+  $HOST_URL = 'http://localhost:3000'
+
+  config.action_mailer.smtp_settings = {
     address: "smtp.gmail.com",
     port: 587,
-    domain: "gmail.com", 
-    authentication: "plain", 
-    enable_starttls_auto: true, 
-    user_name: ENV["GMAIL_USERNAME"], 
+    domain: "gmail.com",
+    authentication: "plain",
+    enable_starttls_auto: true,
+    user_name: ENV["GMAIL_USERNAME"],
     password: ENV["GMAIL_PASSWORD"]
   }
 

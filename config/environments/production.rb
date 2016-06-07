@@ -79,6 +79,9 @@ SeattleAlerts::Application.configure do
   config.log_formatter = ::Logger::Formatter.new
 
   config.action_mailer.default_url_options = { :host => 'http://seattle-alerts.herokuapp.com/' }
+
+  $HOST_URL = 'http://seattle-alerts.herokuapp.com/'
+
   ActionMailer::Base.smtp_settings = {
     :port           => ENV['MAILGUN_SMTP_PORT'],
     :address        => ENV['MAILGUN_SMTP_SERVER'],

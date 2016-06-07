@@ -19,8 +19,8 @@
 //= require_tree .
 
 var ready = function() {
-  setTimeout(function(){ 
-    $(function() { $(document).foundation(); }); 
+  setTimeout(function(){
+    $(function() { $(document).foundation(); });
   }, 500);
   if ($('div.alert.alert-notice').length ) {
     $('h4').remove();
@@ -38,32 +38,31 @@ var ready = function() {
   });
   $('a#title').click(function() {
     setTimeout(function(){
-      window.location = "http://seattle-alerts.herokuapp.com/";
+      window.location = "<%= $HOST_URL %>";
     }, 10)
   });
   $('a#about').click(function() {
     setTimeout(function(){
-      window.location = "http://seattle-alerts.herokuapp.com/about";
+      window.location = "<%= $HOST_URL %>/about";
       $(function() { $(document).foundation(); });
     }, 10);
   });
   $('a#stayinformed').click(function() {
     setTimeout(function(){
-      window.location = "http://seattle-alerts.herokuapp.com/stayinformed";
+      window.location = "<%= $HOST_URL %>/stayinformed";
       $(function() { $(document).foundation(); });
     }, 10);
   });
   $('a#signin').click(function() {
     setTimeout(function(){
-      window.location = "http://seattle-alerts.herokuapp.com/signin";
+      window.location = "<%= $HOST_URL %>/signin";
       $(function() { $(document).foundation(); });
     }, 10);
   });
   $('input.button.submit').click(function() {
-    $(function() { $(document).foundation(); }); 
+    $(function() { $(document).foundation(); });
   });
 };
 
 $(document).ready(ready);
 $(document).on('page:load', ready);
-
