@@ -12,13 +12,13 @@ class IconSetter
 
   def event_parser
     self.event_words = event_description.split
-    self.new_string = event_words.map!{ |word| word.gsub(/\W/, '') }.join(" ")
+    self.new_string = event_words.map!{ |word| word.gsub(/\W/, '') }.join(' ')
     set
   end
 
   def set
-    return icons[new_string] unless icons[new_string].nil?
-    event_words.each { |word| return icons[word] unless icons[word].nil? }
+    return icons[new_string] if icons[new_string]
+    event_words.each { |word| return icons[word] if icons[word] }
     return 'police.png'
   end
 
